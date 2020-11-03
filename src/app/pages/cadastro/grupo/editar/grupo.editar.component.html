@@ -1,0 +1,110 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate *ngIf="form">
+
+  <nb-card status="warning" >
+
+    <nb-card-header>
+      Grupo
+    </nb-card-header>
+
+    <nb-card-body>
+      <div class="row">
+
+        <div class="col-md-6 col-12">
+          <div class="form-group">
+            <label class="label">* Categoria:</label>
+            <nb-select
+              fullWidth
+              placeholder="Selecionar"
+              [status]="getStatus('categoria')"
+              [ngClass]="{'is-valid': (categoria.valid && submited) , 'is-invalid' : (categoria.invalid && submited)  }"
+              [(selected)]= "data.categoria"
+              >
+
+              <nb-option *ngFor="let categoria of [{nome:'Sócio Fundador'},{nome:'Sócio Efetivo'},{nome:'Sócio Temporário'}]" [value]=categoria.nome>{{categoria.nome}}</nb-option>
+
+            </nb-select>
+
+            <div class="valid-feedback" >
+              Válido
+            </div>
+
+            <div class="invalid-feedback" >
+              Inválido
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-3 col-12">
+          <div class="form-group">
+            <label class="label">* Nome:</label>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              class="form-control"
+              placeholder="Nome"
+              [formControl]="nome"
+              [status]="getStatus('nome')"
+              [ngClass]="{'is-valid': (nome.valid && submited) , 'is-invalid' : (nome.invalid && submited)  }"
+            >
+
+          <div class="valid-feedback" >
+            Válido
+          </div>
+
+          <div class="invalid-feedback" >
+            Inválido
+          </div>
+
+
+          </div>
+        </div>
+
+        <div class="col-md-3 col-6">
+          <div class="form-group">
+            <label class="label">* Valor:</label>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              class="form-control"
+              placeholder="Valor"
+              [mask]="'0*.00'"
+              [dropSpecialCharacters]="false"
+              [formControl]="valor"
+              [status]="getStatus('valor')"
+              [ngClass]="{'is-valid': (valor.valid && submited) , 'is-invalid' : (valor.invalid && submited)  }"
+            >
+
+          <div class="valid-feedback" >
+            Válido
+          </div>
+
+          <div class="invalid-feedback" >
+            Inválido
+          </div>
+
+          </div>
+        </div>
+
+      </div>
+    </nb-card-body>
+
+    <nb-card-footer>
+      <div class="row">
+
+        <div class="col-md-2 col-6">
+          <button nbButton outline fullWidth status="basic" type="reset" (click)="voltar()">voltar</button>
+        </div>
+
+        <div class="col-md-2 offset-md-8 col-6">
+          <button nbButton outline fullWidth status="warning" type="submit">Editar</button>
+        </div>
+
+      </div>
+    </nb-card-footer>
+
+  </nb-card>
+
+</form>

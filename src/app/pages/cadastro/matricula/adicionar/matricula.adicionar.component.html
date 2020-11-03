@@ -1,0 +1,100 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+
+  <nb-card status="success">
+
+    <nb-card-header>
+      Matrícula
+    </nb-card-header>
+
+    <nb-card-body>
+      <div class="row">
+
+        <div class="col-md-6 col-12">
+          <div class="form-group">
+            <label class="label">* Logradouro</label>
+
+            <nb-select
+              fullWidth
+              placeholder="Selecionar"
+              [status]="getStatus('logradouro')"
+              [formControl]="logradouro">
+
+            <nb-option *ngFor="let l of logradouros" [value]=l>
+              {{l.tipoLogradouro.nome +' '+ l.nome}}
+            </nb-option>
+
+          </nb-select>
+
+          </div>
+        </div>
+
+        <div class="col-md-3 col-6">
+          <div class="form-group">
+            <label class="label">* Número</label>
+
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              status="basic"
+              placeholder="Número"
+              [mask]="'0*'"
+              [status]="getStatus('numero')"
+              [formControl]="numero"
+              >
+
+          </div>
+        </div>
+
+        <div class="col-md-3 col-6">
+          <div class="form-group">
+            <label class="label">Letra</label>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              status="basic"
+              placeholder="Letra"
+              [mask]="'S*'"
+              [status]="getStatus('letra')"
+              [formControl]="letra"
+              >
+          </div>
+        </div>
+
+
+        <div class="offset-md-6 col-md-6 col-12">
+          <div class="form-group">
+            <label class="label">Hidrômetro</label>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              status="basic"
+              placeholder="Hidrometro"
+              [status]="getStatus('hidrometro')"
+              [formControl]="hidrometro"
+              >
+          </div>
+        </div>
+
+      </div>
+    </nb-card-body>
+
+    <nb-card-footer>
+      <div class="row">
+
+        <div class="col-md-2 col-6">
+          <button nbButton outline fullWidth status="basic" type="reset" (click)="voltar()">voltar</button>
+        </div>
+
+        <div class="col-md-2 offset-md-8 col-6">
+          <button nbButton outline fullWidth status="success" type="submit">Salvar</button>
+        </div>
+
+      </div>
+    </nb-card-footer>
+
+  </nb-card>
+
+</form>

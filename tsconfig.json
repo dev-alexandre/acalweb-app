@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@library/*": ["src/library/*"],
+      "@base/*": ["src/@core/base/*"],
+      "@auth/*": ["src/auth/*"],
+    }
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./src/tsconfig.app.json"
+    },
+    {
+      "path": "./src/tsconfig.spec.json"
+    }
+  ]
+}

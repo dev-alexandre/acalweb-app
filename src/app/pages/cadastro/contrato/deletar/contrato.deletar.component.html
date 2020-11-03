@@ -1,0 +1,53 @@
+  <nb-card status="danger">
+
+    <nb-card-header>
+      Contrato
+    </nb-card-header>
+
+    <nb-card-body>
+      <div class="row" *ngIf="data">
+
+          <div class="col-md-2 col-12">
+            <div class="form-group">
+
+            </div>
+          </div>
+
+          <div class="col-md-6 col-12">
+            <div class="form-group">
+
+            </div>
+          </div>
+
+          <div class="col-md-2 col-6">
+            <div class="form-group">
+
+            </div>
+          </div>
+
+          <div class="col-md-2 col-6">
+            <div class="form-group">
+
+            </div>
+          </div>
+
+        </div>
+
+    </nb-card-body>
+
+    <nb-card-footer>
+      <div class="row">
+
+        <div class="col-md-2 col-6">
+          <button nbButton outline fullWidth status="basic" (click)="voltar()">voltar</button>
+        </div>
+
+        <div class="col-md-2 offset-md-8 col-6">
+          <button nbButton outline fullWidth status="danger" type="button" (click)="onSubmit()">Deletar</button>
+        </div>
+
+      </div>
+    </nb-card-footer>
+
+  </nb-card>
+

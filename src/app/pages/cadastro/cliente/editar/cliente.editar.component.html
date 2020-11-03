@@ -1,0 +1,136 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate *ngIf="form">
+
+  <nb-card status="warning" >
+
+    <nb-card-header>
+      Cliente
+    </nb-card-header>
+
+    <nb-card-body>
+      <div class="row">
+
+        <div class="col-md-8 col-12">
+          <div class="form-group">
+
+            <label class="label">* Nome:</label>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              class="form-control"
+              placeholder="Nome"
+              [formControl]="nome"
+              [status]="getStatus('nome')"
+              [ngClass]="{'is-valid': (nome.valid && submited) , 'is-invalid' : (nome.invalid && submited)  }"
+            >
+
+            <div class="valid-feedback" >
+              Válido
+            </div>
+
+            <div class="invalid-feedback" >
+              Inválido
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-4 col-12">
+          <div class="form-group">
+            <label class="label">* Documento: </label>
+            <input
+              disabled
+              nbInput
+              fullWidth
+              type="text"
+              class="form-control"
+              placeholder="Documento"
+              [mask]="'000.000.000-00'"
+              [formControl]="documento"
+              [status]="getStatus('documento')"
+              [ngClass]="{'is-valid': (documento.valid && submited) , 'is-invalid' : (documento.invalid && submited)  }"
+            >
+
+            <div class="valid-feedback" >
+              Válido
+            </div>
+
+            <div class="invalid-feedback" >
+              Inválido
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-6 col-12">
+          <div class="form-group">
+            <label class="label">* Data de Nascimento: </label>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              [mask]="'00/00/0000'"
+              class="form-control"
+              placeholder="Nascimento"
+              [formControl]="dataNascimento"
+              [status]="getStatus('dataNascimento')"
+              [ngClass]="{'is-valid': (dataNascimento.valid && submited) , 'is-invalid' : (dataNascimento.invalid && submited)  }"
+            >
+
+            <div class="valid-feedback" >
+              Válido
+            </div>
+
+            <div class="invalid-feedback" >
+              Inválido
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-6 col-12">
+          <div class="form-group">
+            <label class="label">* Número de Telefone: </label>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              [mask]="'(00) 0 0000-0000'"
+              class="form-control"
+              placeholder="Telefone"
+              [formControl]="telefone"
+              [status]="getStatus('telefone')"
+              [ngClass]="{'is-valid': (telefone.valid && submited) , 'is-invalid' : (telefone.invalid && submited)  }"
+            >
+
+            <div class="valid-feedback" >
+              Válido
+            </div>
+
+            <div class="invalid-feedback" >
+              Inválido
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </nb-card-body>
+
+    <nb-card-footer>
+      <div class="row">
+
+        <div class="col-md-2 col-6">
+          <button nbButton outline fullWidth status="basic" type="reset" (click)="voltar()">voltar</button>
+        </div>
+
+        <div class="col-md-2 offset-md-8 col-6">
+          <button nbButton outline fullWidth status="warning" type="submit">Editar</button>
+        </div>
+
+      </div>
+    </nb-card-footer>
+
+  </nb-card>
+
+</form>

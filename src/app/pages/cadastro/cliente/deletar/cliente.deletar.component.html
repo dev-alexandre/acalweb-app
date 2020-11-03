@@ -1,0 +1,85 @@
+  <nb-card status="danger">
+
+    <nb-card-header>
+      Cliente
+    </nb-card-header>
+
+    <nb-card-body>
+      <div class="row" *ngIf="data">
+
+          <div class="col-md-8 col-12">
+            <div class="form-group">
+
+              <label class="label">Nome</label>
+              <input
+                nbInput
+                disabled
+                fullWidth
+                type="text"
+                [(ngModel)]="data.nome"
+                >
+            </div>
+          </div>
+
+          <div class="col-md-4 col-12">
+            <div class="form-group">
+              <label class="label">Documento</label>
+              <input
+                nbInput
+                disabled
+                fullWidth
+                type="text"
+                [mask]="'000.000.000-00'"
+                [(ngModel)]="data.documento"
+                >
+            </div>
+          </div>
+
+          <div class="col-md-6 col-12">
+            <div class="form-group">
+              <label class="label">Data de nascimento</label>
+              <input
+                nbInput
+                disabled
+                fullWidth
+                type="text"
+                [mask]="'00/00/0000'"
+                [(ngModel)]="data.dataNascimento"
+                >
+            </div>
+          </div>
+
+          <div class="col-md-6 col-12">
+            <div class="form-group">
+              <label class="label">Telefone</label>
+              <input
+                nbInput
+                disabled
+                fullWidth
+                type="text"
+                [mask]="'(00) 0 0000-0000'"
+                [(ngModel)]="data.telefone"
+                >
+            </div>
+          </div>
+
+        </div>
+
+    </nb-card-body>
+
+    <nb-card-footer>
+      <div class="row">
+
+        <div class="col-md-2 col-6">
+          <button nbButton outline fullWidth status="basic" (click)="voltar()">voltar</button>
+        </div>
+
+        <div class="col-md-2 offset-md-8 col-6">
+          <button nbButton outline fullWidth status="danger" type="button" (click)="onSubmit()">Deletar</button>
+        </div>
+
+      </div>
+    </nb-card-footer>
+
+  </nb-card>
+
