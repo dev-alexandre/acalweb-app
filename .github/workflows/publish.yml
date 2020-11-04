@@ -18,4 +18,4 @@ jobs:
         #build_configuration: staging # The build environment for the app. please look configurations in your angular.json
         base_href: https://dev-alexandre.github.io/acalweb-app/   # make sure this corresponds to https://<your_username>.github.io/<base_href>/
         deploy_branch: gh-pages # The branch the action should deploy to.
-        angular_dist_build_folder: dist/acalweb-app # The folder where your project is supposed to be after running ng build by the action.
+        angular_dist_build_folder: dist # The folder where your project is supposed to be after running ng build by the action.
