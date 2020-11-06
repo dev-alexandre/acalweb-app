@@ -1,3 +1,50 @@
+
+<ng-template #dialog let-data let-ref="dialogRef">
+
+  <nb-card>
+
+    <nb-card-header>
+      {{contrato.habilitado ? 'Desabilitar': 'Habilitar'}} Contrato
+    </nb-card-header>
+
+    <nb-card-body>
+
+      <ng-container *ngIf="contrato.habilitado">
+        Deseja desabilitar esse contrato?
+        não será possivel gerar cobranças enquanto esse contrato estiver desabilitado
+      </ng-container>
+
+      <ng-container *ngIf="!contrato.habilitado">
+        Deseja habilitar esse contrato?
+        Será possivel gerar cobranças esse contrato
+      </ng-container>
+
+    </nb-card-body>
+
+
+    <nb-card-footer>
+
+
+      <div class="row">
+
+        <div class="col-md-3 col-6 ">
+          <button nbButton outline fullWidth (click)="ref.close()">Voltar</button>
+        </div>
+
+        <div class="offset-md-6 col-md-3 col-6">
+          <button *ngIf="contrato.habilitado" nbButton outline fullWidth status="basic" (click)="changeContrato(); ref.close();">Desabilitar</button>
+          <button *ngIf="!contrato.habilitado" nbButton outline fullWidth status="basic" (click)="changeContrato(); ref.close();">Habilitar</button>
+        </div>
+
+      </div>
+
+    </nb-card-footer>
+
+  </nb-card>
+
+</ng-template>
+
+
 <nb-card status="info">
 
   <nb-card-header>
@@ -30,8 +77,8 @@
         <thead >
           <tr>
             <th scope="col" class="align-middle font-weight-bold"> Nome: </th>
-            <th scope="col" class="align-middle font-weight-bold"> Número: </th>
-            <th scope="col" class="align-middle font-weight-bold"> Letra: </th>
+            <th scope="col" class="align-middle font-weight-bold"> Matrícula: </th>
+            <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
             <th scope="col" style="width: 8%;" colspan="2">
               <button nbButton outline fullWidth status="success" (click)=adicionar()>
                 <nb-icon icon="plus-outline"></nb-icon>
@@ -42,19 +89,29 @@
 
         <tbody *ngIf="table && !table?.empty">
 
-          <tr *ngFor="let data of table.content; index as i;">
-            <td class="align-middle" >{{data}}</td>
-            <td class="align-middle" >{{data}}</td>
-            <td class="align-middle" >{{data}}</td>
+          <tr *ngFor="let c of table.content; index as i;">
+            <td class="align-middle"> {{c?.cliente?.nome}} </td>
+            <td class="align-middle">
+              {{c?.matricula.logradouro.tipoLogradouro.nome}}
+              {{c?.matricula.logradouro.nome}}
+              {{c?.matricula.numero}}
+              {{c?.matricula.letra}}
+            </td>
+
+            <td class="align-middle">
+              {{c.grupo.categoria.nome +' '+ c.grupo.nome}}
+              ({{c?.valor | currency: 'BRL':'symbol'}})
+            </td>
 
             <td class="align-middle" >
-              <button nbButton outline fullWidth status="warning" (click)=editar(data)>
-                <nb-icon icon="edit-outline"></nb-icon>
+              <button nbButton outline fullWidth status="info" (click)="this.contrato = c; open(dialog);">
+                <nb-icon *ngIf="c.habilitado" icon="eye-off-2-outline"></nb-icon>
+                <nb-icon *ngIf="!c.habilitado" icon="eye-outline"></nb-icon>
               </button>
             </td>
 
             <td class="align-middle" >
-              <button nbButton outline fullWidth status="danger" (click)=deletar(data)>
+              <button nbButton outline fullWidth status="danger" (click)=deletar(c)>
                 <nb-icon icon="trash-2-outline"></nb-icon>
               </button>
             </td>
@@ -84,7 +141,7 @@
   </nb-card-body>
 
   <nb-card-footer>
-    <div class="row" *ngIf="table">
+    <div class="row" *ngIf="table && !table?.empty">
         <div class="col-12 col-md-6">
         <p class="text-secondary align-middle">
           Exibindo de {{ (table.pageable.pageNumber * table.pageable.pageSize)+1  }} A

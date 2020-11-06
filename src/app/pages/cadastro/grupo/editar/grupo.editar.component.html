@@ -12,15 +12,19 @@
         <div class="col-md-6 col-12">
           <div class="form-group">
             <label class="label">* Categoria:</label>
+
             <nb-select
               fullWidth
               placeholder="Selecionar"
               [status]="getStatus('categoria')"
               [ngClass]="{'is-valid': (categoria.valid && submited) , 'is-invalid' : (categoria.invalid && submited)  }"
-              [(selected)]= "data.categoria"
+              [(selected)]= "data.categoria.nome"
               >
 
-              <nb-option *ngFor="let categoria of [{nome:'Sócio Fundador'},{nome:'Sócio Efetivo'},{nome:'Sócio Temporário'}]" [value]=categoria.nome>{{categoria.nome}}</nb-option>
+              <nb-option *ngFor="let categoria of [
+                {nome:'Sócio Fundador'},
+                {nome:'Sócio Efetivo'},
+                {nome:'Sócio Temporário'}]" [value]=categoria.nome>{{categoria.nome}}</nb-option>
 
             </nb-select>
 

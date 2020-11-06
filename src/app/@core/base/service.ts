@@ -34,6 +34,10 @@ export abstract class Service<T extends Model> {
       return this.http.post<T>(this.rota + Acao.SALVAR.replace('[', '').replace(']', ''), t);
     }
 
+    public atualizar(t: T): Observable<T> {
+      return this.http.put<T>(this.rota + Acao.ATUALIZAR.replace('[', '').replace(']', ''), t);
+    }
+
     public editar(t: T): Observable<T> {
       return this.http.put<T>(this.rota + Acao.EDITAR.replace('[', '').replace(']', ''), t);
     }

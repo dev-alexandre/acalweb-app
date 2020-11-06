@@ -5,6 +5,7 @@
       "@library/*": ["src/library/*"],
       "@base/*": ["src/@core/base/*"],
       "@auth/*": ["src/auth/*"],
+      "@component/*": ["src/app/component/*"],
     }
   },
   "files": [],

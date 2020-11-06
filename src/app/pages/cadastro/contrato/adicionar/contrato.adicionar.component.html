@@ -9,9 +9,72 @@
     <nb-card-body>
       <div class="row">
 
+        <div class="col-12">
+          <div class="form-group">
+            <ngx-selecionar-cliente
+              [submited]="submited"
+              (setData)=(selecionarCliente($event))>
+            </ngx-selecionar-cliente>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-group">
+            <ngx-selecionar-matricula
+              [title]="'Matrícula'"
+              [submited]="submited"
+              (setData)=(selecionarMatricula($event))>
+            </ngx-selecionar-matricula>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-group">
+            <ngx-selecionar-matricula
+              [title]="'Matrícula de correspondência'"
+              [submited]="submited"
+              (setData)=(selecionarMatriculaCorrespondencia($event))>
+            </ngx-selecionar-matricula>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-group">
+            <ngx-selecionar-grupo
+              [submited]="submited"
+              (setData)=(selecionarGrupo($event))>
+            </ngx-selecionar-grupo>
+          </div>
+        </div>
+
         <div class="col-md-6 col-12">
+          <label class="label">Contrato</label>
           <div class="form-group">
 
+            <nb-toggle
+              class="align-center"
+              [status]="getStatus('indContratoPrincipal')"
+              labelPosition="start"
+              [formControl]="indContratoPrincipal">
+                Contrato Principal
+            </nb-toggle>
+
+          </div>
+        </div>
+
+        <div class="col-md-6 col-12">
+          <div class="form-group">
+            <label class="label">Valor</label>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              status="basic"
+              placeholder="Valor"
+              [mask]="'0*.00'"
+              [status]="getStatus('valor')"
+              [formControl]="valor"
+              >
           </div>
         </div>
 

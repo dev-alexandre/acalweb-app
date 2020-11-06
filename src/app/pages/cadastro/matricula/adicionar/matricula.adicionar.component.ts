@@ -70,7 +70,7 @@ export class MatriculaAdicionarComponent extends AdicionarComponent<Matricula, M
         Validators.min(1),
       ]),
 
-      hidromentro: new FormControl(
+      hidrometro: new FormControl(
         null, [
       ]),
       }

@@ -29,6 +29,34 @@ export class MatriculaEditarComponent extends EditarComponent<Matricula, Matricu
 
   }
 
+  public onSubmit() {
+    this.submited = true;
+
+    if (!this.form.valid) {
+      return;
+    }
+
+    this.getLogradourobyId();
+
+    this.service
+      .editar(this.form.value)
+        .subscribe(
+          () => {
+            this.router.navigate([ './listar' ], { relativeTo: this.activeRouter.parent });
+          },
+          (error) => {
+
+          }
+    );
+  }
+
+  getLogradourobyId(){
+    const id = this.logradouro.value.id;
+    const item1 = this.logradouros.find(i => i.id === id);
+    this.logradouro.setValue(item1);
+
+  }
+
   ngOnInit(): void {
 
     this.loadLograoduro();
@@ -36,7 +64,6 @@ export class MatriculaEditarComponent extends EditarComponent<Matricula, Matricu
     this.createForm();
 
     this.form.setValue(this.data);
-    this.form.patchValue({logradouro: this.data.logradouro});
   }
 
   public getModulo(): string {
@@ -47,6 +74,7 @@ export class MatriculaEditarComponent extends EditarComponent<Matricula, Matricu
     this.logradouroService.listarTodos().subscribe(
       (logradouros) => {
         this.logradouros = logradouros;
+        this.form.patchValue({logradouro: this.data.logradouro});
       }
     );
   }
@@ -67,7 +95,7 @@ export class MatriculaEditarComponent extends EditarComponent<Matricula, Matricu
       ),
 
       logradouro: new FormControl(
-        null, [
+        {}, [
         Validators.required,
       ]),
 

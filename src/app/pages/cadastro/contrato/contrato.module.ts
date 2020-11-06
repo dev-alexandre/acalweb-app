@@ -1,18 +1,18 @@
-import { ClienteModule } from './../cliente/cliente.module';
-import { LogradouroModule } from './../logradouro/logradouro.module';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbAutocompleteModule, NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { NbAutocompleteModule, NbButtonModule, NbCardModule, NbCheckboxModule, NbDialogModule, NbIconModule, NbInputModule, NbSelectModule, NbToggleModule } from '@nebular/theme';
+import { SelecionarModule } from 'app/@component/selecionar.module';
 import { ThemeModule } from 'app/@theme/theme.module';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { NgxMaskModule } from 'ngx-mask';
 import { ContratoAdicionarComponent } from './adicionar/contrato.adicionar.component';
+import { ContratoRoutingModule } from './contrato-routing.module';
+import { ContratoComponent } from './contrato.component';
 import { ContratoService } from './contrato.service';
+import { ContratoDeletarComponent } from './deletar/contrato.deletar.component';
 import { ContratoEditarComponent } from './editar/contrato.editar.component';
 import { ContratoListarComponent } from './listar/contrato.listar.component';
-import { ContratoComponent } from './contrato.component';
-import { ContratoDeletarComponent } from './deletar/contrato.deletar.component';
-import { ContratoRoutingModule } from './contrato-routing.module';
 
 @NgModule({
   imports: [
@@ -29,6 +29,11 @@ import { ContratoRoutingModule } from './contrato-routing.module';
     NbInputModule,
     ContratoRoutingModule,
     NbAutocompleteModule,
+    NbToggleModule,
+    SelecionarModule,
+    NbCheckboxModule,
+    NgxMaskModule.forChild(),
+    NbDialogModule.forChild(),
   ],
   declarations: [
     ContratoComponent,

@@ -16,9 +16,10 @@
               fullWidth
               placeholder="Selecionar"
               [status]="getStatus('logradouro')"
-              [(selected)]= "logradouro"
+              [(selected)]="logradouro.value.id"
               >
-            <nb-option *ngFor="let l of logradouros" [value]=l>
+
+            <nb-option *ngFor="let l of logradouros" [value]=l.id>
               {{l.tipoLogradouro.nome +' '+ l.nome}}
             </nb-option>
           </nb-select>

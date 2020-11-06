@@ -11,5 +11,6 @@ export interface Contrato extends Model {
   grupo?: Grupo;
   indContratoPrincipal?: boolean;
   valor?: number;
+  habilitado?: boolean;
 
 }
