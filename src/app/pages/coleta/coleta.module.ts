@@ -1,18 +1,18 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbButtonModule, NbCardModule, NbDatepickerModule, NbIconModule, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ThemeModule } from '../../@theme/theme.module';
-import { FinanceiroRoutingModule } from './financeiro-routing.module';
-import { FinanceiroComponent } from './financeiro.component';
-
+import { ColetaRoutingModule } from './coleta-routing.module';
+import { ColetaComponent } from './coleta.component';
 
 @NgModule({
+
   imports: [
-    CommonModule,
     ThemeModule,
     NbCardModule,
+    Ng2SmartTableModule,
     NbButtonModule,
     NbInputModule,
     NbSelectModule,
@@ -20,14 +20,21 @@ import { FinanceiroComponent } from './financeiro.component';
     NbIconModule,
     FormsModule,
     ReactiveFormsModule,
-    FinanceiroRoutingModule,
-    NbDatepickerModule,
+    ColetaRoutingModule,
   ],
+
   declarations: [
-    FinanceiroComponent,
+    ColetaComponent,
   ],
+
   providers: [
   ]
+
 })
 
-export class FinanceiroModule {}
+export class ColetaModule {
+
+  constructor() {
+  }
+
+}

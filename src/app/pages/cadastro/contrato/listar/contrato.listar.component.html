@@ -32,6 +32,7 @@
         </div>
 
         <div class="offset-md-6 col-md-3 col-6">
+
           <button *ngIf="contrato.habilitado" nbButton outline fullWidth status="basic" (click)="changeContrato(); ref.close();">Desabilitar</button>
           <button *ngIf="!contrato.habilitado" nbButton outline fullWidth status="basic" (click)="changeContrato(); ref.close();">Habilitar</button>
         </div>
@@ -76,6 +77,7 @@
 
         <thead >
           <tr>
+            <th scope="col" class="align-middle font-weight-bold"> #: </th>
             <th scope="col" class="align-middle font-weight-bold"> Nome: </th>
             <th scope="col" class="align-middle font-weight-bold"> Matrícula: </th>
             <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
@@ -90,6 +92,7 @@
         <tbody *ngIf="table && !table?.empty">
 
           <tr *ngFor="let c of table.content; index as i;">
+            <td class="align-middle"> {{c?.id}} </td>
             <td class="align-middle"> {{c?.cliente?.nome}} </td>
             <td class="align-middle">
               {{c?.matricula.logradouro.tipoLogradouro.nome}}
@@ -104,7 +107,7 @@
             </td>
 
             <td class="align-middle" >
-              <button nbButton outline fullWidth status="info" (click)="this.contrato = c; open(dialog);">
+              <button nbButton outline fullWidth status="info" (click)="this.contrato = c; open(dialog);"  nbTooltip="Mudar visibilidade do contrato" nbTooltipStatus="primary" >
                 <nb-icon *ngIf="c.habilitado" icon="eye-off-2-outline"></nb-icon>
                 <nb-icon *ngIf="!c.habilitado" icon="eye-outline"></nb-icon>
               </button>

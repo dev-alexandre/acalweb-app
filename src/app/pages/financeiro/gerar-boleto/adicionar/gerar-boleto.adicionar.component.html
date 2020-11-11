@@ -1,53 +1,131 @@
-<nb-card status="info">
+  <nb-card status="success" [nbSpinner]="loading" >
 
-  <nb-card-header>
-    Gerar Boleto
-  </nb-card-header>
+    <nb-card-header>
+      Gerar Boletos Mensais
+    </nb-card-header>
 
-  <nb-card-body>
+    <nb-card-body>
 
-    <div class="row">
+      <div class="row">
 
-      <div class="col-md-3 col-6">
+        <div class="col-md-3 col-12">
+          <div class="form-group">
 
-        <div class="form-group">
-          <label class="label">* Usufruto inicío:</label>
-          <input class="form-control" fullWidth nbInput placeholder="Pick Date" [nbDatepicker]="formcontrol" [formControl]="formControl">
-          <nb-datepicker #formcontrol></nb-datepicker>
+            <label class="label">* Início do período do usufruto:</label>
+            <input
+              nbInput
+              fullWidth
+              placeholder="Form Picker"
+              [nbDatepicker]="dataInicial"
+              [(ngModel)]="ngDataInicial">
+            <nb-datepicker #dataInicial ></nb-datepicker>
+
+          </div>
+        </div>
+
+        <div class="col-md-3 col-12">
+          <div class="form-group">
+
+            <label class="label">* Final do período do usufruto</label>
+            <input
+              nbInput
+              fullWidth
+              placeholder="Form Picker"
+              [nbDatepicker]="dataFinal"
+              [(ngModel)]="ngDataFinal">
+            <nb-datepicker #dataFinal ></nb-datepicker>
+
+          </div>
+        </div>
+
+        <div class="col-md-3 col-12">
+          <div class="form-group">
+
+            <label class="label">* Final do período do usufruto</label>
+            <input
+              nbInput
+              fullWidth
+              placeholder="Form Picker"
+              [nbDatepicker]="dataVencimento"
+              [(ngModel)]="ngDataVencimento">
+            <nb-datepicker #dataVencimento></nb-datepicker>
+
+          </div>
+        </div>
+
+        <div class="col-md-3 col-12">
+          <div class="form-group">
+            <label class="label">Ações</label>
+            <button nbButton outline fullWidth status="success" (click)=listarContratosPorRefererencia() type="submit">Pré-Visualizar</button>
+          </div>
         </div>
 
       </div>
 
-      <div class="col-md-3 col-6">
 
-        <div class="form-group">
-          <label class="label">* Usufruto final:</label>
-          <input class="form-control" fullWidth nbInput placeholder="Form Picker" [nbDatepicker]="ngmodel" [(ngModel)]="ngModelDate">
-          <nb-datepicker #ngmodel></nb-datepicker>
+    </nb-card-body>
+
+  </nb-card >
+
+  <nb-card *ngIf="contratos" [nbSpinner]="loading">
+
+    <nb-card-body>
+      <label *ngIf="ano != ''" class="label">Refêrencia {{mes +'/' + ano }}</label>
+
+      <div class="col-12">
+        <div class="row">
+          <table class="table table-sm table-striped">
+
+            <thead>
+              <tr>
+                <th scope="col" class="align-middle font-weight-bold"> Nome: </th>
+                <th scope="col" class="align-middle font-weight-bold"> Matrícula: </th>
+                <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr *ngFor="let c of contratos">
+                <td class="align-middle">
+                  {{c.cliente.nome}}
+                </td>
+
+                <td class="align-middle">
+                  {{c.matricula.logradouro.tipoLogradouro.nome}}
+                  {{c.matricula.logradouro.nome}}
+                  {{c.matricula.numero}}
+                  {{c.matricula.letra}}
+                </td>
+
+                <td class="align-middle">
+                  {{c.valor  |  currency:'BRL':'symbol'}}
+                </td>
+
+              </tr>
+
+              <tr *ngIf="!contratos?.length">
+                <td class="align-middle" colspan="3" >
+                  Nenhum registro encontrado
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+
+    </nb-card-body>
+
+    <nb-card-footer>
+      <div class="row">
+
+        <div class="offset-md-9 col-md-3 col-12">
+          <button nbButton outline fullWidth status="basic" (click)=gerar()>Gerar</button>
         </div>
 
       </div>
-    </div>
+    </nb-card-footer>
 
-    <div class="row">
-
-      <div class="col-md-3 col-6">
-
-        <div class="form-group">
-          <label class="label">Data de vencimento:</label>
-          <input class="form-control" fullWidth nbInput placeholder="Pick Date" [nbDatepicker]="formcontrol" [formControl]="formControl">
-          <nb-datepicker #formcontrol></nb-datepicker>
-        </div>
-
-      </div>
-
-    </div>
-
-
-  </nb-card-body>
-
-  <nb-card-footer>
-  </nb-card-footer>
-
-</nb-card>
-
+  </nb-card>

@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NbDialogRef, NbDialogService } from '@nebular/theme';
+import { NbDialogService } from '@nebular/theme';
 import { ListarComponent } from 'app/@core/base/_index';
 import { Modulo } from 'app/@library/enum';
 import { Contrato } from '../contrato.model';
@@ -43,7 +43,7 @@ export class ContratoListarComponent extends ListarComponent<Contrato, ContratoS
 
     this.contrato.habilitado = !this.contrato.habilitado;
 
-    this.service.atualizar(this.contrato).subscribe(
+    this.service.editar(this.contrato).subscribe(
       () => {
       },
     );

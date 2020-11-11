@@ -2,27 +2,18 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  NbChatModule,
-  NbDatepickerModule,
-  NbDialogModule,
-  NbMenuModule,
-  NbSidebarModule,
-  NbToastrModule,
-  NbWindowModule
-} from '@nebular/theme';
+import { NbChatModule, NbDatepickerModule, NbDialogModule, NbMenuModule, NbSidebarModule, NbToastrModule, NbWindowModule } from '@nebular/theme';
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
-import ptBr from '@angular/common/locales/pt';
 import { AuthGuard } from './auth/auth-guard.service';
 import { JwtInterceptor } from './auth/interceptor/jwt.interceptor';
 import { ErrorInterceptor } from './auth/interceptor/error.interceptor';
+import ptBr from '@angular/common/locales/pt';
 
 registerLocaleData(ptBr, 'pt-BR');
 
@@ -43,14 +34,14 @@ registerLocaleData(ptBr, 'pt-BR');
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),
     NbToastrModule.forRoot(),
-    NbChatModule.forRoot({
-      messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
-    }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
     NbToastrModule.forRoot(),
     NgxMaskModule.forRoot(),
     NbDialogModule.forRoot(),
+    NbChatModule.forRoot({
+      messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
+    }),
   ],
 
   declarations: [

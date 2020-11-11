@@ -12,7 +12,7 @@
   "scripts": {
     "ng": "ng",
     "conventional-changelog": "conventional-changelog",
-    "start": "ng serve --host 0.0.0.0 --disable-host-check",
+    "start": "ng serve --aot --host 0.0.0.0 --disable-host-check",
     "build": "ng build",
     "build:prod": "npm run build -- --prod --aot",
     "test": "ng test",
@@ -45,6 +45,7 @@
     "@asymmetrik/ngx-leaflet": "3.0.1",
     "@nebular/auth": "6.0.0",
     "@nebular/eva-icons": "6.0.0",
+    "@nebular/moment": "^6.2.1",
     "@nebular/security": "6.0.0",
     "@nebular/theme": "6.0.0",
     "@swimlane/ngx-charts": "^14.0.0",
