@@ -1,13 +1,13 @@
-import { LogradouroService } from './../../logradouro/logradouro.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { AdicionarComponent } from 'app/@core/base/adicionar.component';
 import { Modulo } from 'app/@library/enum';
+import { Logradouro } from '../../logradouro/logradouro.model';
 import { Matricula } from '../matricula.model';
 import { MatriculaService } from '../matricula.service';
-import { Logradouro } from '../../logradouro/logradouro.model';
+import { LogradouroService } from './../../logradouro/logradouro.service';
 
 @Component({
   selector: 'ngx-matricula',
