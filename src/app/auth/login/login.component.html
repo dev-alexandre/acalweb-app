@@ -2,7 +2,7 @@
 <p class="sub-title">Seja bem vindo!</p>
 
 <nb-alert *ngIf="showMessages.error && errors?.length && !submitted" outline="danger" role="alert">
-  <p class="alert-title"><b>Oh snap!</b></p>
+  <p class="alert-title"><b>Hum, alguma coisa não deu certo!</b></p>
   <ul class="alert-message-list">
     <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
   </ul>
@@ -84,12 +84,6 @@
       </p>
     </ng-container>
 
-
-
-  </div>
-
-  <div class="form-control-group accept-group">
-    <nb-checkbox name="rememberMe" [(ngModel)]="user.rememberMe" *ngIf="rememberMe">Lembre-se de mim</nb-checkbox>
   </div>
 
   <button nbButton

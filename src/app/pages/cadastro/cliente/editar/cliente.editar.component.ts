@@ -50,14 +50,6 @@ export class ClienteEditarComponent extends EditarComponent<Cliente, ClienteServ
         null
       ),
 
-      createdDate: new FormControl(
-        null
-      ),
-
-      lastModifiedDate: new FormControl(
-        null
-      ),
-
       nome: new FormControl(
         null, [
         Validators.required,

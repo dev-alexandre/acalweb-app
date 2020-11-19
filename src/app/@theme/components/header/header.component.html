@@ -6,13 +6,17 @@
       <nb-icon icon="menu-2-outline"></nb-icon>
     </a>
 
-    <a class="logo" href="#" (click)="navigateHome()">Web-<span>Acal</span></a>
+    <a class="logo" href="#" (click)="navigateHome()">
+      <span>Acal V2</span>
+    </a>
 
   </div>
 
+  <!--
   <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
     <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
   </nb-select>
+  -->
 
 </div>
 
@@ -20,12 +24,14 @@
 
   <nb-actions size="small">
 
+    <!--
     <nb-action class="control-item">
       <nb-search type="rotate-layout"></nb-search>
     </nb-action>
 
     <nb-action class="control-item" icon="email-outline"></nb-action>
     <nb-action class="control-item" icon="bell-outline"></nb-action>
+    -->
 
     <nb-action class="user-action" *nbIsGranted="['view', 'user']" >
 

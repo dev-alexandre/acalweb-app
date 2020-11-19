@@ -77,22 +77,22 @@
 
         <thead >
           <tr>
-            <th scope="col" class="align-middle font-weight-bold"> #: </th>
             <th scope="col" class="align-middle font-weight-bold"> Nome: </th>
             <th scope="col" class="align-middle font-weight-bold"> Matrícula: </th>
             <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
+
             <th scope="col" style="width: 8%;" colspan="2">
               <button nbButton outline fullWidth status="success" (click)=adicionar()>
                 <nb-icon icon="plus-outline"></nb-icon>
               </button>
             </th>
+
           </tr>
         </thead>
 
         <tbody *ngIf="table && !table?.empty">
 
           <tr *ngFor="let c of table.content; index as i;">
-            <td class="align-middle"> {{c?.id}} </td>
             <td class="align-middle"> {{c?.cliente?.nome}} </td>
             <td class="align-middle">
               {{c?.matricula.logradouro.tipoLogradouro.nome}}
@@ -136,7 +136,7 @@
 
         <tfoot>
           <tr>
-            <th scope="col" colspan="4"> </th>
+            <th scope="col" colspan="5"> </th>
           </tr>
         </tfoot>
 

@@ -86,14 +86,6 @@ export class MatriculaEditarComponent extends EditarComponent<Matricula, Matricu
         null
       ),
 
-      createdDate: new FormControl(
-        null
-      ),
-
-      lastModifiedDate: new FormControl(
-        null
-      ),
-
       logradouro: new FormControl(
         {}, [
         Validators.required,
