@@ -31,7 +31,7 @@ export abstract class ListarComponent <T extends Model, S extends Service<T>> {
     this.service
       .paginar(this.filtro)
       .subscribe(
-        table => {
+        (table) => {
           this.table = table;
         }
       );

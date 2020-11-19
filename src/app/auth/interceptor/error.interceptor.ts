@@ -21,7 +21,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
       if (err.status === 401 || err.status === 403) {
         this.authService.logout('email');
-        this.router.navigate([ '/auth/login' ]);
+        this.router.navigateByUrl('/auth/login');
       }
 
       const error = err.error || err.error.message || err.statusText;

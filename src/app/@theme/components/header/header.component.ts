@@ -97,7 +97,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (title === 'Perfil') {
           this.router.navigate([ './pages/perfil' ]);
         } else if (title === 'Sair') {
+          localStorage.removeItem('auth_app_token');
           this.authService.logout('email');
+          this.router.navigateByUrl('/auth/login');
         }
       });
   }

@@ -15,35 +15,35 @@ export abstract class Service<T extends Model> {
     public abstract getModulo(): string;
 
     constructor(public http: HttpClient) {
-        this.rota = environment.apiUrl + '/' + this.getModulo().replace('[', '').replace(']', '') + '/';
+      this.rota = environment.apiUrl + '/' + this.getModulo() + '/';
     }
 
     public paginar(filtro: Filtro): Observable<Table<T>> {
-        return this.http.post<Table<T>>(this.rota + Acao.PAGINAR.replace('[', '').replace(']', ''), filtro);
+      return this.http.post<Table<T>>(this.rota + Acao.PAGINAR, filtro);
     }
 
     public listarTodos(): Observable<T[]> {
-        return this.http.get<T[]>(this.rota + Acao.LISTAR.replace('[', '').replace(']', ''));
+        return this.http.get<T[]>(this.rota + Acao.LISTAR);
     }
 
     public deletar(t: T): Observable<T> {
-      return this.http.delete<T>(this.rota + Acao.DELETAR.replace('[', '').replace(']', '') + '/' + t.id);
+      return this.http.delete<T>(this.rota + Acao.DELETAR + '/' + t.id);
     }
 
     public salvar(t: T): Observable<T> {
-      return this.http.post<T>(this.rota + Acao.SALVAR.replace('[', '').replace(']', ''), t);
+      return this.http.post<T>(this.rota + Acao.SALVAR, t);
     }
 
     public salvarTodos(ts: T[]): Observable<T[]> {
-      return this.http.post<T[]>(this.rota + Acao.SALVAR_TODOS.replace('[', '').replace(']', ''), ts);
+      return this.http.post<T[]>(this.rota + Acao.SALVAR_TODOS, ts);
     }
 
     public editar(t: T): Observable<T> {
-      return this.http.put<T>(this.rota + Acao.EDITAR.replace('[', '').replace(']', ''), t);
+      return this.http.put<T>(this.rota + Acao.EDITAR, t);
     }
 
     public buscar(id: String): Observable<T> {
-      return this.http.get<T>(this.rota + Acao.BUSCAR.replace('[', '').replace(']', '') + '/' + id);
+      return this.http.get<T>(this.rota + Acao.BUSCAR + '/' + id);
     }
 
 

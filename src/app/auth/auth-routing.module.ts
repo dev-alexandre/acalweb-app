@@ -14,7 +14,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'login',
-        component: NgxLoginComponent, // <---
+        component: NgxLoginComponent,
       },
     ],
   },

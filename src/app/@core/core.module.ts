@@ -127,13 +127,19 @@ export const NB_CORE_PROVIDERS = [
           endpoint: '/logout',
           method: 'post',
           redirect: {
-            success: '/login/',
+            success: '/logout',
             failure: null,
           },
         },
         register: {
           endpoint: '/register',
           method: 'post',
+        },
+
+        errors: {
+          getter: (module, res, options) => {
+            return res.error ? res.error.message : options[module].defaultErrors;
+          },
         },
 
       }),
