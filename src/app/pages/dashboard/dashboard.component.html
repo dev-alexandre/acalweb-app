@@ -1,5 +1,22 @@
+
 <div class="row">
-  <div class="col-xxxl-3 col-md-6">
-    meu dashboard
+
+  <div class="col-lg-6 col-12" [nbSpinner]="!isLoadCategorias">
+    <nb-card *ngIf="isLoadCategorias">
+      <nb-card-header>Contratos por Categoria</nb-card-header>
+      <nb-card-body>
+        <ngx-pizza [fatias]=fatias></ngx-pizza>
+      </nb-card-body>
+    </nb-card>
   </div>
+
+  <div class="col-lg-6 col-12" [nbSpinner]="!isLoadFaturas">
+    <nb-card *ngIf="isLoadFaturas">
+      <nb-card-header>Faturas Emitidas por Refêrencia</nb-card-header>
+      <nb-card-body>
+        <ngx-barra [barras]=barras></ngx-barra>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
 </div>

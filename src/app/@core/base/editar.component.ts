@@ -18,7 +18,6 @@ export abstract class EditarComponent <T extends Model, S extends Service<T>> ex
 
   }
 
-
   public getAcao(): string {
     return Acao.EDITAR;
   }

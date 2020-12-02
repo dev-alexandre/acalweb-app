@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbSelectModule } from '@nebular/theme';
 import { ThemeModule } from 'app/@theme/theme.module';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgxMaskModule } from 'ngx-mask';
@@ -27,7 +27,9 @@ import { ClienteListarComponent } from './listar/cliente.listar.component';
     ReactiveFormsModule,
     NbInputModule,
     ClienteRoutingModule,
+    NbLayoutModule,
     NgxMaskModule.forChild(),
+    NbFormFieldModule,
   ],
   declarations: [
     ClienteComponent,

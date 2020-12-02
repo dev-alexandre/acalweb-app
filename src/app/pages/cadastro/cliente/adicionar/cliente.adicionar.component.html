@@ -38,17 +38,27 @@
         <div class="col-md-4 col-12">
           <div class="form-group">
             <label class="label">* Documento: </label>
-            <input
-              nbInput
-              fullWidth
-              type="text"
-              class="form-control"
-              placeholder="Documento"
-              [mask]="'000.000.000-00'"
-              [formControl]="documento"
-              [status]="getStatus('documento')"
-              [ngClass]="{'is-valid': (documento.valid && submited) , 'is-invalid' : (documento.invalid && submited)  }"
-            >
+
+            <nb-form-field>
+
+              <button button nbSuffix nbButton ghost (click)="isPessoaFisica = !isPessoaFisica" type="button">
+                <nb-icon [icon]="isPessoaFisica ? 'person-outline' : 'home-outline'" pack="eva">
+                </nb-icon>
+              </button>
+
+              <input
+                nbInput
+                fullWidth
+                type="text"
+                class="form-control"
+                placeholder="Documento"
+                [mask]="isPessoaFisica ?  '000.000.000-00': '00.000.000/0000-00' "
+                [formControl]="documento"
+                [status]="getStatus('documento')"
+                [ngClass]="{'is-valid': (documento.valid && submited) , 'is-invalid' : (documento.invalid && submited)  }"
+              >
+
+            </nb-form-field>
 
             <div class="valid-feedback" >
               Válido
@@ -61,7 +71,7 @@
           </div>
         </div>
 
-        <div class="col-md-6 col-12">
+        <div class="col-md-4 col-12">
           <div class="form-group">
             <label class="label">Data de Nascimento: </label>
             <input
@@ -87,7 +97,7 @@
           </div>
         </div>
 
-        <div class="col-md-6 col-12">
+        <div class="col-md-4 col-12">
           <div class="form-group">
             <label class="label">Número de Telefone: </label>
             <input
@@ -100,6 +110,32 @@
               [formControl]="telefone"
               [status]="getStatus('telefone')"
               [ngClass]="{'is-valid': (telefone.valid && submited) , 'is-invalid' : (telefone.invalid && submited)  }"
+            >
+
+            <div class="valid-feedback" >
+              Válido
+            </div>
+
+            <div class="invalid-feedback" >
+              Inválido
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-4 col-12">
+          <div class="form-group">
+            <label class="label">Número de Associado: </label>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              [mask]="'0*'"
+              class="form-control"
+              placeholder="Número de Associado:"
+              [formControl]="socio"
+              [status]="getStatus('socio')"
+              [ngClass]="{'is-valid': (socio.valid && submited) , 'is-invalid' : (socio.invalid && submited)  }"
             >
 
             <div class="valid-feedback" >

@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <p class="text-center font-weight-bold">
+      PADRÃO DA PORTARIA MS 2914/2011
+    </p>
+
+    <div class="table-responsive">
+      <table class="table table-sm">
+
+        <thead>
+          <tr>
+            <th colspan="4" class="text-center">
+              Decreto Federal nº. 5.440/2005
+            </th>
+          </tr>
+        </thead>
+
+        <thead>
+          <tr>
+            <th> Parâmetros </th>
+            <th> Exigido </th>
+            <th> Analisadas </th>
+            <th> Conforme </th>
+          </tr>
+        </thead>
+
+        <tbody *ngIf="analise">
+
+          <tr *ngFor="let c of analise.coletas">
+            <td> {{c.parametro}} </td>
+            <td> {{c.exigido}} </td>
+            <td> {{c.analisado}} </td>
+            <td> {{c.conforme}} </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+    </div>
+
+    <p class="text-center font-weight-bold">
+      Parâmetros de qualidade da água
+    </p>
+
+    <b> Cor</b> - Ocorre devido partícula desenvolvidas na água. <br/>
+    <b> Turbidez </b> - Ocorre devido a partícula em suspensão, que deixam a água com aparência turva. <br/>
+    <b> Cloro </b> - Produto químico utilizado para eliminar bactérias. <br/>
+    <b> Coliformes Totais </b> - Indicador utilizado para medir contaminção por bactérias. <br/>
+    <b> Eschirichia </b> - Indicador utilizado para medir contaminação por fecal.
+
+  </div>
+</div>

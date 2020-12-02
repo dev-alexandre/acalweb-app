@@ -1,0 +1,63 @@
+  <nb-card status="danger">
+
+    <nb-card-header>
+      Análise da Qualidade da água
+    </nb-card-header>
+
+    <nb-card-body>
+      <table class="table table-sm table-striped">
+
+        <thead >
+          <tr>
+            <th scope="col" class="align-middle font-weight-bold"> Refêrencia: </th>
+
+            <th scope="col" class="align-middle font-weight-bold"> Parâmetro: </th>
+            <th scope="col" class="align-middle font-weight-bold"> Exigido: </th>
+            <th scope="col" class="align-middle font-weight-bold"> Análisado: </th>
+            <th scope="col" class="align-middle font-weight-bold"> Conforme: </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let coleta of data.coletas;  index as i;">
+
+            <ng-container *ngIf="i === 0" >
+              <td class="align-middle" [attr.rowspan]="data.coletas.length">
+                {{data.referencia }}
+              </td>
+            </ng-container>
+
+            <td class="align-middle"> {{coleta.parametro}} </td>
+            <td class="align-middle"> {{coleta.exigido}} </td>
+            <td class="align-middle"> {{coleta.analisado}} </td>
+            <td class="align-middle"> {{coleta.conforme}} </td>
+
+          </tr>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <th scope="col" colspan="6"> </th>
+          </tr>
+        </tfoot>
+
+      </table>
+
+    </nb-card-body>
+
+    <nb-card-footer>
+      <div class="row">
+
+        <div class="col-md-2 col-6">
+          <button nbButton outline fullWidth status="basic" (click)="voltar()">voltar</button>
+        </div>
+
+        <div class="col-md-2 offset-md-8 col-6">
+          <button nbButton outline fullWidth status="danger" type="button" (click)="onSubmit()">Deletar</button>
+        </div>
+
+      </div>
+    </nb-card-footer>
+
+  </nb-card>
+

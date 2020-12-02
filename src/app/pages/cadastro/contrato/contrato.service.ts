@@ -17,8 +17,12 @@ export class ContratoService extends Service<Contrato> {
     super(http);
   }
 
-  public listarPorReferencia(mes: string, ano: string ): Observable<Contrato[]> {
-    return this.http.get<Contrato[]>(environment.apiUrl + '/contrato' + '/listar/' + mes + '/' + ano );
+  public listarPorReferencia(referencia: string): Observable<Contrato[]> {
+    return this.http.get<Contrato[]>(environment.apiUrl + '/contrato' + '/listar/' + referencia );
+  }
+
+  public countByCategoria(categoria: {nome: string} ): Observable<number> {
+    return this.http.get<number>(environment.apiUrl + '/contrato' + '/countByCategoria/' + categoria.nome );
   }
 
 }

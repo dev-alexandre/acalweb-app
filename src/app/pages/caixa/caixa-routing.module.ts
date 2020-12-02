@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FluxoComponent } from './fluxo/fluxo.component';
+import { MovimentacaoComponent } from './movimentacao/movimentacao.component';
 import { ReceberComponent } from './receber/receber.component';
 
 
 const routes: Routes = [
 
   {
-    path: 'fluxo',
-    component: FluxoComponent,
+    path: 'movimentacao',
+    component: MovimentacaoComponent,
   },
 
   {

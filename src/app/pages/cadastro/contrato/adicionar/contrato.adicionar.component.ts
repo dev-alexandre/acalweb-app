@@ -60,7 +60,7 @@ export class ContratoAdicionarComponent extends AdicionarComponent<Contrato, Con
         Validators.required,
       ]),
 
-      indContratoPrincipal: new FormControl(
+      contratoPrincipal: new FormControl(
         false, [
         Validators.required,
       ]),
@@ -111,8 +111,8 @@ export class ContratoAdicionarComponent extends AdicionarComponent<Contrato, Con
     return this.form.get('grupo');
   }
 
-  public get indContratoPrincipal() {
-    return this.form.get('indContratoPrincipal');
+  public get contratoPrincipal() {
+    return this.form.get('contratoPrincipal');
   }
 
   public get valor() {

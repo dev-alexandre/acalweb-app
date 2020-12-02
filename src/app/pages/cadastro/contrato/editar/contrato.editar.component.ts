@@ -14,6 +14,8 @@ import { ContratoService } from '../contrato.service';
 
 export class ContratoEditarComponent extends EditarComponent<Contrato, ContratoService> implements OnInit  {
 
+  public loading: boolean = false;
+
   constructor(
     public router: Router,
     public activeRouter: ActivatedRoute,
@@ -25,54 +27,33 @@ export class ContratoEditarComponent extends EditarComponent<Contrato, ContratoS
   }
 
   ngOnInit(): void {
-
     this.load();
     this.createForm();
-
-    this.form.setValue(this.data);
   }
 
   public getModulo(): string {
     return Modulo.CONTRATO;
   }
 
-  public createForm() {
+  public createForm(): void {
+  }
 
-    this.form = new FormGroup({
+  public deletar(referencia: string): void {
+    this.loading = true;
 
-      id: new FormControl(
-        null
-      ),
+    const index =  this.data.referencias.indexOf(referencia, 0);
 
-      logradouro: new FormControl(
-        null, [
-        Validators.required,
-      ]),
+    if (index > -1) {
+      this.data.referencias.splice(index, 1);
+    }
 
-      numero: new FormControl(
-        null, [
-        Validators.required,
-        Validators.maxLength(5),
-        Validators.min(1)
-      ]),
-
-      letra: new FormControl(
-        null, [
-        Validators.maxLength(5),
-        Validators.min(1),
-      ]),
-
-      createdDate: new FormControl(
-        null
-      ),
-
-      lastModifiedDate: new FormControl(
-        null
-      ),
-
+    this.service.editar(this.data).subscribe(
+      () => {
+        this.loading = false;
       }
     );
 
   }
+
 
 }

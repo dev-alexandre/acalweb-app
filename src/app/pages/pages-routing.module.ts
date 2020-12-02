@@ -15,6 +15,11 @@ const routes: Routes = [{
       component: DashboardComponent,
     },
     {
+      path: 'charts',
+      loadChildren: () => import('./charts/charts.module')
+        .then(m => m.ChartsModule),
+    },
+    {
       path: 'perfil',
       loadChildren: () => import('./perfil/perfil.module')
         .then(m => m.PerfilModule),
@@ -45,9 +50,14 @@ const routes: Routes = [{
         .then(m => m.LayoutModule),
     },
     {
-      path: 'coleta',
-      loadChildren: () => import('./coleta/coleta.module')
-        .then(m => m.ColetaModule),
+      path: 'analise',
+      loadChildren: () => import('./analise/analise.module')
+        .then(m => m.AnaliseModule),
+    },
+    {
+      path: 'hidrometro',
+      loadChildren: () => import('./hidrometro/hidrometro.module')
+        .then(m => m.HidrometroModule),
     },
     {
       path: '',

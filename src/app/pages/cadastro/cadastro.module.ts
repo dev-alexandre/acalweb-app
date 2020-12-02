@@ -7,7 +7,6 @@ import { CadastroRoutingModule } from './cadastro-routing.module';
 import { CadastroComponent } from './cadastro.component';
 import { LogradouroService } from './logradouro/logradouro.service';
 
-
 @NgModule({
   imports: [
     ThemeModule,

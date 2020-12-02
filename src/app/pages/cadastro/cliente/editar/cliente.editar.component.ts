@@ -4,7 +4,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { EditarComponent } from 'app/@core/base/_index';
-import { CPFValidator } from 'app/@core/validator/cpfValidator';
 import { Modulo } from 'app/@library/enum';
 import { Logradouro } from '../../logradouro/logradouro.model';
 import { Cliente } from '../cliente.model';
@@ -15,7 +14,7 @@ import { ClienteService } from '../cliente.service';
   templateUrl: './cliente.editar.component.html',
 })
 
-export class ClienteEditarComponent extends EditarComponent<Cliente, ClienteService> implements OnInit  {
+export class ClienteEditarComponent extends EditarComponent<Cliente, ClienteService> implements OnInit {
 
   public logradouros: Logradouro [];
 
@@ -60,7 +59,6 @@ export class ClienteEditarComponent extends EditarComponent<Cliente, ClienteServ
       documento: new FormControl(
         null, [
         Validators.required,
-        CPFValidator.isCPF(),
       ]),
 
       dataNascimento: new FormControl(

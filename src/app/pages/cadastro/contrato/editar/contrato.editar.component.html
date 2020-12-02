@@ -1,49 +1,132 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate *ngIf="form">
+<nb-card status="warning">
 
-  <nb-card status="warning" >
+  <nb-card-header>
+    Contrato
+  </nb-card-header>
 
-    <nb-card-header>
-      Contrato
-    </nb-card-header>
+  <nb-card-body>
+    <div class="row">
 
-    <nb-card-body>
-      <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label class="label">Cliente</label>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            [disabled]=true
+            [(ngModel)]=data.cliente.nome
+          >
 
-        <div class="col-md-6 col-12">
-          <div class="form-group">
-
-          </div>
         </div>
-
-        <div class="col-md-3 col-6">
-          <div class="form-group">
-
-          </div>
-        </div>
-
-        <div class="col-md-3 col-6">
-          <div class="form-group">
-
-          </div>
-        </div>
-
       </div>
-    </nb-card-body>
 
-    <nb-card-footer>
-      <div class="row">
-
-        <div class="col-md-2 col-6">
-          <button nbButton outline fullWidth status="basic" type="reset" (click)="voltar()">voltar</button>
+      <div class="col-12 col-md-4">
+        <div class="form-group">
+          <label class="label">Matricula </label>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            [disabled]=true
+            [(ngModel)]=data.matricula
+          >
         </div>
-
-        <div class="col-md-2 offset-md-8 col-6">
-          <button nbButton outline fullWidth status="warning" type="submit">Editar</button>
-        </div>
-
       </div>
-    </nb-card-footer>
 
-  </nb-card>
+      <div class="col-12 col-md-4">
+        <div class="form-group">
+          <label class="label">Matricula Correspondencia</label>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            [disabled]=true
+            [(ngModel)]=data.matriculaCorrespondencia
+          >
+        </div>
+      </div>
 
-</form>
+      <div class="col-12 col-md-4">
+        <div class="form-group">
+          <label class="label">Grupo </label>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            [disabled]=true
+            [(ngModel)]=data.grupo
+          >
+        </div>
+      </div>
+
+      <div class="col-md-6 col-12">
+        <div class="form-group">
+        <label class="label">Valor</label>
+        <input
+            nbInput
+            fullWidth
+            type="text"
+            [disabled]=true
+            [(ngModel)]=data.valor
+          >
+        </div>
+      </div>
+
+      <div class="col-md-6 col-12">
+        <label class="label"> Contrato Principal</label>
+
+        <div class="form-group">
+          <nb-checkbox
+            [disabled]=true
+            class="align-center"
+            [(ngModel)]=data.contratoPrincipal>
+          </nb-checkbox>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-12 col-12">
+        <div class="form-group">
+          <label class="label">Referência</label>
+
+          <table class="table table-sm table-striped" spin>
+
+            <tbody [nbSpinner]="loading" nbSpinnerMessage="">
+              <tr *ngFor="let r of data.referencias">
+                <td class="align-middle">{{r | referenciaPipe }}</td>
+                <td class="align-middle">
+
+                <button nbButton outline class="float-right" status="danger" (click)=deletar(r)>
+                  <nb-icon icon="trash-2-outline"></nb-icon>
+                </button></td>
+              </tr>
+            </tbody>
+
+          </table>
+
+        </div>
+      </div>
+    </div>
+
+  </nb-card-body>
+
+  <nb-card-footer>
+    <div class="row">
+
+      <div class="col-md-2 col-6">
+        <button nbButton outline fullWidth status="basic" type="reset" (click)="voltar()">voltar</button>
+      </div>
+
+      <div class="col-md-2 offset-md-8 col-6">
+        <button nbButton outline fullWidth status="warning" type="submit">Editar</button>
+      </div>
+
+    </div>
+  </nb-card-footer>
+
+</nb-card>
+

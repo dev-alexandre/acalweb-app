@@ -35,7 +35,6 @@ registerLocaleData(ptBr, 'pt-BR');
     NbToastrModule.forRoot(),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
-    NbToastrModule.forRoot(),
     NgxMaskModule.forRoot(),
     NbDialogModule.forRoot(),
     NbChatModule.forRoot({

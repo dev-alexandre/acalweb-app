@@ -7,7 +7,6 @@ import { Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { LayoutService } from '../../../@core/utils';
 
-
 @Component({
   selector: 'ngx-header',
   styleUrls: ['./header.component.scss'],
@@ -16,7 +15,10 @@ import { LayoutService } from '../../../@core/utils';
 export class HeaderComponent implements OnInit, OnDestroy {
 
   private destroy$: Subject<void> = new Subject<void>();
+
   userPictureOnly: boolean = false;
+  hideMenuOnClick: boolean = false;
+
   user: User;
 
   themes = [
@@ -69,12 +71,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.currentTheme = this.themeService.currentTheme;
 
     const { xl } = this.breakpointService.getBreakpointsMap();
+    const { is } = this.breakpointService.getBreakpointsMap();
+
     this.themeService.onMediaQueryChange()
-      .pipe(
-        map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
-        takeUntil(this.destroy$),
-      )
-      .subscribe((isLessThanXl: boolean) => this.userPictureOnly = isLessThanXl);
+    .pipe(
+      map(([, currentBreakpoint]) => currentBreakpoint),
+      takeUntil(this.destroy$),
+    )
+    .subscribe(currentBreakpoint => {
+      this.userPictureOnly = currentBreakpoint.width < xl;
+      this.hideMenuOnClick = currentBreakpoint.width <= is;
+    });
+
+    this.menuService.onItemClick().subscribe(() => {
+      if (this.hideMenuOnClick) {
+        this.sidebarService.collapse('menu-sidebar');
+      }
+    });
 
     this.themeService.onThemeChange()
       .pipe(
@@ -84,6 +97,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe(themeName => this.currentTheme = themeName);
 
       this.actions();
+
   }
 
   public actions(): void {

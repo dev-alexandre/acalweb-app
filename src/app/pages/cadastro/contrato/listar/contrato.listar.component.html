@@ -79,9 +79,10 @@
           <tr>
             <th scope="col" class="align-middle font-weight-bold"> Nome: </th>
             <th scope="col" class="align-middle font-weight-bold"> Matrícula: </th>
+            <th scope="col" class="align-middle font-weight-bold"> Principal: </th>
             <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
 
-            <th scope="col" style="width: 8%;" colspan="2">
+            <th scope="col" style="width: 8%;" colspan="3">
               <button nbButton outline fullWidth status="success" (click)=adicionar()>
                 <nb-icon icon="plus-outline"></nb-icon>
               </button>
@@ -93,7 +94,10 @@
         <tbody *ngIf="table && !table?.empty">
 
           <tr *ngFor="let c of table.content; index as i;">
-            <td class="align-middle"> {{c?.cliente?.nome}} </td>
+            <td class="align-middle">
+              {{c?.cliente?.nome}}
+            </td>
+
             <td class="align-middle">
               {{c?.matricula.logradouro.tipoLogradouro.nome}}
               {{c?.matricula.logradouro.nome}}
@@ -102,14 +106,29 @@
             </td>
 
             <td class="align-middle">
+              <nb-checkbox
+                class="align-center"
+                [(ngModel)]=c.contratoPrincipal>
+              </nb-checkbox>
+            </td>
+
+            <td class="align-middle">
               {{c.grupo.categoria.nome +' '+ c.grupo.nome}}
               ({{c?.valor | currency: 'BRL':'symbol'}})
             </td>
 
             <td class="align-middle" >
-              <button nbButton outline fullWidth status="info" (click)="this.contrato = c; open(dialog);"  nbTooltip="Mudar visibilidade do contrato" nbTooltipStatus="primary" >
-                <nb-icon *ngIf="c.habilitado" icon="eye-off-2-outline"></nb-icon>
-                <nb-icon *ngIf="!c.habilitado" icon="eye-outline"></nb-icon>
+              <button nbButton outline fullWidth
+                [status]="c.habilitado? 'info':'basic'"
+                (click)="this.contrato = c; open(dialog);"  nbTooltip="Mudar visibilidade do contrato" nbTooltipStatus="primary" >
+                <nb-icon *ngIf="!c.habilitado" icon="eye-off-2-outline"></nb-icon>
+                <nb-icon *ngIf="c.habilitado" icon="eye-outline"></nb-icon>
+              </button>
+            </td>
+
+            <td class="align-middle" >
+              <button nbButton outline fullWidth status="warning" (click)=editar(c)>
+                <nb-icon icon="edit-outline"></nb-icon>
               </button>
             </td>
 
@@ -126,7 +145,7 @@
         <tbody *ngIf="table?.empty">
 
           <tr>
-            <td class="align-middle" colspan="4" >
+            <td class="align-middle" colspan="5" >
               Nenhum registro encontrado
             </td>
           </tr>

@@ -1,6 +1,13 @@
 import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
+
+  {
+    title: 'Home',
+    icon: 'home-outline',
+    link: '/pages',
+  },
+
   {
     title: 'CADASTROS',
     icon: 'archive-outline',
@@ -27,11 +34,29 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
-
+  {
+    title: 'ANÁLISE',
+    icon: 'book-outline',
+    children: [
+      {
+        title: 'Qualidade Água',
+        link: '/pages/analise/listar',
+      },
+      {
+        title: 'Hidrômetro',
+        link: '/pages/hidrometro/listar',
+      },
+    ],
+  },
   {
     title: 'FINANCEIRO',
     icon: 'layout-outline',
     children: [
+
+      {
+        title: 'Boleto',
+        link: '/pages/financeiro/boleto/listar',
+      },
 
       {
         title: 'Gerar Boleto',
@@ -43,21 +68,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/financeiro/gerar-boleto/adicionar',
       },
 
-      {
-        title: 'Boleto',
-        link: '/pages/financeiro/boleto',
-      },
-
     ],
   },
 
   {
     title: 'CAIXA',
-    icon: 'book-outline',
+    icon: 'clipboard-outline',
     children: [
       {
-        title: 'Fluxo',
-        link: '/pages/caixa/fluxo',
+        title: 'Movimentações',
+        link: '/pages/caixa/movimentacao',
       },
       {
         title: 'Receber',
@@ -67,14 +87,40 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
 
   {
-    title: 'Coleta',
-    icon: 'book-outline',
+    title: 'OUTROS',
+    icon: 'clipboard-outline',
     children: [
       {
-        title: 'Qualidade',
-        link: '/pages/coleta',
+        title: 'Comunicacão',
+        link: '/pages/caixa/movimentacao',
+      },
+      {
+        title: 'Eleição',
+        link: '/pages/caixa/receber',
       },
     ],
-  }
+  },
+
+
+  {
+    title: 'Charts',
+    icon: 'pie-chart-outline',
+    children: [
+      {
+        title: 'Echarts',
+        link: '/pages/charts/echarts',
+      },
+      {
+        title: 'Charts.js',
+        link: '/pages/charts/chartjs',
+      },
+      {
+        title: 'D3',
+        link: '/pages/charts/d3',
+      },
+    ],
+  },
+
+
 
 ];

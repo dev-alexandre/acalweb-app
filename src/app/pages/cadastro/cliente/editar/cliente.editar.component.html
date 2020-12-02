@@ -45,7 +45,7 @@
               type="text"
               class="form-control"
               placeholder="Documento"
-              [mask]="'000.000.000-00'"
+              [mask]="data.documento.length=== 11 ? '000.000.000/00':'00.000.000/0000-00'"
               [formControl]="documento"
               [status]="getStatus('documento')"
               [ngClass]="{'is-valid': (documento.valid && submited) , 'is-invalid' : (documento.invalid && submited)  }"

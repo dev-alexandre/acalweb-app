@@ -41,7 +41,7 @@ export abstract class AdicionarComponent<T extends Model, S extends Service<T>> 
             this.router.navigate([ './listar' ], { relativeTo: this.activeRouter.parent });
           },
           (error) => {
-
+            this.toast.danger('Não foi possível completar', error?.message);
           }
     );
   }

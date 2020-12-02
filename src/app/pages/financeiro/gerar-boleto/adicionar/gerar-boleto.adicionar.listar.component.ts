@@ -1,80 +1,156 @@
 import { BoletoService } from './../../boleto/boleto.service';
-import { Boleto } from './../../boleto/boleto.model';
-import { ContratoService } from './../../../cadastro/contrato/contrato.service';
-import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { NbDateService } from '@nebular/theme';
+import { Boleto } from 'app/pages/financeiro/boleto/boleto.model';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
+import { User } from 'app/@core/data/users';
+import { ReferenciaValidator } from 'app/@core/validator/referenciaValidator';
 import { Contrato } from 'app/pages/cadastro/contrato/contrato.model';
-import * as moment from 'moment';
+import { ContratoService } from 'app/pages/cadastro/contrato/contrato.service';
+import { DateValidator } from 'app/@core/validator/dataValidator';
 
 @Component({
   selector: 'ngx-gerar-boleto-adicionar',
   templateUrl: './gerar-boleto.adicionar.component.html',
 })
 
-export class GerarBoletoAdicionarComponent {
+export class GerarBoletoAdicionarComponent implements OnInit{
+
+  public form: FormGroup;
 
   public loading: boolean = false;
-  public contratos: Contrato[] = [];
+  public submited: boolean = false;
+
+  public contratos: Contrato[];
   public boletos: Boleto[];
+  private user: User;
 
-  public ngDataInicial: Date = new Date();
-  public ngDataFinal: Date = new Date();
-  public ngDataVencimento: Date = new Date();
+  constructor(
+    private authService: NbAuthService,
+    public service: ContratoService,
+    public boletoService: BoletoService) {
+  }
 
-  public mes: string = '';
-  public ano: string = '';
+  ngOnInit(): void {
+    this.loadForm();
 
-  constructor(public service: ContratoService, public boletoService: BoletoService) {
+    this.authService.onTokenChange()
+      .subscribe( (token: NbAuthJWTToken) => {
+        if (token.isValid()) {
+          this.user = token.getPayload();
+        }}
+      );
+  }
+
+  public loadForm(): void {
+
+    this.form = new FormGroup({
+      referencia: new FormControl(
+        null, [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(6),
+          ReferenciaValidator.isReferencia(),
+        ]
+      ),
+      vencimento: new FormControl(
+        null, [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(8),
+          DateValidator.isDate(),
+        ]
+      )
+    });
+  }
+
+  public OnSubmit(): void {
+
+    this.submited = true;
+
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.listarContratosPorRefererencia();
   }
 
 
   public listarContratosPorRefererencia() {
 
-    const data = moment(this.ngDataVencimento).subtract(1, 'months');
-    this.mes = data.format('MM');
-    this.ano = data.format('YYYY');
+    this.contratos = [];
 
-    this.service.listarPorReferencia(this.mes, this.ano).subscribe(
+    this.service.listarPorReferencia(this.referencia.value).subscribe(
       (contratos: Contrato[]) => {
-        this.contratos = contratos;
-      }
-    );
-
+       contratos.forEach( contrato => {
+          contrato.check = true;
+          this.contratos.push(contrato);
+       });
+    });
   }
 
   public gerar(): void {
-    this.boletos = [];
     this.loading = true;
 
+    const referencia = this.referencia.value;
+    const contratosParaSalvar:  Contrato [] = [];
+    const boletosParaSalvar: Boleto [] = [];
+    const boleto: Boleto = {};
 
-    this.contratos.forEach(
-      c => {
+    this.contratos.forEach(c => {
+      if (c.check) {
 
         if (!c.referencias) {
           c.referencias = [];
         }
-        c.referencias.push({'mes': this.mes , 'ano': this.ano});
+        c.referencias.push(referencia);
+      }
 
-        this.boletos.push({
-          'numero' : '20201',
-          'contrato' : c,
-          'referencia': {'mes': this.mes, 'ano': this.ano},
-          'vencimento': this.ngDataVencimento,
-          'valores' : [{'valor': c.valor }]
-      });
+      boleto.contrato = c;
+      boleto.referencia = referencia;
+      boleto.movimentacao = null;
+      boleto.vencimento = this.vencimento.value;
+
+      boletosParaSalvar.push(boleto);
+      contratosParaSalvar.push(c);
     });
 
-    this.service.salvarTodos(this.contratos).subscribe(
+
+    this.service.salvarTodos(contratosParaSalvar).subscribe(
       () => {
-        this.boletoService.salvarTodos(this.boletos).subscribe(
+        this.boletoService.salvarTodos(boletosParaSalvar).subscribe(
           () => {
+            this.loading = false;
             this.listarContratosPorRefererencia();
+          },
+          () => {
             this.loading = false;
           }
+
         );
+      },
+      () => {
+        this.loading = false;
       }
+
     );
+  }
+
+
+  public getStatus(field: string) {
+    if (!this.submited) {
+      return 'basic';
+    }
+
+    return this.form.get(field).valid ? 'success' : 'danger';
+  }
+
+  public get referencia() {
+    return this.form.get('referencia');
+  }
+
+  public get vencimento() {
+    return this.form.get('vencimento');
   }
 
 }

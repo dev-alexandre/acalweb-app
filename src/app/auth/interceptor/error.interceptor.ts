@@ -11,7 +11,6 @@ export class ErrorInterceptor implements HttpInterceptor {
   constructor(
     private authService: NbAuthService,
     private router: Router,
-    private activeRouter: ActivatedRoute,
     ) {
 
   }
@@ -20,6 +19,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(catchError(err => {
 
       if (err.status === 401 || err.status === 403) {
+        localStorage.removeItem('auth_app_token');
         this.authService.logout('email');
         this.router.navigateByUrl('/auth/login');
       }

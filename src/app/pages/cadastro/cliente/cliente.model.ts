@@ -6,5 +6,6 @@ export interface Cliente extends Model {
   telefone?: string;
   documento?: string;
   dataNascimento?: Date;
+  socio?: number;
 
 }

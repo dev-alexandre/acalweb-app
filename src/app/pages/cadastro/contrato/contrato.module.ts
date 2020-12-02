@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbAutocompleteModule, NbButtonModule, NbCardModule, NbCheckboxModule, NbDialogModule, NbIconModule, NbInputModule, NbSelectModule, NbToggleModule, NbTooltipModule } from '@nebular/theme';
-import { SelecionarModule } from 'app/@component/selecionar.module';
+import { NbAutocompleteModule, NbButtonModule, NbCardModule, NbCheckboxModule, NbDialogModule, NbIconModule, NbInputModule, NbListModule, NbSelectModule, NbToggleModule, NbTooltipModule, NbSpinnerModule } from '@nebular/theme';
+import { SelecionarModule } from 'app/@component';
+import { PipeModule } from 'app/@core/pipe/pipe.module';
 import { ThemeModule } from 'app/@theme/theme.module';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgxMaskModule } from 'ngx-mask';
@@ -32,7 +33,10 @@ import { ContratoListarComponent } from './listar/contrato.listar.component';
     NbToggleModule,
     SelecionarModule,
     NbCheckboxModule,
+    NbListModule,
     NbTooltipModule,
+    PipeModule,
+    NbSpinnerModule,
     NgxMaskModule.forChild(),
     NbDialogModule.forChild(),
   ],

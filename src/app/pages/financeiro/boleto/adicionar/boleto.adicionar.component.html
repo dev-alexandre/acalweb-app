@@ -1,0 +1,93 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+
+  <nb-card status="success">
+
+    <nb-card-header>
+      Cliente
+    </nb-card-header>
+
+    <nb-card-body>
+
+      <div class="row">
+        <div class="col-md-8 col-12">
+          <div class="form-group">
+
+            <label class="label">* Nome:</label>
+
+            <div class="valid-feedback" >
+              Válido
+            </div>
+
+            <div class="invalid-feedback" >
+              Inválido
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-4 col-12">
+          <div class="form-group">
+            <label class="label">* Documento: </label>
+
+            <div class="valid-feedback" >
+              Válido
+            </div>
+
+            <div class="invalid-feedback" >
+              Inválido
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-6 col-12">
+          <div class="form-group">
+            <label class="label">Data de Nascimento: </label>
+
+            <div class="valid-feedback" >
+              Válido
+            </div>
+
+            <div class="invalid-feedback" >
+              Inválido
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-6 col-12">
+          <div class="form-group">
+            <label class="label">Número de Telefone: </label>
+
+            <div class="valid-feedback" >
+              Válido
+            </div>
+
+            <div class="invalid-feedback" >
+              Inválido
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </nb-card-body>
+
+    <nb-card-footer>
+      <div class="row">
+
+        <div class="col-md-2 col-6">
+          <button nbButton outline fullWidth status="basic" type="reset" (click)="voltar()">voltar</button>
+        </div>
+
+        <div class="col-md-2 offset-md-8 col-6">
+          <button nbButton outline fullWidth status="success" type="submit">Salvar</button>
+        </div>
+
+      </div>
+    </nb-card-footer>
+
+  </nb-card>
+
+</form>
+

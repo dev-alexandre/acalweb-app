@@ -1,4 +1,5 @@
-  <nb-card status="success" [nbSpinner]="loading" >
+<form [formGroup]="form" (ngSubmit)="OnSubmit()" class="needs-validation" novalidate>
+  <nb-card accent="success" [nbSpinner]="loading" >
 
     <nb-card-header>
       Gerar Boletos Mensais
@@ -11,52 +12,61 @@
         <div class="col-md-3 col-12">
           <div class="form-group">
 
-            <label class="label">* Início do período do usufruto:</label>
+            <label class="label">* Referência:</label>
             <input
               nbInput
               fullWidth
-              placeholder="Form Picker"
-              [nbDatepicker]="dataInicial"
-              [(ngModel)]="ngDataInicial">
-            <nb-datepicker #dataInicial ></nb-datepicker>
+              type="text"
+              class="form-control"
+              [mask]="'00/0000'"
+              [status]="getStatus('referencia')"
+              [ngClass]="{'is-valid': (referencia.valid && submited) , 'is-invalid' : (referencia.invalid && submited)  }"
+              [formControl]="referencia"
+              placeholder="Referência"
+            >
+
+            <div class="valid-feedback" >
+              Válido
+            </div>
+
+            <div class="invalid-feedback" >
+              Inválido
+            </div>
 
           </div>
         </div>
 
-        <div class="col-md-3 col-12">
+        <div class=" col-md-3 col-12">
           <div class="form-group">
 
-            <label class="label">* Final do período do usufruto</label>
+            <label class="label">* Vencimento:</label>
             <input
               nbInput
               fullWidth
-              placeholder="Form Picker"
-              [nbDatepicker]="dataFinal"
-              [(ngModel)]="ngDataFinal">
-            <nb-datepicker #dataFinal ></nb-datepicker>
+              type="text"
+              class="form-control"
+              [mask]="'00/00/0000'"
+              [status]="getStatus('vencimento')"
+              [ngClass]="{'is-valid': (vencimento.valid && submited) , 'is-invalid' : (vencimento.invalid && submited)  }"
+              [formControl]="vencimento"
+              placeholder="vencimento"
+            >
+
+            <div class="valid-feedback" >
+              Válido
+            </div>
+
+            <div class="invalid-feedback" >
+              Inválido
+            </div>
 
           </div>
         </div>
 
-        <div class="col-md-3 col-12">
-          <div class="form-group">
-
-            <label class="label">* Final do período do usufruto</label>
-            <input
-              nbInput
-              fullWidth
-              placeholder="Form Picker"
-              [nbDatepicker]="dataVencimento"
-              [(ngModel)]="ngDataVencimento">
-            <nb-datepicker #dataVencimento></nb-datepicker>
-
-          </div>
-        </div>
-
-        <div class="col-md-3 col-12">
+        <div class="col-md-3 offset-md-3 col-12">
           <div class="form-group">
             <label class="label">Ações</label>
-            <button nbButton outline fullWidth status="success" (click)=listarContratosPorRefererencia() type="submit">Pré-Visualizar</button>
+            <button nbButton outline fullWidth status="success" type="submit">Pré-Visualizar</button>
           </div>
         </div>
 
@@ -65,67 +75,76 @@
 
     </nb-card-body>
 
-  </nb-card >
-
-  <nb-card *ngIf="contratos" [nbSpinner]="loading">
-
-    <nb-card-body>
-      <label *ngIf="ano != ''" class="label">Refêrencia {{mes +'/' + ano }}</label>
-
-      <div class="col-12">
-        <div class="row">
-          <table class="table table-sm table-striped">
-
-            <thead>
-              <tr>
-                <th scope="col" class="align-middle font-weight-bold"> Nome: </th>
-                <th scope="col" class="align-middle font-weight-bold"> Matrícula: </th>
-                <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
-              </tr>
-            </thead>
-
-            <tbody>
-
-              <tr *ngFor="let c of contratos">
-                <td class="align-middle">
-                  {{c.cliente.nome}}
-                </td>
-
-                <td class="align-middle">
-                  {{c.matricula.logradouro.tipoLogradouro.nome}}
-                  {{c.matricula.logradouro.nome}}
-                  {{c.matricula.numero}}
-                  {{c.matricula.letra}}
-                </td>
-
-                <td class="align-middle">
-                  {{c.valor  |  currency:'BRL':'symbol'}}
-                </td>
-
-              </tr>
-
-              <tr *ngIf="!contratos?.length">
-                <td class="align-middle" colspan="3" >
-                  Nenhum registro encontrado
-                </td>
-              </tr>
-
-            </tbody>
-
-          </table>
-        </div>
-      </div>
-
-    </nb-card-body>
-
-    <nb-card-footer>
-      <div class="row">
-
-        <div class="offset-md-9 col-md-3 col-12">
-          <button nbButton outline fullWidth status="basic" (click)=gerar()>Gerar</button>
-        </div>
-
-      </div>
-    </nb-card-footer>
-
   </nb-card>
+</form>
+
+
+<nb-card accent="success" *ngIf="contratos" [nbSpinner]="loading" >
+
+  <nb-card-body>
+    <label class="label">Refêrencia </label>
+
+    <div class="col-12">
+      <div class="row">
+        <table class="table table-sm table-striped">
+
+          <thead>
+            <tr>
+              <th scope="col" class="align-middle font-weight-bold"> Nome: </th>
+              <th scope="col" class="align-middle font-weight-bold"> Matrícula: </th>
+              <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
+              <th scope="col" class="align-middle font-weight-bold">
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr *ngFor="let c of contratos">
+              <td class="align-middle">
+                {{c.cliente.nome}}
+              </td>
+
+              <td class="align-middle">
+                {{c.matricula.logradouro.tipoLogradouro.nome}}
+                {{c.matricula.logradouro.nome}}
+                {{c.matricula.numero}}
+                {{c.matricula.letra}}
+              </td>
+
+              <td class="align-middle">
+                {{c.valor  |  currency:'BRL':'symbol'}}
+              </td>
+
+              <td class="align-middle">
+                <nb-checkbox [(ngModel)]=c.check class="align-center">
+                </nb-checkbox>
+              </td>
+
+            </tr>
+
+            <tr *ngIf="!contratos?.length">
+              <td class="align-middle" colspan="3" >
+                Nenhum registro encontrado
+              </td>
+            </tr>
+
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+
+  </nb-card-body>
+
+  <nb-card-footer>
+    <div class="row">
+
+      <div class="offset-md-9 col-md-3 col-12">
+        <button nbButton outline fullWidth status="basic" (click)=gerar()>Gerar</button>
+      </div>
+
+    </div>
+  </nb-card-footer>
+
+</nb-card>

@@ -1,4 +1,3 @@
-import { CPFValidator } from './../../../../@core/validator/cpfValidator';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,6 +7,7 @@ import { Modulo } from 'app/@library/enum';
 import { Cliente } from '../cliente.model';
 import { ClienteService } from '../cliente.service';
 import { DateValidator } from 'app/@core/validator/dataValidator';
+import { DocumentoValidator } from 'app/@core/validator/documentoValidator';
 
 @Component({
   selector: 'ngx-adicionar-cliente',
@@ -15,6 +15,8 @@ import { DateValidator } from 'app/@core/validator/dataValidator';
 })
 
 export class ClienteAdicionarComponent extends AdicionarComponent<Cliente, ClienteService> implements OnInit {
+
+  public isPessoaFisica: boolean = true;
 
   constructor(
     public router: Router,
@@ -48,7 +50,11 @@ export class ClienteAdicionarComponent extends AdicionarComponent<Cliente, Clien
       documento: new FormControl(
         null, [
         Validators.required,
-        CPFValidator.isCPF(),
+        DocumentoValidator.isDocument(),
+      ]),
+
+      socio: new FormControl(
+        null, [
       ]),
 
       dataNascimento: new FormControl(
@@ -70,6 +76,10 @@ export class ClienteAdicionarComponent extends AdicionarComponent<Cliente, Clien
 
   public get nome() {
     return this.form.get('nome');
+  }
+
+  public get socio() {
+    return this.form.get('socio');
   }
 
   public get documento() {

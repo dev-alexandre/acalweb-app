@@ -1,0 +1,15 @@
+<nb-card *ngIf="loaded">
+
+  <nb-card-body>
+
+    <ngx-boleto-cabecalho> </ngx-boleto-cabecalho>
+
+    <ngx-boleto-detalhe [boleto]=boleto *ngIf="boleto"></ngx-boleto-detalhe>
+
+    <ngx-boleto-analise [analise]=analise *ngIf="analise"></ngx-boleto-analise>
+
+    <ngx-boleto-detalhe [boleto]=boleto *ngIf="boleto"></ngx-boleto-detalhe>
+
+  </nb-card-body>
+</nb-card>
+

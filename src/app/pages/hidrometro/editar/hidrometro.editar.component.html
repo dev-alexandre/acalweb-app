@@ -1,0 +1,41 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+
+  <nb-card status="warning">
+
+    <nb-card-header>
+      Hidrômetro
+    </nb-card-header>
+
+    <nb-card-body>
+      <div class="row">
+
+        <div class="col-md-3 col-12">
+          <div class="form-group">
+
+
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </nb-card-body>
+
+    <nb-card-footer>
+      <div class="row">
+
+        <div class="col-md-2 col-6">
+          <button nbButton outline fullWidth status="basic" type="reset" (click)="voltar()">voltar</button>
+        </div>
+
+        <div class="col-md-2 offset-md-8 col-6">
+          <button nbButton outline fullWidth status="success" type="submit">Salvar</button>
+        </div>
+
+      </div>
+    </nb-card-footer>
+
+  </nb-card>
+
+</form>

@@ -1,0 +1,114 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+
+  <nb-card status="success">
+
+    <nb-card-header>
+      Análise da Qualidade da água
+    </nb-card-header>
+
+    <nb-card-body>
+      <div class="row">
+
+        <div class="col-md-3 col-12">
+          <div class="form-group">
+
+            <label class="label">* Referência:</label>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              class="form-control"
+              [mask]="'00/0000'"
+              placeholder="Referência"
+              [formControl]="referencia"
+              [status]="getStatus('referencia')"
+              [ngClass]="{'is-valid': (referencia.valid && submited) , 'is-invalid' : (referencia.invalid && submited)  }"
+            >
+
+            <div class="valid-feedback" >
+              Válido
+            </div>
+
+            <div class="invalid-feedback" >
+              Inválido
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <hr>
+
+      <div class="row" formArrayName="coletas"  *ngFor="let coleta of coletas; let i=index" >
+        <ng-container [formGroupName]="i">
+          <div class="col-md-3 col-12" >
+            <div class="form-group">
+              <label class="label">Nome:</label>
+              <input
+                nbInput
+                fullWidth
+                placeholder="Nome"
+                [formControlName]="'parametro'"
+                >
+            </div>
+          </div>
+
+          <div class="col-md-3 col-12" >
+            <div class="form-group">
+              <label class="label">Exigido:</label>
+              <input
+                nbInput
+                fullWidth
+                placeholder="exigido"
+                [formControlName]="'exigido'"
+                >
+            </div>
+          </div>
+
+          <div class="col-md-3 col-12" >
+            <div class="form-group">
+              <label class="label">Analisado:</label>
+              <input
+                nbInput
+                fullWidth
+                placeholder="analisado"
+                [formControlName]="'analisado'"
+                >
+            </div>
+          </div>
+
+          <div class="col-md-3 col-12" >
+            <div class="form-group">
+              <label class="label">conforme:</label>
+              <input
+                nbInput
+                fullWidth
+                placeholder="conforme"
+                [formControlName]="'conforme'"
+                >
+            </div>
+          </div>
+
+        </ng-container>
+      </div>
+
+    </nb-card-body>
+
+    <nb-card-footer>
+      <div class="row">
+
+        <div class="col-md-2 col-6">
+          <button nbButton outline fullWidth status="basic" type="reset" (click)="voltar()">voltar</button>
+        </div>
+
+        <div class="col-md-2 offset-md-8 col-6">
+          <button nbButton outline fullWidth status="success" type="submit">Salvar</button>
+        </div>
+
+      </div>
+    </nb-card-footer>
+
+  </nb-card>
+
+</form>

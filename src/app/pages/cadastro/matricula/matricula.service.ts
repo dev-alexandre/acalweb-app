@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Select } from 'app/@component/select.model';
+import { Select } from 'app/@component';
 import { Service } from 'app/@core/base/_index';
 import { Modulo } from 'app/@library/enum';
 import { environment } from 'environments/environment';

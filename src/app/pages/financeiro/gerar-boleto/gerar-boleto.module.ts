@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbButtonModule, NbCardModule, NbDatepickerModule, NbIconModule, NbInputModule, NbSelectModule, NbSpinnerModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbCheckboxModule, NbDatepickerModule, NbIconModule, NbInputModule, NbRevealCardComponent, NbSelectModule, NbSpinnerModule, NbUserModule } from '@nebular/theme';
 import { ThemeModule } from 'app/@theme/theme.module';
 import { ContratoService } from 'app/pages/cadastro/contrato/contrato.service';
 import { NgxMaskModule } from 'ngx-mask';
@@ -25,6 +25,8 @@ import { GerarBoletoService } from './gerar-boleto.service';
     NbInputModule,
     NbSpinnerModule,
     GerarBoletoRoutingModule,
+    NbCheckboxModule,
+    NbUserModule,
     NgxMaskModule.forChild(),
     NbDatepickerModule.forRoot(),
   ],

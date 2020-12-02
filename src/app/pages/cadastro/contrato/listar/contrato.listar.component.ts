@@ -42,7 +42,6 @@ export class ContratoListarComponent extends ListarComponent<Contrato, ContratoS
   public changeContrato(): void {
 
     this.contrato.habilitado = !this.contrato.habilitado;
-
     this.service.editar(this.contrato).subscribe(
       () => {
       },
