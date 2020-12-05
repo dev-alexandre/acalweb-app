@@ -1,1 +1,116 @@
-hidrometro
+<nb-card *ngIf="!load" >
+
+  <nb-card-header>
+    Coleta Mensal
+  </nb-card-header>
+
+  <nb-card-body>
+
+    <div class="row">
+
+      <div class="col-md-3 col-6">
+        <div class="form-group">
+
+          <label class="label">* Referência:</label>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            class="form-control"
+            placeholder="Referência"
+            [(ngModel)]=referencia
+            [mask]="'00/0000'"
+            (keyup.enter)=previsualizar()
+          >
+        </div>
+      </div>
+
+      <div class="offset-md-6 col-md-3 col-6">
+        <div class="form-group">
+
+          <div class="form-group">
+            <label class="label">Ações</label>
+            <button nbButton outline fullWidth status="success" (click)=previsualizar() type="button">Pré-Visualizar</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </nb-card-body>
+</nb-card>
+
+
+<nb-card *ngIf="load">
+
+  <nb-card-header>
+    Coleta Mensal
+  </nb-card-header>
+
+  <nb-card-body>
+    <div style="overflow-y: scroll; max-height:60vh;">
+      <table class="table table-sm table-striped">
+
+        <thead >
+          <tr>
+            <th scope="col" class="align-middle font-weight-bold"> Matrícula: </th>
+            <th scope="col" class="align-middle font-weight-bold"> Anterior: </th>
+            <th scope="col" class="align-middle font-weight-bold"> Atual: </th>
+          </tr>
+        </thead>
+
+        <tbody *ngIf="hidrometros">
+          <tr *ngFor="let h of hidrometros; index as i;">
+            <td class="align-middle" >
+              {{h.matricula.logradouro.tipoLogradouro.nome}}
+              {{h.matricula.logradouro.nome}}
+              {{h.matricula.numero}}
+              {{h.matricula.letra}}
+            </td>
+            <td class="align-middle">
+              <input
+                nbInput
+                fullWidth
+                type="text"
+                class="form-control"
+                mask="separator.3"
+                thousandSeparator="."
+                [(ngModel)]="h.anterior"
+              >
+            </td>
+            <td class="align-middle">
+              <input
+                nbInput
+                fullWidth
+                type="text"
+                class="form-control"
+                mask="separator.3"
+                thousandSeparator="."
+                [(ngModel)]="h.atual"
+              >
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+    </div>
+  </nb-card-body>
+
+  <nb-card-footer>
+    <div class="row">
+
+      <div class="col-md-3 col-6">
+        <button nbButton outline fullWidth status="basic" type="button" (click)="load=false; referencia = ''; hidrometros = [] " >Voltar</button>
+      </div>
+
+      <div class="col-md-3 offset-md-6 col-6">
+        <button nbButton outline fullWidth status="success" (click)="salvar()" type="button">Salvar</button>
+      </div>
+
+    </div>
+  </nb-card-footer>
+
+
+</nb-card>

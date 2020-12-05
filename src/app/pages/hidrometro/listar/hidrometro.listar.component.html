@@ -47,9 +47,15 @@
           <ng-container *ngFor="let data of table.content">
 
             <tr >
-              <td class="align-middle"> {{data.referencia}} </td>
-              <td class="align-middle"> {{data.matricula}} </td>
-              <td class="align-middle"s> {{data.anterior - data.atual}} </td>
+              <td class="align-middle"> {{data.referencia | referenciaPipe}} </td>
+              <td class="align-middle">
+                {{data.matricula.logradouro.tipoLogradouro.nome}}
+                {{data.matricula.logradouro.nome}}
+                {{data.matricula.numero}}
+                {{data.matricula.letra}}
+
+              </td>
+              <td class="align-middle"> {{(data.atual - data.anterior) | number}} </td>
 
               <td class="align-middle">
                 <button nbButton outline fullWidth status="warning" (click)=editar(data)>

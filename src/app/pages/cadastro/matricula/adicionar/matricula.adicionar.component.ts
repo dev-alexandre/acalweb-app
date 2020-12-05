@@ -17,6 +17,7 @@ import { LogradouroService } from './../../logradouro/logradouro.service';
 export class MatriculaAdicionarComponent extends AdicionarComponent<Matricula, MatriculaService> implements OnInit {
 
   public logradouros: Logradouro [];
+  public hasHidrometro: boolean = false;
 
   constructor(
     public router: Router,
@@ -47,6 +48,11 @@ export class MatriculaAdicionarComponent extends AdicionarComponent<Matricula, M
     );
   }
 
+  public changeDataBeforeSave(matricula: Matricula): Matricula {
+    matricula.possuiHidrometro = matricula.hidrometro ? true : false;
+
+    return matricula;
+  }
 
   public createForm() {
 
@@ -73,8 +79,17 @@ export class MatriculaAdicionarComponent extends AdicionarComponent<Matricula, M
       hidrometro: new FormControl(
         null, [
       ]),
+
+      possuiHidrometro: new FormControl(
+        null, [
+      ]),
       }
     );
+  }
+
+
+  public toggle(checked: boolean) {
+    this.hasHidrometro = checked;
   }
 
   public get logradouro() {
@@ -91,6 +106,10 @@ export class MatriculaAdicionarComponent extends AdicionarComponent<Matricula, M
 
   public get hidrometro() {
     return this.form.get('hidrometro');
+  }
+
+  public get possuiHidrometro() {
+    return this.form.get('possuiHidrometro');
   }
 
 }

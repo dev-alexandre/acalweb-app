@@ -17,6 +17,7 @@ import { LogradouroService } from '../../logradouro/logradouro.service';
 export class MatriculaEditarComponent extends EditarComponent<Matricula, MatriculaService> implements OnInit  {
 
   public logradouros: Logradouro [];
+  public hasHidrometro: boolean;
 
   constructor(
     public router: Router,
@@ -50,7 +51,7 @@ export class MatriculaEditarComponent extends EditarComponent<Matricula, Matricu
     );
   }
 
-  getLogradourobyId(){
+  getLogradourobyId() {
     const id = this.logradouro.value.id;
     const item1 = this.logradouros.find(i => i.id === id);
     this.logradouro.setValue(item1);
@@ -78,7 +79,10 @@ export class MatriculaEditarComponent extends EditarComponent<Matricula, Matricu
       }
     );
   }
+
   public createForm() {
+
+    this.hasHidrometro = this.data.hidrometro ? true : false;
 
     this.form = new FormGroup({
 
@@ -111,6 +115,10 @@ export class MatriculaEditarComponent extends EditarComponent<Matricula, Matricu
       }
     );
 
+  }
+
+  public toggle(checked: boolean) {
+    this.hasHidrometro = checked;
   }
 
   public get logradouro() {

@@ -18,6 +18,10 @@ export abstract class AdicionarComponent<T extends Model, S extends Service<T>> 
 
   }
 
+  public changeDataBeforeSave(t: T): T {
+    return t;
+  }
+
   public load(): void {
     this.createForm();
   }
@@ -32,6 +36,8 @@ export abstract class AdicionarComponent<T extends Model, S extends Service<T>> 
     if (!this.form.valid) {
       return;
     }
+
+    this.data = this.changeDataBeforeSave(this.form.value);
 
     this.service
       .salvar(this.form.value)

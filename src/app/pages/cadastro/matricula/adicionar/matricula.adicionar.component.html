@@ -55,6 +55,7 @@
               type="text"
               status="basic"
               placeholder="Letra"
+              class="text-uppercase"
               [mask]="'S*'"
               [status]="getStatus('letra')"
               [formControl]="letra"
@@ -63,18 +64,32 @@
         </div>
 
 
-        <div class="offset-md-6 col-md-6 col-12">
-          <div class="form-group">
+        <div class="offset-md-6 col-md-6 col-12" *ngIf="hasHidrometro">
+          <div class="form-group" >
             <label class="label">Hidrômetro</label>
             <input
               nbInput
               fullWidth
               type="text"
               status="basic"
+              class="text-uppercase"
               placeholder="Hidrometro"
               [status]="getStatus('hidrometro')"
               [formControl]="hidrometro"
               >
+          </div>
+        </div>
+
+        <div class="offset-md-6 col-md-6 col-12" *ngIf="!hasHidrometro">
+          <label class="label">Hidrômetro</label>
+          <div class="form-group" >
+
+            <nb-checkbox
+              class="align-center"
+              [status]="getStatus('possuiHidrometro')"
+              (checkedChange)="toggle($event)">
+              Possui Hidrometro
+            </nb-checkbox>
           </div>
         </div>
 

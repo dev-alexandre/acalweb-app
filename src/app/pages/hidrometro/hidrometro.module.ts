@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbDateFnsDateModule } from '@nebular/date-fns';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbButtonModule, NbCardModule, NbDatepickerModule, NbIconModule, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbDatepickerModule, NbIconModule, NbInputModule, NbSelectModule, NbTooltipModule } from '@nebular/theme';
 import { PipeModule } from 'app/@core/pipe/pipe.module';
 import { ThemeModule } from 'app/@theme/theme.module';
 import { NgxMaskModule } from 'ngx-mask';
@@ -30,6 +30,7 @@ import { HidrometroListarComponent } from './listar/hidrometro.listar.component'
     NbDatepickerModule,
     NbDateFnsDateModule,
     PipeModule,
+    NbTooltipModule,
     NgxMaskModule.forChild(),
   ],
   declarations: [

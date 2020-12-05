@@ -45,7 +45,7 @@
           <tr *ngFor="let data of table.content; index as i;">
             <td class="align-middle" >{{data?.logradouro?.tipoLogradouro?.nome +' '+ data?.logradouro?.nome}}</td>
             <td class="align-middle" >{{data?.numero}}</td>
-            <td class="align-middle" >{{data?.letra}}</td>
+            <td class="align-middle text-uppercase" >{{data?.letra}}</td>
 
             <td class="align-middle" >
               <button nbButton outline fullWidth status="warning" (click)=editar(data)>

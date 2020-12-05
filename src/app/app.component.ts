@@ -26,16 +26,19 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.analytics.trackPageViews();
+
     this.seoService.trackCanonicalChanges();
-    this.navigationTrack();
+    this.trackNavigationEvents();
   }
 
-  navigationTrack(): void {
-    const navEndEvents = this.router.events.pipe (
-        filter(event => event instanceof NavigationEnd)
-    );
+  private trackNavigationEvents() {
 
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd)
+      )
+      .subscribe((event: NavigationEnd) => {
+        this.analytics.trackPageViews(event);
+      });
   }
 
 }

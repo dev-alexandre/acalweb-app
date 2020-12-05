@@ -6,6 +6,8 @@ export interface Matricula extends Model {
   numero: string;
   logradouro: Logradouro;
   letra?: string;
+
+  possuiHidrometro?: boolean;
   hidrometro?: string;
 
 }
