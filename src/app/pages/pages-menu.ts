@@ -3,7 +3,7 @@ import { NbMenuItem } from '@nebular/theme';
 export const MENU_ITEMS: NbMenuItem[] = [
 
   {
-    title: 'Home',
+    title: 'HOME',
     icon: 'home-outline',
     link: '/pages',
   },
@@ -64,7 +64,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
 
       {
-        title: 'Receber Conta',
+        title: 'Receber Boleto',
         link: '/pages/financeiro/gerar-boleto/adicionar',
       },
 
@@ -100,27 +100,5 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
-
-
-  {
-    title: 'Charts',
-    icon: 'pie-chart-outline',
-    children: [
-      {
-        title: 'Echarts',
-        link: '/pages/charts/echarts',
-      },
-      {
-        title: 'Charts.js',
-        link: '/pages/charts/chartjs',
-      },
-      {
-        title: 'D3',
-        link: '/pages/charts/d3',
-      },
-    ],
-  },
-
-
 
 ];

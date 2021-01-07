@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate *ngIf="form">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate *ngIf="form" [nbSpinner]="loading">
 
   <nb-card status="warning" >
 
@@ -67,7 +67,7 @@
 
         <div class="col-md-3 col-6">
           <div class="form-group">
-            <label class="label">* Valor: {{valor.value}}</label>
+            <label class="label">* Valor:</label>
 
             <input
               nbInput

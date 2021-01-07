@@ -1,8 +1,8 @@
 export interface Model {
 
   id?: string;
-  createdDate?: Date;
-  lastModifiedDate?: Date;
+  createdDate?: string;
+  lastModifiedDate?: string;
 
 }
 

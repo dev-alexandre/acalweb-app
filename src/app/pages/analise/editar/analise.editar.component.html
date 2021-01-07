@@ -1,6 +1,6 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate [nbSpinner]=loading>
 
-  <nb-card status="warning">
+  <nb-card status="warning" *ngIf="loaded">
 
     <nb-card-header>
       Análise da Qualidade da água
@@ -18,9 +18,11 @@
               fullWidth
               type="text"
               class="form-control"
-              [mask]="'00/0000'"
               placeholder="Referência"
-              [formControl]="referencia"
+              disabled=true
+              [mask]="'00/0000'"
+              [(ngModel)]="data.referencia"
+              [ngModelOptions]="{standalone: true}"
               [status]="getStatus('referencia')"
               [ngClass]="{'is-valid': (referencia.valid && submited) , 'is-invalid' : (referencia.invalid && submited)  }"
             >
@@ -92,7 +94,6 @@
 
         </ng-container>
       </div>
-
     </nb-card-body>
 
     <nb-card-footer>

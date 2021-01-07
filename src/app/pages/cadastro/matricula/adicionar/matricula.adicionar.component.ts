@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { AdicionarComponent } from 'app/@core/base/adicionar.component';
 import { Modulo } from 'app/@library/enum';
+import * as moment from 'moment';
 import { Logradouro } from '../../logradouro/logradouro.model';
 import { Matricula } from '../matricula.model';
 import { MatriculaService } from '../matricula.service';

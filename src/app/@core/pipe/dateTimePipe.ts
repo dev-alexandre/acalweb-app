@@ -2,19 +2,19 @@ import { Pipe, PipeTransform } from '@angular/core';
 import * as moment from 'moment';
 
 @Pipe({
-    name: 'referenciaPipe'
+    name: 'dateTimePipe'
 })
 
-export class ReferenciaFormat implements PipeTransform {
+export class DateTimeFormat implements PipeTransform {
 
   transform(value: any, args: string[]): any {
 
     if (value) {
 
-      const date = moment(value, 'MMYYYY', true);
+      const date = moment(value, 'DD/MM/YYYY HH:m:s', true);
 
       if (date.isValid()) {
-        return date.format('MM/YYYY');
+        return date.format('DD/MM/YYYY HH:m:s');
       }
 
     }

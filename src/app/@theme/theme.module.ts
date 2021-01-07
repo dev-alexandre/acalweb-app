@@ -76,13 +76,23 @@ const PIPES = [
   declarations: [...COMPONENTS, ...PIPES],
 })
 export class ThemeModule {
+
+  public storage: Storage = sessionStorage;
+
   static forRoot(): ModuleWithProviders<ThemeModule> {
+
+    let defaultTheme = 'default';
+
+    if (sessionStorage.getItem('theme')) {
+      defaultTheme = sessionStorage.getItem('theme');
+    }
+
     return {
       ngModule: ThemeModule,
       providers: [
         ...NbThemeModule.forRoot(
           {
-            name: 'default',
+            name: defaultTheme,
           },
           [ DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME, DARK_THEME ],
         ).providers,

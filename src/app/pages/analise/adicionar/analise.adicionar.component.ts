@@ -17,6 +17,8 @@ import { AnaliseService } from '../analise.service';
 
 export class AnaliseAdicionarComponent extends AdicionarComponent<Analise, AnaliseService> implements OnInit {
 
+  parametros: {nome: string, analisado: string, exigido: string, conforme: string }[] = [];
+
   constructor(
     public router: Router,
     public activeRouter: ActivatedRoute,
@@ -24,6 +26,12 @@ export class AnaliseAdicionarComponent extends AdicionarComponent<Analise, Anali
     public toast: NbToastrService) {
 
     super(router, activeRouter, service, toast);
+
+    this.parametros.push({nome: 'Cor Aparente – 15 UH', analisado: '10', exigido: '10', conforme: '10' });
+    this.parametros.push({nome: 'Turbidez – 5 UT', analisado: '10', exigido: '10', conforme: '10' });
+    this.parametros.push({nome: 'Cloro – Min 0,2 mg/L', analisado: '10', exigido: '10', conforme: '10' });
+    this.parametros.push({nome: 'Escherichia coli', analisado: '10', exigido: '10', conforme: '10' });
+    this.parametros.push({nome: 'Cor Aparente – 15 UH', analisado: '10', exigido: '10', conforme: '10' });
   }
 
   ngOnInit(): void {

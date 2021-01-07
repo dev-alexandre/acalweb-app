@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbButtonModule, NbCardModule, NbCheckboxModule, NbIconModule, NbInputModule, NbSelectModule } from '@nebular/theme';
-import { UppercaseInputDirective } from 'app/@core/directive/upperCase.directive';
+import { NbButtonModule, NbCardModule, NbCheckboxModule, NbIconModule, NbInputModule, NbListModule, NbPopoverModule, NbSelectModule, NbSpinnerModule } from '@nebular/theme';
+import { PipeModule } from 'app/@core/pipe/pipe.module';
+import { TableModule } from 'app/@core/table/table.module';
 import { ThemeModule } from 'app/@theme/theme.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { LogradouroModule } from './../logradouro/logradouro.module';
@@ -27,9 +28,13 @@ import { MatriculaService } from './matricula.service';
     NbIconModule,
     FormsModule,
     ReactiveFormsModule,
-    NbInputModule,
     LogradouroModule,
+    NbSpinnerModule,
     NgxMaskModule.forChild(),
+    TableModule,
+    NbListModule,
+    PipeModule,
+    NbPopoverModule,
   ],
   declarations: [
     MatriculaComponent,

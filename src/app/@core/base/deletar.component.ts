@@ -26,16 +26,17 @@ export abstract class DeletarComponent <T extends Model, S extends Service<T>> e
   }
 
   public onSubmit() {
-
+    this.loading = true;
     this.service
       .deletar(this.data)
         .subscribe(
           () => {
+            this.loading = false;
             this.toast.success(Mensagem.DELETAR, this.getModulo());
             this.router.navigate([ './listar' ], { relativeTo: this.activeRouter.parent });
           },
           (error) => {
-
+            this.loading = false;
           }
     );
   }

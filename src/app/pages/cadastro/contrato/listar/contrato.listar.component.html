@@ -32,7 +32,6 @@
         </div>
 
         <div class="offset-md-6 col-md-3 col-6">
-
           <button *ngIf="contrato.habilitado" nbButton outline fullWidth status="basic" (click)="changeContrato(); ref.close();">Desabilitar</button>
           <button *ngIf="!contrato.habilitado" nbButton outline fullWidth status="basic" (click)="changeContrato(); ref.close();">Habilitar</button>
         </div>
@@ -127,7 +126,7 @@
             </td>
 
             <td class="align-middle" >
-              <button nbButton outline fullWidth status="warning" (click)=editar(c)>
+              <button nbButton outline fullWidth status="warning" (click)=editar(c) [disabled]=true>
                 <nb-icon icon="edit-outline"></nb-icon>
               </button>
             </td>
@@ -145,7 +144,7 @@
         <tbody *ngIf="table?.empty">
 
           <tr>
-            <td class="align-middle" colspan="5" >
+            <td class="align-middle" colspan="6" >
               Nenhum registro encontrado
             </td>
           </tr>
@@ -155,15 +154,15 @@
 
         <tfoot>
           <tr>
-            <th scope="col" colspan="5"> </th>
+            <th scope="col" colspan="7"> </th>
           </tr>
         </tfoot>
 
       </table>
   </nb-card-body>
 
-  <nb-card-footer>
-    <div class="row" *ngIf="table && !table?.empty">
+  <nb-card-footer *ngIf="table && !table?.empty" >
+    <div class="row" >
         <div class="col-12 col-md-6">
         <p class="text-secondary align-middle">
           Exibindo de {{ (table.pageable.pageNumber * table.pageable.pageSize)+1  }} A

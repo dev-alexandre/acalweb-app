@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
@@ -8,6 +8,7 @@ import { Cliente } from '../cliente.model';
 import { ClienteService } from '../cliente.service';
 import { DateValidator } from 'app/@core/validator/dataValidator';
 import { DocumentoValidator } from 'app/@core/validator/documentoValidator';
+import * as moment from 'moment';
 
 @Component({
   selector: 'ngx-adicionar-cliente',
@@ -17,6 +18,7 @@ import { DocumentoValidator } from 'app/@core/validator/documentoValidator';
 export class ClienteAdicionarComponent extends AdicionarComponent<Cliente, ClienteService> implements OnInit {
 
   public isPessoaFisica: boolean = true;
+  public currentDate: string;
 
   constructor(
     public router: Router,
@@ -72,6 +74,20 @@ export class ClienteAdicionarComponent extends AdicionarComponent<Cliente, Clien
 
       }
     );
+  }
+
+  public changeTipoPessoa(): void {
+    this.isPessoaFisica = !this.isPessoaFisica;
+    this.form.get('documento').setValue(null);
+
+
+    if (!this.isPessoaFisica) {
+      this.form.get('socio').setValue(null);
+      this.form.get('socio').disable();
+    } else {
+      this.form.get('socio').enable();
+    }
+
   }
 
   public get nome() {

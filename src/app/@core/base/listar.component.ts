@@ -7,9 +7,11 @@ import { Service } from './service';
 
 export abstract class ListarComponent <T extends Model, S extends Service<T>> {
 
+  public loading: boolean = false;
   public table: Table<T>;
   public filtro: Filtro;
   public storage: Storage = sessionStorage;
+  public data: T;
 
   public abstract getModulo(): string;
 
@@ -22,17 +24,19 @@ export abstract class ListarComponent <T extends Model, S extends Service<T>> {
   }
 
   public init(): void {
-    this.filtro = {page: 0, size: 5};
+    this.filtro = {page: 0, size: 5, name:''};
     this.load();
   }
 
   public load(): void {
+    this.loading = true;
 
     this.service
       .paginar(this.filtro)
       .subscribe(
         (table) => {
           this.table = table;
+          this.loading = false;
         }
       );
   }
@@ -68,6 +72,10 @@ export abstract class ListarComponent <T extends Model, S extends Service<T>> {
   public avancar(): void {
     this.filtro.page++;
     this.load();
+  }
+
+  public selecionar(data: T): void{
+    this.data = data;
   }
 
 }

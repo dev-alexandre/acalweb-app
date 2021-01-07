@@ -1,6 +1,7 @@
 export interface Filtro {
 
-    size: number;
-    page: number;
+    size?: number;
+    page?: number;
+    name?: string;
 
 }

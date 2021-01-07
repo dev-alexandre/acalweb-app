@@ -16,6 +16,7 @@ import { TipoLogradouro } from './../logradouro.model';
 export class LogradouroEditarComponent extends EditarComponent<Logradouro, LogradouroService> implements OnInit  {
 
   public tipos: TipoLogradouro[];
+  public currentDate: string;
 
   constructor(
     public router: Router,
@@ -39,13 +40,15 @@ export class LogradouroEditarComponent extends EditarComponent<Logradouro, Logra
     return Modulo.LOGRADOURO;
   }
 
+  public changeDataBeforeSave(logradouro: Logradouro): Logradouro {
+    logradouro.nome = logradouro.nome.trim();
+
+    return logradouro;
+  }
+
   public createForm() {
 
     this.form = new FormGroup({
-
-      id: new FormControl(
-        this.data.id
-      ),
 
       nome: new FormControl(
         this.data.nome, [
@@ -58,6 +61,7 @@ export class LogradouroEditarComponent extends EditarComponent<Logradouro, Logra
         {}, [
         Validators.required,
       ]),
+
       }
     );
 

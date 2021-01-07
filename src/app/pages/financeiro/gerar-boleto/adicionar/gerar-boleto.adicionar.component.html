@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="OnSubmit()" class="needs-validation" novalidate>
+<form [formGroup]="form" (ngSubmit)="OnSubmit()" class="needs-validation" novalidate *ngIf="showSelectReferencia">
   <nb-card accent="success" [nbSpinner]="loading" >
 
     <nb-card-header>
@@ -79,7 +79,7 @@
 </form>
 
 
-<nb-card accent="success" *ngIf="contratos" [nbSpinner]="loading" >
+<nb-card accent="success" *ngIf="!showSelectReferencia" [nbSpinner]="loading" >
 
   <nb-card-body>
     <label class="label">Refêrencia </label>

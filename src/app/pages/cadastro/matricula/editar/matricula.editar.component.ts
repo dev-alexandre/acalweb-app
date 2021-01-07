@@ -1,13 +1,13 @@
-import { Matricula } from './../matricula.model';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { EditarComponent } from 'app/@core/base/_index';
 import { Modulo } from 'app/@library/enum';
-import { Logradouro, TipoLogradouro } from '../../logradouro/logradouro.model';
-import { MatriculaService } from '../matricula.service';
+import { Logradouro } from '../../logradouro/logradouro.model';
 import { LogradouroService } from '../../logradouro/logradouro.service';
+import { MatriculaService } from '../matricula.service';
+import { Matricula } from './../matricula.model';
 
 @Component({
   selector: 'ngx-matricula',
@@ -30,32 +30,9 @@ export class MatriculaEditarComponent extends EditarComponent<Matricula, Matricu
 
   }
 
-  public onSubmit() {
-    this.submited = true;
-
-    if (!this.form.valid) {
-      return;
-    }
-
-    this.getLogradourobyId();
-
-    this.service
-      .editar(this.form.value)
-        .subscribe(
-          () => {
-            this.router.navigate([ './listar' ], { relativeTo: this.activeRouter.parent });
-          },
-          (error) => {
-
-          }
-    );
-  }
-
-  getLogradourobyId() {
-    const id = this.logradouro.value.id;
-    const item1 = this.logradouros.find(i => i.id === id);
-    this.logradouro.setValue(item1);
-
+  public changeDataBeforeSave(matricula: Matricula): Matricula {
+    matricula.logradouro = this.logradouros.find(i => i.nome === this.logradouro.value.nome);
+    return matricula;
   }
 
   ngOnInit(): void {
@@ -63,8 +40,6 @@ export class MatriculaEditarComponent extends EditarComponent<Matricula, Matricu
     this.loadLograoduro();
     this.load();
     this.createForm();
-
-    this.form.setValue(this.data);
   }
 
   public getModulo(): string {
@@ -86,30 +61,30 @@ export class MatriculaEditarComponent extends EditarComponent<Matricula, Matricu
 
     this.form = new FormGroup({
 
-      id: new FormControl(
-        null
-      ),
-
-      logradouro: new FormControl(
-        {}, [
-        Validators.required,
-      ]),
-
       numero: new FormControl(
-        null, [
+        this.data.numero, [
         Validators.required,
         Validators.maxLength(5),
         Validators.min(1)
       ]),
 
       letra: new FormControl(
-        null, [
+        this.data.letra, [
         Validators.maxLength(5),
         Validators.min(1),
       ]),
 
+      logradouro: new FormControl(
+        {}, [
+        Validators.required,
+      ]),
+
+      possuiHidrometro: new FormControl(
+        this.data.possuiHidrometro, [
+      ]),
+
       hidrometro: new FormControl(
-        null, [
+        this.data.hidrometro, [
       ]),
 
       }
@@ -117,8 +92,8 @@ export class MatriculaEditarComponent extends EditarComponent<Matricula, Matricu
 
   }
 
-  public toggle(checked: boolean) {
-    this.hasHidrometro = checked;
+  public toggle() {
+    this.hasHidrometro = !this.hasHidrometro;
   }
 
   public get logradouro() {
@@ -135,6 +110,10 @@ export class MatriculaEditarComponent extends EditarComponent<Matricula, Matricu
 
   public get hidrometro() {
     return this.form.get('hidrometro');
+  }
+
+  public get possuiHidrometro() {
+    return this.form.get('possuiHidrometro');
   }
 
 }

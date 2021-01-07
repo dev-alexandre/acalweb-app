@@ -1,4 +1,4 @@
-  <nb-card status="danger">
+  <nb-card status="danger" [nbSpinner]="loading">
 
     <nb-card-header>
       Logradouro
@@ -7,7 +7,7 @@
     <nb-card-body>
       <div class="row" *ngIf="data">
 
-        <div class="col-md-4 col-12">
+        <div class="col-md-3 col-12">
           <div class="form-group">
             <label class="label">Tipo Logradouro</label>
             <input
@@ -23,7 +23,7 @@
           </div>
         </div>
 
-        <div class="col-md-8 col-12">
+        <div class="col-md-9 col-12">
           <div class="form-group">
 
             <label class="label">Nome</label>

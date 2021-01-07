@@ -1,9 +1,10 @@
+import { PipeModule } from './../../../@core/pipe/pipe.module';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbListModule, NbPopoverModule, NbSelectModule, NbSpinnerModule, NbTooltipModule } from '@nebular/theme';
+import { TableModule } from 'app/@core/table/table.module';
 import { ThemeModule } from 'app/@theme/theme.module';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { LogradouroAdicionarComponent } from './adicionar/logradouro.adicionar.component';
 import { LogradouroDeletarComponent } from './deletar/logradouro.deletar.component';
 import { LogradouroEditarComponent } from './editar/logradouro.editar.component';
@@ -24,7 +25,11 @@ import { LogradouroService } from './logradouro.service';
     NbIconModule,
     FormsModule,
     ReactiveFormsModule,
-    NbInputModule,
+    NbSpinnerModule,
+    NbPopoverModule,
+    TableModule,
+    NbListModule,
+    PipeModule,
   ],
   declarations: [
     LogradouroComponent,

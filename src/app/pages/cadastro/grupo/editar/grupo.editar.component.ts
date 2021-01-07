@@ -28,7 +28,7 @@ export class GrupoEditarComponent extends EditarComponent<Grupo, GrupoService> i
 
     this.load();
     this.createForm();
-    this.form.patchValue({categoria: this.data.categoria});
+    this.form.patchValue({valor: this.data.valor, nome: this.data.nome, categoria: this.data.categoria});
   }
 
   public getModulo(): string {
@@ -38,18 +38,6 @@ export class GrupoEditarComponent extends EditarComponent<Grupo, GrupoService> i
   public createForm() {
 
     this.form = new FormGroup({
-
-      id: new FormControl(
-        this.data.id
-      ),
-
-      createdDate: new FormControl(
-        this.data.createdDate
-      ),
-
-      lastModifiedDate: new FormControl(
-        this.data.lastModifiedDate
-      ),
 
       nome: new FormControl(
         this.data.nome, [

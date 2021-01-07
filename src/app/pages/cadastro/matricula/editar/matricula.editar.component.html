@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate *ngIf="form">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation"  *ngIf="form" [nbSpinner]="loading" novalidate>
 
   <nb-card status="warning" >
 
@@ -16,10 +16,10 @@
               fullWidth
               placeholder="Selecionar"
               [status]="getStatus('logradouro')"
-              [(selected)]="logradouro.value.id"
+              [(selected)]="logradouro.value.nome"
               >
 
-            <nb-option *ngFor="let l of logradouros" [value]=l.id>
+            <nb-option *ngFor="let l of logradouros" [value]=l.nome>
               {{l.tipoLogradouro.nome +' '+ l.nome}}
             </nb-option>
           </nb-select>
@@ -36,6 +36,7 @@
               type="text"
               status="basic"
               placeholder="Número"
+              [mask]="'0*'"
               [status]="getStatus('numero')"
               [formControl]="numero"
               >
@@ -53,6 +54,7 @@
               class="text-uppercase"
               status="basic"
               placeholder="Letra"
+              [mask]="'S*'"
               [status]="getStatus('letra')"
               [formControl]="letra"
               >
@@ -67,7 +69,6 @@
               fullWidth
               type="text"
               status="basic"
-              class="text-uppercase"
               placeholder="Hidrômetro"
               [status]="getStatus('hidrometro')"
               [formControl]="hidrometro"
@@ -81,37 +82,12 @@
 
             <nb-checkbox
               class="align-center"
-              [status]="getStatus('possuiHidrometro')"
               (checkedChange)="toggle($event)">
               Possui Hidrometro
             </nb-checkbox>
 
           </div>
         </div>
-        <!--
-
-        <div class="offset-md-6 col-md-6 col-12" *ngIf="hasHidrometro">
-          <div class="form-group" >
-            <label class="label">Hidrômetro</label>
-            <input
-              nbInput
-              fullWidth
-              type="text"
-              status="basic"
-              placeholder="Hidrometro"
-              [status]="getStatus('hidrometro')"
-              [formControl]="hidrometro"
-              >
-          </div>
-        </div>
-
-
-
-
-        -->
-
-
-
       </div>
     </nb-card-body>
 

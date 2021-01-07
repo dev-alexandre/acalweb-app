@@ -29,4 +29,5 @@ export class LogradouroListarComponent extends ListarComponent<Logradouro, Logra
   public getModulo(): string {
     return Modulo.LOGRADOURO;
   }
+
 }

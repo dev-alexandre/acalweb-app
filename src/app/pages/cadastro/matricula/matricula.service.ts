@@ -22,4 +22,12 @@ export class MatriculaService extends Service<Matricula> {
     return this.http.get<Select<Matricula>[]>(environment.apiUrl + '/matricula/selecionar/' + logradouro );
   }
 
+  public listarPorReferencia(referencia: string ): Observable<Matricula[]> {
+    return this.http.get<Matricula[]>(environment.apiUrl + '/' + this.getModulo() +  '/listarPorReferencia/' + referencia );
+  }
+
+  public listarMatriculasHidrometro(): Observable<Matricula[]> {
+    return this.http.get<Matricula[]>(environment.apiUrl + '/' + this.getModulo() +  '/listar/hidrometro' );
+  }
+
 }

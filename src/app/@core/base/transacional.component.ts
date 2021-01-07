@@ -4,6 +4,7 @@ import { Model } from './_index';
 
 export abstract class TransacionalComponent <T extends Model> {
 
+  public loading: boolean = false;
   public abstract getModulo(): string;
   public abstract getAcao(): string;
   public abstract createForm(): void;
@@ -11,6 +12,7 @@ export abstract class TransacionalComponent <T extends Model> {
   public form: FormGroup;
   public submited: boolean;
   public data: T;
+  public dataAsBeforeEdit: T;
   public storage: Storage = sessionStorage;
 
   constructor(

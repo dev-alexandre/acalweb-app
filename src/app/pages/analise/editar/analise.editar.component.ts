@@ -16,6 +16,8 @@ import { AnaliseService } from '../analise.service';
 
 export class AnaliseEditarComponent extends EditarComponent<Analise, AnaliseService> implements OnInit  {
 
+  loaded: boolean = false;
+
   constructor(
     public router: Router,
     public activeRouter: ActivatedRoute,
@@ -27,9 +29,16 @@ export class AnaliseEditarComponent extends EditarComponent<Analise, AnaliseServ
   }
 
   ngOnInit(): void {
-
     this.load();
     this.createForm();
+
+    this.form.patchValue({id: this.data.id});
+    this.form.patchValue({createdDate: this.data.createdDate});
+    this.form.patchValue({lastModifiedDate: this.data.lastModifiedDate});
+    this.form.patchValue({referencia: this.data.referencia});
+
+    this.form.get('coletas').setValue(this.data.coletas);
+    this.loaded = true;
   }
 
   public getModulo(): string {
@@ -41,30 +50,54 @@ export class AnaliseEditarComponent extends EditarComponent<Analise, AnaliseServ
     this.form = new FormGroup({
 
       id: new FormControl(
-        this.data.id
+        null
       ),
 
-      referenciaInicial: new FormControl(
-        this.data.referencia, [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(8),
-          ReferenciaValidator.isReferencia(),
+      createdDate: new FormControl(
+        null
+      ),
+
+      referencia: new FormControl(
+        null
+      ),
+
+      lastModifiedDate: new FormControl(
+        null
+      ),
+
+      coletas: new FormBuilder().array([
+        new FormGroup({
+          parametro: new FormControl(null, [Validators.required]),
+          analisado: new FormControl(null, [Validators.required]),
+          exigido: new FormControl(null, [Validators.required]),
+          conforme: new FormControl(null, [Validators.required]),
+        }),
+        new FormGroup({
+          parametro: new FormControl(null, [Validators.required]),
+          analisado: new FormControl(null, [Validators.required]),
+          exigido: new FormControl(null, [Validators.required]),
+          conforme: new FormControl(null, [Validators.required]),
+        }),
+        new FormGroup({
+          parametro: new FormControl(null, [Validators.required]),
+          analisado: new FormControl(null, [Validators.required]),
+          exigido: new FormControl(null, [Validators.required]),
+          conforme: new FormControl(null, [Validators.required]),
+        }),
+        new FormGroup({
+          parametro: new FormControl(null, [Validators.required]),
+          analisado: new FormControl(null, [Validators.required]),
+          exigido: new FormControl(null, [Validators.required]),
+          conforme: new FormControl(null, [Validators.required]),
+        }),
+        new FormGroup({
+          parametro: new FormControl(null, [Validators.required]),
+          analisado: new FormControl(null, [Validators.required]),
+          exigido: new FormControl(null, [Validators.required]),
+          conforme: new FormControl(null, [Validators.required]),
+        }),
       ]),
 
-      coletas: new FormBuilder().array([]),
-
-    });
-
-    this.data.coletas.forEach( (c) => {
-      this.coletas.push(
-        new FormGroup({
-          parametro: new FormControl(c.parametro, [Validators.required]),
-          analisado: new FormControl(c.analisado, [Validators.required]),
-          exigido: new FormControl( c.exigido, [Validators.required]),
-          conforme: new FormControl(c.conforme, [Validators.required]),
-        })
-      );
     });
 
   }
@@ -76,7 +109,6 @@ export class AnaliseEditarComponent extends EditarComponent<Analise, AnaliseServ
   public get referencia() {
     return this.form.get('referencia');
   }
-
 
   public get coletas() {
     return (this.form.get('coletas') as FormArray).controls;

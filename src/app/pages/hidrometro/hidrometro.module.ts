@@ -6,6 +6,7 @@ import { NbButtonModule, NbCardModule, NbDatepickerModule, NbIconModule, NbInput
 import { PipeModule } from 'app/@core/pipe/pipe.module';
 import { ThemeModule } from 'app/@theme/theme.module';
 import { NgxMaskModule } from 'ngx-mask';
+import { MatriculaService } from '../cadastro/matricula/matricula.service';
 import { HidrometroAdicionarComponent } from './adicionar/hidrometro.adicionar.component';
 import { HidrometroDeletarComponent } from './deletar/hidrometro.deletar.component';
 import { HidrometroEditarComponent } from './editar/hidrometro.editar.component';
@@ -41,6 +42,7 @@ import { HidrometroListarComponent } from './listar/hidrometro.listar.component'
     HidrometroListarComponent,
   ],
   providers: [
+    MatriculaService,
     HidrometroService
   ]
 })

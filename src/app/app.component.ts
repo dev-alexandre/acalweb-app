@@ -1,14 +1,14 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, NgZone, OnInit, Renderer2 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { AnalyticsService } from './@core/utils/analytics.service';
 import { SeoService } from './@core/utils/seo.service';
 
-import { Renderer2, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'ngx-app',
+  styleUrls: ['./app.component.scss'],
   template: '<router-outlet></router-outlet>',
 })
 export class AppComponent implements OnInit {
@@ -26,7 +26,6 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
-
     this.seoService.trackCanonicalChanges();
     this.trackNavigationEvents();
   }
@@ -37,7 +36,7 @@ export class AppComponent implements OnInit {
       filter((event) => event instanceof NavigationEnd)
       )
       .subscribe((event: NavigationEnd) => {
-        this.analytics.trackPageViews(event);
+        this.analytics.trackPageViews();
       });
   }
 

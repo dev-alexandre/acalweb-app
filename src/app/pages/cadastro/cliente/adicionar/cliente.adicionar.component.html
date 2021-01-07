@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate [nbSpinner]="loading">
 
   <nb-card status="success">
 
@@ -7,6 +7,8 @@
     </nb-card-header>
 
     <nb-card-body>
+
+
 
       <div class="row">
         <div class="col-md-8 col-12">
@@ -17,7 +19,6 @@
               nbInput
               fullWidth
               type="text"
-              class="form-control text-capitalize"
               placeholder="Nome"
               [formControl]="nome"
               [status]="getStatus('nome')"
@@ -37,11 +38,11 @@
 
         <div class="col-md-4 col-12">
           <div class="form-group">
-            <label class="label">* Documento: </label>
+            <label class="label">* {{isPessoaFisica? "C.P.F":"C.N.P.J"}}: </label>
 
             <nb-form-field>
 
-              <button button nbSuffix nbButton ghost (click)="isPessoaFisica = !isPessoaFisica" type="button">
+              <button button nbSuffix nbButton ghost (click)="changeTipoPessoa()" type="button">
                 <nb-icon [icon]="isPessoaFisica ? 'person-outline' : 'home-outline'" pack="eva">
                 </nb-icon>
               </button>
@@ -51,7 +52,7 @@
                 fullWidth
                 type="text"
                 class="form-control"
-                placeholder="Documento"
+                [placeholder]='isPessoaFisica? "C.P.F":"C.N.P.J"'
                 [mask]="isPessoaFisica ?  '000.000.000-00': '00.000.000/0000-00' "
                 [formControl]="documento"
                 [status]="getStatus('documento')"
@@ -71,16 +72,16 @@
           </div>
         </div>
 
-        <div class="col-md-4 col-12">
+        <div [ngClass]="{'col-md-4 col-12': isPessoaFisica, 'col-md-6 col-12': !isPessoaFisica}">
           <div class="form-group">
-            <label class="label">Data de Nascimento: </label>
+            <label class="label">Data de Nascimento/Abertura: </label>
             <input
               nbInput
               fullWidth
               type="text"
               [mask]="'00/00/0000'"
               class="form-control"
-              placeholder="Nascimento"
+              placeholder="Nascimento/Abertura"
               [formControl]="dataNascimento"
               [status]="getStatus('dataNascimento')"
               [ngClass]="{'is-valid': (dataNascimento.valid && submited) , 'is-invalid' : (dataNascimento.invalid && submited)  }"
@@ -97,7 +98,7 @@
           </div>
         </div>
 
-        <div class="col-md-4 col-12">
+        <div [ngClass]="{'col-md-4 col-12': isPessoaFisica, 'col-md-6 col-12': !isPessoaFisica}">
           <div class="form-group">
             <label class="label">Número de Telefone: </label>
             <input
@@ -123,7 +124,7 @@
           </div>
         </div>
 
-        <div class="col-md-4 col-12">
+        <div class="col-md-4 col-12" *ngIf="isPessoaFisica">
           <div class="form-group">
             <label class="label">Número de Associado: </label>
             <input

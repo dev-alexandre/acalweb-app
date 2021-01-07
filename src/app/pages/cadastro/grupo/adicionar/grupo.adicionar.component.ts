@@ -26,8 +26,6 @@ export class GrupoAdicionarComponent extends AdicionarComponent<Grupo, GrupoServ
 
   ngOnInit(): void {
     this.createForm();
-
-   // this.form.patchValue({valor: Big(0).precision(2)});
   }
 
   public getModulo(): string {

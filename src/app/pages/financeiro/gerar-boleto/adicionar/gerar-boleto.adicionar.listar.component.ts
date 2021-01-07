@@ -16,6 +16,7 @@ import { DateValidator } from 'app/@core/validator/dataValidator';
 
 export class GerarBoletoAdicionarComponent implements OnInit{
 
+  public showSelectReferencia: boolean = true;
   public form: FormGroup;
 
   public loading: boolean = false;
