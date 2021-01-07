@@ -5,7 +5,7 @@ import { Modulo } from 'app/@library/enum';
 import { environment } from 'environments/environment';
 import { Grupo } from './grupo.model';
 import { Observable } from 'rxjs';
-import { Select } from 'app/@component';
+import { Select } from 'app/@shared';
 
 @Injectable()
 export class GrupoService extends Service<Grupo> {
