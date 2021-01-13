@@ -73,12 +73,23 @@ export class HidrometroAdicionarComponent implements OnInit {
 
             }
 
-            this.hidrometros.push({matricula: m, hidrometro: h});
+            this.hidrometros.push({matricula: m, hidrometro: h, valido: true});
           }
         );
 
       }
     );
+  }
+
+  public validar(): boolean {
+
+    this.hidrometros.forEach(h => {
+      if (h.hidrometro.atual  < h.hidrometro.anterior) {
+        h.valido = false;
+      }
+    });
+
+    return (this.hidrometros.some(h => !h.valido ));
   }
 
   public hidrometroByReferencia(matricula: Matricula, referencia: string): Hidrometro {
@@ -90,10 +101,15 @@ export class HidrometroAdicionarComponent implements OnInit {
   }
 
   public salvar(): void {
+
+    if (this.validar()) {
+      this.toast.danger('Erro', 'Dados invalidos');
+      return;
+    }
+
     this.hidrometros.forEach(h => {
       h.matricula.hidrometroList.push(h.hidrometro);
     });
-
 
     this.matriculaService.salvarTodos(this.matriculas).subscribe(
       () => {
@@ -102,7 +118,6 @@ export class HidrometroAdicionarComponent implements OnInit {
       () => {
       }
     );
-
   }
 
 

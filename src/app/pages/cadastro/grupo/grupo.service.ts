@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Service } from 'app/@core/base/_index';
 import { Modulo } from 'app/@library/enum';
 import { environment } from 'environments/environment';
-import { Grupo } from './grupo.model';
+import { Categoria, Grupo } from './grupo.model';
 import { Observable } from 'rxjs';
 import { Select } from 'app/@shared';
 
@@ -22,5 +22,8 @@ export class GrupoService extends Service<Grupo> {
     return this.http.get<Select<Grupo>[]>(environment.apiUrl + '/grupo/selecionar' );
   }
 
+  public getCategorias(): Observable<Categoria[]> {
+    return this.http.get<Categoria[]>('assets/data/categoria.json');
+  }
 
 }

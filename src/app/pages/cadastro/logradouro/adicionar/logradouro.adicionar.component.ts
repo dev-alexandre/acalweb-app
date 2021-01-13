@@ -31,7 +31,10 @@ export class LogradouroAdicionarComponent extends AdicionarComponent<Logradouro,
   }
 
   ngOnInit(): void {
-    this.tipos = this.service.listarTipoLogradouro();
+     this.service.listarTipoLogradouro().subscribe(
+      (tipos) => {
+         this.tipos = tipos;
+      });
     this.createForm();
   }
 

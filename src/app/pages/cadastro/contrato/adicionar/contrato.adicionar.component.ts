@@ -75,6 +75,11 @@ export class ContratoAdicionarComponent extends AdicionarComponent<Contrato, Con
         Validators.required,
       ]),
 
+      ativo: new FormControl(
+        true, [
+        Validators.required,
+      ]),
+
     });
   }
 

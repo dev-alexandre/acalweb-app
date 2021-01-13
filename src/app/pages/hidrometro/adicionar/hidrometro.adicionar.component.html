@@ -39,6 +39,7 @@
                 type="text"
                 mask="separator.0"
                 thousandSeparator="."
+                [status]='hidrometro.valido ? "basic" :"danger" '
                 [(ngModel)]=hidrometro.hidrometro.anterior
                 placeholder="Anterior"
               >
@@ -51,6 +52,7 @@
                 type="text"
                 mask="separator.0"
                 thousandSeparator="."
+                [status]='hidrometro.valido ? "basic" :"danger" '
                 [(ngModel)]=hidrometro.hidrometro.atual
                 placeholder="Atual"
               >

@@ -84,7 +84,6 @@ export class GerarBoletoAdicionarComponent implements OnInit{
     this.service.listarPorReferencia(this.referencia.value).subscribe(
       (contratos: Contrato[]) => {
        contratos.forEach( contrato => {
-          contrato.check = true;
           this.contratos.push(contrato);
        });
     });
@@ -99,13 +98,6 @@ export class GerarBoletoAdicionarComponent implements OnInit{
     const boleto: Boleto = {};
 
     this.contratos.forEach(c => {
-      if (c.check) {
-
-        if (!c.referencias) {
-          c.referencias = [];
-        }
-        c.referencias.push(referencia);
-      }
 
       boleto.contrato = c;
       boleto.referencia = referencia;

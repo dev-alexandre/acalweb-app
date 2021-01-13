@@ -38,22 +38,5 @@ export class ContratoEditarComponent extends EditarComponent<Contrato, ContratoS
   public createForm(): void {
   }
 
-  public deletar(referencia: string): void {
-    this.loading = true;
-
-    const index =  this.data.referencias.indexOf(referencia, 0);
-
-    if (index > -1) {
-      this.data.referencias.splice(index, 1);
-    }
-
-    this.service.editar(this.data).subscribe(
-      () => {
-        this.loading = false;
-      }
-    );
-
-  }
-
 
 }

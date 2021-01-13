@@ -37,9 +37,6 @@ registerLocaleData(ptBr, 'pt-BR');
     ThemeModule.forRoot(),
     NgxMaskModule.forRoot(),
     NbDialogModule.forRoot(),
-    NbChatModule.forRoot({
-      messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
-    }),
   ],
 
   declarations: [

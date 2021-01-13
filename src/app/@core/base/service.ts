@@ -8,7 +8,6 @@ import { Modulo, Acao } from 'app/@library/enum';
 import { Model } from './model';
 
 @Injectable()
-
 export abstract class Service<T extends Model> {
     private rota: String;
 
@@ -45,7 +44,5 @@ export abstract class Service<T extends Model> {
     public buscar(id: String): Observable<T> {
       return this.http.get<T>(this.rota + Acao.BUSCAR + '/' + id);
     }
-
-
 
 }

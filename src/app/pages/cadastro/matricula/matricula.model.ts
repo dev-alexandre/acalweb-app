@@ -6,7 +6,7 @@ export interface HidrometroMatricula {
 
   matricula: Matricula;
   hidrometro: Hidrometro;
-
+  valido: boolean;
 }
 
 export interface Matricula extends Model {

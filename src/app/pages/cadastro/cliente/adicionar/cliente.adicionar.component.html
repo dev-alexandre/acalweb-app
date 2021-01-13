@@ -74,14 +74,14 @@
 
         <div [ngClass]="{'col-md-4 col-12': isPessoaFisica, 'col-md-6 col-12': !isPessoaFisica}">
           <div class="form-group">
-            <label class="label">Data de Nascimento/Abertura: </label>
+            <label class="label">  {{isPessoaFisica? 'Data de Nascimento':'Abertura'}} : </label>
             <input
               nbInput
               fullWidth
               type="text"
               [mask]="'00/00/0000'"
               class="form-control"
-              placeholder="Nascimento/Abertura"
+              [placeholder]='isPessoaFisica ? "Data de Nascimento" : "Abertura"'
               [formControl]="dataNascimento"
               [status]="getStatus('dataNascimento')"
               [ngClass]="{'is-valid': (dataNascimento.valid && submited) , 'is-invalid' : (dataNascimento.invalid && submited)  }"

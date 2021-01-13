@@ -13,7 +13,6 @@ export interface Contrato extends Model {
   contratoPrincipal?: boolean;
   valor?: number;
   referencias?: string[];
-
-  check?: boolean;
+  ativo?: boolean;
 
 }

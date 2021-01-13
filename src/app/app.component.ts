@@ -13,7 +13,6 @@ import { SeoService } from './@core/utils/seo.service';
 })
 export class AppComponent implements OnInit {
 
-
   constructor(
     @Inject(DOCUMENT) private _document,
     @Inject(NgZone) private zone: NgZone,
@@ -21,9 +20,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     private analytics: AnalyticsService,
     private seoService: SeoService) {
-
   }
-
 
   ngOnInit(): void {
     this.seoService.trackCanonicalChanges();

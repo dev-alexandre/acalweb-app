@@ -7,28 +7,110 @@
     <nb-card-body>
       <div class="row" *ngIf="data">
 
-          <div class="col-md-2 col-12">
+          <div class="col-md-8 col-12">
             <div class="form-group">
+              <label>Nome: </label>
+              <input
+                nbInput
+                fullWidth
+                type="text"
+                [disabled]=true
+                [(ngModel)]=data.cliente.nome
+              >
 
+            </div>
+          </div>
+
+          <div class="col-md-4 col-12">
+            <div class="form-group">
+              <label> Documento </label>
+              <input
+                nbInput
+                fullWidth
+                type="text"
+                [disabled]=true
+                [mask]="data.cliente.documento.length === 11 ?  '000.000.000-00': '00.000.000/0000-00' "
+                [(ngModel)]=data.cliente.documento
+              >
             </div>
           </div>
 
           <div class="col-md-6 col-12">
             <div class="form-group">
-
+              <label> Endereço de usufruto </label>
+              <input
+                nbInput
+                fullWidth
+                type="text"
+                [disabled]=true
+                [(ngModel)]='
+                  data.matricula.logradouro.tipoLogradouro.nome + " " +
+                  data.matricula.logradouro.nome + " " +
+                  data.matricula.numero  + " " +
+                  data.matricula.letra'
+              >
             </div>
           </div>
 
-          <div class="col-md-2 col-6">
+          <div class="col-md-6 col-12">
             <div class="form-group">
-
+              <label> Endereço cobrança </label>
+              <input
+                nbInput
+                fullWidth
+                type="text"
+                [disabled]=true
+                [(ngModel)]='
+                  data.matriculaCorrespondencia.logradouro.tipoLogradouro.nome + " " +
+                  data.matriculaCorrespondencia.logradouro.nome + " " +
+                  data.matriculaCorrespondencia.numero  + " " +
+                  data.matriculaCorrespondencia.letra'
+              >
             </div>
           </div>
 
-          <div class="col-md-2 col-6">
+          <div class="col-md-4 col-12">
+            <div class="form-group">
+              <label> Grupo </label>
+              <input
+                nbInput
+                fullWidth
+                type="text"
+                [disabled]=true
+                [(ngModel)]='data.grupo.categoria.nome + " " +  data.grupo.nome'
+              >
+            </div>
+          </div>
+
+          <div class="col-md-4 col-6">
+            <div class="form-group">
+              <label> Valor </label>
+              <input
+                nbInput
+                fullWidth
+                mask="separator.2"
+                thousandSeparator="."
+                decimalMarker=","
+                type="text"
+                [disabled]=true
+                [(ngModel)]=data.grupo.valor
+              >
+            </div>
+          </div>
+
+          <div class="col-md-4 col-6">
+            <label class="label">Contrato</label>
             <div class="form-group">
 
-            </div>
+                <nb-checkbox
+                  class="align-center"
+                  [status]="getStatus('contratoPrincipal')"
+                  [disabled]=true
+                  [(ngModel)]="data.contratoPrincipal">
+                  Contrato Principal
+                </nb-checkbox>
+
+              </div>
           </div>
 
         </div>

@@ -37,12 +37,13 @@
 
           <div class="col-md-6 col-12">
             <div class="form-group">
-              <label class="label">Data de nascimento</label>
+              <label class="label">  {{data.documento.length == 11 ? 'Data de Nascimento':'Abertura'}} : </label>
               <input
                 nbInput
                 disabled
                 fullWidth
                 type="text"
+                [placeholder]='data.documento.length == 11 ? "Data de Nascimento" : "Abertura"'
                 [mask]="'00/00/0000'"
                 [(ngModel)]="data.dataNascimento"
                 >

@@ -1,5 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbButtonModule, NbCardModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbSelectModule, NbSpinnerModule } from '@nebular/theme';
 import { ThemeModule } from 'app/@theme/theme.module';
@@ -15,6 +18,7 @@ import { ClienteListarComponent } from './listar/cliente.listar.component';
 
 @NgModule({
   imports: [
+    CommonModule,
     ThemeModule,
     NbCardModule,
     Ng2SmartTableModule,
@@ -29,8 +33,8 @@ import { ClienteListarComponent } from './listar/cliente.listar.component';
     ClienteRoutingModule,
     NbLayoutModule,
     NbSpinnerModule,
-    NgxMaskModule.forChild(),
     NbFormFieldModule,
+    NgxMaskModule.forChild(),
   ],
   declarations: [
     ClienteComponent,

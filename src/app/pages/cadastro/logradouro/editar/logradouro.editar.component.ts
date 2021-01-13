@@ -32,7 +32,13 @@ export class LogradouroEditarComponent extends EditarComponent<Logradouro, Logra
 
     this.load();
     this.createForm();
-    this.tipos = this.service.listarTipoLogradouro();
+    this.service.listarTipoLogradouro().subscribe(
+      (tipos) => {
+        this.tipos = tipos;
+      }
+    );
+
+
     this.form.patchValue({tipoLogradouro: this.data.tipoLogradouro});
   }
 
