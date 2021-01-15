@@ -1,49 +1,140 @@
-<form [formGroup]="form" (ngSubmit)="OnSubmit()" class="needs-validation" >
-  <nb-card accent="success">
+<nb-card status="info" [nbSpinner]="loading">
 
-    <nb-card-header>
-      Hidromêtros
-    </nb-card-header>
+  <nb-card-header>
+    Hidrômetro
+  </nb-card-header>
 
-    <nb-card-body>
+  <nb-card-body>
+    <div class="col-12 col-md-2 offset-md-10">
 
-      <div class="row">
+      <nb-select
+        class="float-right"
+        placeholder="Número de registros"
+        [fullWidth]="true"
+        [(selected)]="filtro.size"
+        (selectedChange)="filtro.page = 0; filtro.size = $event; changeSize()"
+        (ngModelChange)="filtro.page = 0; filtro.size = $event;">
+        <nb-option [value]=1>1</nb-option>
+        <nb-option [value]=3>3</nb-option>
+        <nb-option [value]=5>5</nb-option>
+        <nb-option [value]=10>10</nb-option>
+        <nb-option [value]=25>25</nb-option>
+      </nb-select>
 
-        <div class="col-md-3 col-12">
-          <div class="form-group">
+    </div>
+  </nb-card-body>
 
-            <label class="label">* Referência:</label>
-            <input
-              nbInput
-              fullWidth
-              type="text"
-              class="form-control"
-              [mask]="'00/0000'"
-              placeholder="Referência"
-              [formControl]="referencia"
-              [status]="getStatus('referencia')"
-            >
+  <nb-card-body>
+    <table class="table table-sm table-striped">
 
-            <div class="valid-feedback" >
-              Válido
-            </div>
+      <thead>
+        <tr>
+          <th scope="col" class="align-middle font-weight-bold"> Matrícula: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Referência: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Consumo: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Atual: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Anterior: </th>
+        </tr>
 
-            <div class="invalid-feedback" >
-              Inválido
-            </div>
+        <tr>
+          <th scope="col"  colspan="4">
+          </th>
 
-          </div>
-        </div>
+          <th scope="col"  colspan="2">
+            <button nbButton outline fullWidth status="success" (click)=selecionar()>
+              <nb-icon icon="plus-outline"></nb-icon>
+            </button>
+          </th>
+        </tr>
 
-        <div class="col-md-3 offset-md-3 col-12">
-          <div class="form-group">
-            <label class="label">Ações</label>
-            <button nbButton outline fullWidth status="success" type="submit">Pré-Visualizar</button>
-          </div>
-        </div>
+      </thead>
 
+      <tbody *ngIf="table && !table?.empty">
+        <ng-container *ngFor="let matricula of table.content;">
+
+          <tr *ngFor="let hidrometro of matricula.hidrometroList; index as i">
+
+            <ng-container *ngIf="i === 0">
+
+              <td class="align-middle" [attr.rowspan]='matricula.hidrometroList.length'>
+                {{matricula | matricula}}
+              </td>
+
+            </ng-container>
+
+            <ng-container *ngIf="i !== 0">
+
+              <td class="align-middle" >
+                {{hidrometro.referencia | referenciaPipe}}
+              </td>
+
+              <td class="align-middle" >
+                {{(hidrometro.atual - hidrometro.anterior ) | number}}
+              </td>
+
+              <td class="align-middle">
+                {{ (hidrometro.atual - hidrometro.anterior) * 0.00025  | currency: 'BRL':'symbol'}}
+              </td>
+
+              <td class="align-middle">
+                {{hidrometro.anterior | number}}
+              </td>
+
+              <td class="align-middle">
+                {{hidrometro.atual | number}}
+              </td>
+
+            </ng-container>
+
+          </tr>
+        </ng-container>
+      </tbody>
+
+      <tbody *ngIf="table?.empty">
+
+        <tr>
+          <td class="align-middle" colspan="4" >
+            Nenhum registro encontrado
+          </td>
+        </tr>
+
+      </tbody>
+
+
+      <tfoot>
+        <tr>
+          <th scope="col" colspan="6"> </th>
+        </tr>
+      </tfoot>
+
+    </table>
+  </nb-card-body>
+
+  <nb-card-footer>
+    <div class="row" *ngIf="table">
+        <div class="col-12 col-md-6">
+        <p class="text-secondary align-middle">
+          Exibindo de {{ (table.pageable.pageNumber * table.pageable.pageSize)+1  }} A
+          {{(table.pageable.pageNumber * table.pageable.pageSize) + table.numberOfElements }}
+          de {{table.totalElements}} registro em {{table.totalPages}} paginas
+        </p>
+      </div>
+    </div>
+  </nb-card-footer>
+
+  <nb-card-footer>
+    <div class="row" *ngIf="table">
+
+      <div class="col-md-3 col-6 ">
+        <button nbButton outline fullWidth status="basic" (click)="anterior()" [disabled]=table.first>Anterior</button>
       </div>
 
-    </nb-card-body>
-  </nb-card>
-</form>
+      <div class="offset-md-6 col-md-3 col-6">
+        <button nbButton outline fullWidth status="basic" (click)="avancar()" [disabled]=table.last>Proxima</button>
+      </div>
+
+    </div>
+  </nb-card-footer>
+
+</nb-card>

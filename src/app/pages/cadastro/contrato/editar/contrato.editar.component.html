@@ -1,130 +1,40 @@
-<nb-card status="warning">
+<nb-card status="primary">
 
   <nb-card-header>
-    Contrato
+    Historico Contrato
   </nb-card-header>
 
   <nb-card-body>
-    <div class="row">
+    <table class="table table-sm table-striped">
 
-      <div class="col-12">
-        <div class="form-group">
-          <label class="label">Cliente</label>
-          <input
-            nbInput
-            fullWidth
-            type="text"
-            [disabled]=true
-            [(ngModel)]=data.cliente.nome
-          >
+      <thead >
+        <tr>
+          <th scope="col" class="align-middle font-weight-bold"> Categoria: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Nome: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Valor Sócio: </th>
+        </tr>
+      </thead>
 
-        </div>
-      </div>
+      <tbody>
 
-      <div class="col-12 col-md-4">
-        <div class="form-group">
-          <label class="label">Matricula </label>
-          <input
-            nbInput
-            fullWidth
-            type="text"
-            [disabled]=true
-            [(ngModel)]=data.matricula
-          >
-        </div>
-      </div>
+        <tr *ngFor="let corte of data.corte">
+          <td class="align-middle"> {{corte?.data | dateTimePipe}} </td>
+          <td class="align-middle"> {{corte?.usuario}} </td>
+          <td class="align-middle"> {{corte?.ligacao ? 'Religação':'Ligação'}} </td>
+        </tr>
 
-      <div class="col-12 col-md-4">
-        <div class="form-group">
-          <label class="label">Matricula Correspondencia</label>
-          <input
-            nbInput
-            fullWidth
-            type="text"
-            [disabled]=true
-            [(ngModel)]=data.matriculaCorrespondencia
-          >
-        </div>
-      </div>
+      </tbody>
 
-      <div class="col-12 col-md-4">
-        <div class="form-group">
-          <label class="label">Grupo </label>
-          <input
-            nbInput
-            fullWidth
-            type="text"
-            [disabled]=true
-            [(ngModel)]=data.grupo
-          >
-        </div>
-      </div>
-
-      <div class="col-md-6 col-12">
-        <div class="form-group">
-        <label class="label">Valor</label>
-        <input
-            nbInput
-            fullWidth
-            type="text"
-            [disabled]=true
-            [(ngModel)]=data.valor
-          >
-        </div>
-      </div>
-
-      <div class="col-md-6 col-12">
-        <label class="label"> Contrato Principal</label>
-
-        <div class="form-group">
-          <nb-checkbox
-            [disabled]=true
-            class="align-center"
-            [(ngModel)]=data.contratoPrincipal>
-          </nb-checkbox>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="row">
-
-      <div class="col-md-12 col-12">
-        <div class="form-group">
-          <label class="label">Referência</label>
-
-          <table class="table table-sm table-striped" spin>
-
-            <tbody [nbSpinner]="loading" nbSpinnerMessage="">
-              <tr *ngFor="let r of data.referencias">
-                <td class="align-middle">{{r | referenciaPipe }}</td>
-                <td class="align-middle">
-
-                <button nbButton outline class="float-right" status="danger">
-                  <nb-icon icon="trash-2-outline"></nb-icon>
-                </button></td>
-              </tr>
-            </tbody>
-
-          </table>
-
-        </div>
-      </div>
-    </div>
-
+    </table>
   </nb-card-body>
 
   <nb-card-footer>
     <div class="row">
 
-      <div class="col-md-2 col-6">
+      <div class="col-md-3 col-12">
         <button nbButton outline fullWidth status="basic" type="reset" (click)="voltar()">voltar</button>
       </div>
-
-      <div class="col-md-2 offset-md-8 col-6">
-        <button nbButton outline fullWidth status="warning" type="submit">Editar</button>
-      </div>
-
     </div>
   </nb-card-footer>
 

@@ -30,9 +30,9 @@ const routes: Routes = [{
         .then(m => m.CadastroModule),
     },
     {
-      path: 'perfil',
-      loadChildren: () => import('./cadastro/cadastro.module')
-        .then(m => m.CadastroModule),
+      path: 'adminstracao',
+      loadChildren: () => import('./adminstracao/adminstracao.module')
+        .then(m => m.AdminstracaoModule),
     },
     {
       path: 'caixa',

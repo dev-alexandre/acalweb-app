@@ -8,7 +8,8 @@ export interface Categoria {
 
 export interface Grupo extends Model {
 
-  valor?: any;
+  valor?: number;
+  valorSocio?: number;
   nome?: string;
   categoria?: Categoria;
 

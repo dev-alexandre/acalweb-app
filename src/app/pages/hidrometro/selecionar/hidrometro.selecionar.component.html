@@ -1,0 +1,50 @@
+
+<form [formGroup]="form" (ngSubmit)="OnSubmit()" class="needs-validation" >
+  <nb-card accent="success">
+
+    <nb-card-header>
+      Hidromêtros
+    </nb-card-header>
+
+    <nb-card-body>
+
+      <div class="row">
+
+        <div class="col-md-3 col-12">
+          <div class="form-group">
+
+            <label class="label">* Referência:</label>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              class="form-control"
+              [mask]="'00/0000'"
+              placeholder="Referência"
+              [formControl]="referencia"
+              [status]="getStatus('referencia')"
+            >
+
+            <div class="valid-feedback" >
+              Válido
+            </div>
+
+            <div class="invalid-feedback" >
+              Inválido
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-3 offset-md-6 col-12">
+          <div class="form-group">
+            <label class="label">Ações</label>
+            <button nbButton outline fullWidth status="success" type="submit">Pré-Visualizar</button>
+          </div>
+        </div>
+
+      </div>
+
+    </nb-card-body>
+  </nb-card>
+</form>

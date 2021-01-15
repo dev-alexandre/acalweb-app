@@ -74,7 +74,7 @@ export abstract class ListarComponent <T extends Model, S extends Service<T>> {
     this.load();
   }
 
-  public selecionar(data: T): void{
+  public selecionar(data: T): void {
     this.data = data;
   }
 

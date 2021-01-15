@@ -1,0 +1,68 @@
+<nb-card status="danger" [nbSpinner]="loading">
+
+  <nb-card-header>
+    Usúario
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="row" *ngIf="data">
+
+      <div class="col-md-3 col-12">
+        <div class="form-group">
+
+          <label class="label"> Login </label>
+          <input
+            nbInput
+            disabled
+            fullWidth
+            type="text"
+            [(ngModel)]="data.email"
+            >
+        </div>
+      </div>
+
+      <div class="col-md-4 col-12">
+        <div class="form-group">
+          <label class="label">Nome</label>
+          <input
+            nbInput
+            disabled
+            fullWidth
+            type="text"
+            [(ngModel)]="data.name"
+            >
+        </div>
+      </div>
+
+      <div class="col-md-4 col-12">
+        <div class="form-group">
+          <label class="label">Cargo</label>
+          <input
+            nbInput
+            disabled
+            fullWidth
+            type="text"
+            [(ngModel)]="data.title"
+            >
+        </div>
+      </div>
+
+    </div>
+  </nb-card-body>
+
+  <nb-card-footer>
+    <div class="row">
+
+      <div class="col-md-2 col-6">
+        <button nbButton outline fullWidth status="basic" (click)="voltar()">voltar</button>
+      </div>
+
+      <div class="col-md-2 offset-md-8 col-6">
+        <button nbButton outline fullWidth status="danger" type="button" (click)="onSubmit()">Deletar</button>
+      </div>
+
+    </div>
+  </nb-card-footer>
+
+</nb-card>
+

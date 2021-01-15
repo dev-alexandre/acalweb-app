@@ -4,6 +4,7 @@ import { ClienteAdicionarComponent } from './adicionar/cliente.adicionar.compone
 import { ClienteComponent } from './cliente.component';
 import { ClienteDeletarComponent } from './deletar/cliente.deletar.component';
 import { ClienteEditarComponent } from './editar/cliente.editar.component';
+import { ClienteHistoricoComponent } from './historico/cliente.historico.component';
 import { ClienteListarComponent } from './listar/cliente.listar.component';
 
 const routes: Routes = [{
@@ -25,6 +26,10 @@ const routes: Routes = [{
     {
       path: 'editar',
       component: ClienteEditarComponent,
+    },
+    {
+      path: 'historico',
+      component: ClienteHistoricoComponent,
     },
   ],
 }];

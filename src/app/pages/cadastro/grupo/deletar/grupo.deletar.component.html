@@ -7,7 +7,7 @@
     <nb-card-body>
       <div class="row" *ngIf="data">
 
-          <div class="col-md-6 col-12">
+          <div class="col-md-4 col-12">
             <div class="form-group">
 
               <label class="label">Categoria:</label>
@@ -19,12 +19,10 @@
                 class="form-control"
                 [(ngModel)]=data.categoria.nome
               >
-
-
             </div>
           </div>
 
-          <div class="col-md-3 col-12">
+          <div class="col-md-4 col-12">
             <div class="form-group">
 
               <label class="label">Nome:</label>
@@ -40,7 +38,7 @@
             </div>
           </div>
 
-          <div class="col-md-3 col-6">
+          <div class="col-md-2 col-6">
             <div class="form-group">
               <label class="label">Valor:</label>
               <input
@@ -52,6 +50,22 @@
                 [mask]="'0*.00'"
                 [dropSpecialCharacters]="false"
                 [(ngModel)]=data.valor
+              >
+            </div>
+          </div>
+
+          <div class="col-md-2 col-6">
+            <div class="form-group">
+              <label class="label">Valor Sócio:</label>
+              <input
+                nbInput
+                fullWidth
+                disabled
+                type="text"
+                class="form-control"
+                [mask]="'0*.00'"
+                [dropSpecialCharacters]="false"
+                [(ngModel)]=data.valorSocio
               >
             </div>
           </div>

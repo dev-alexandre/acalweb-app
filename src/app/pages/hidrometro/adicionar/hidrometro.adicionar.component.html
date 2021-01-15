@@ -19,6 +19,8 @@
         <thead >
           <tr>
             <th scope="col" class="align-middle font-weight-bold"> Matrícula: </th>
+            <th scope="col" class="align-middle font-weight-bold"> Consumo: </th>
+            <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
             <th scope="col" class="align-middle font-weight-bold"> Anterior: </th>
             <th scope="col" class="align-middle font-weight-bold"> Atual: </th>
           </tr>
@@ -30,6 +32,14 @@
 
             <td class="align-middle" >
               {{hidrometro.matricula | matricula}}
+            </td>
+
+            <td class="align-middle" >
+              {{hidrometro.hidrometro.atual - hidrometro.hidrometro.anterior}}
+            </td>
+
+            <td class="align-middle" >
+              {{(hidrometro.hidrometro.atual - hidrometro.hidrometro.anterior) * 0.00025  | currency: 'BRL':'symbol'}}
             </td>
 
             <td class="align-middle" >

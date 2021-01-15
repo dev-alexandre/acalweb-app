@@ -4,18 +4,18 @@
   <nb-card>
 
     <nb-card-header>
-      {{contrato.habilitado ? 'Desabilitar': 'Habilitar'}} Contrato
+      {{contrato.habilitado ? 'Cortar': 'Religar'}} Contrato
     </nb-card-header>
 
     <nb-card-body>
 
       <ng-container *ngIf="contrato.habilitado">
-        Deseja desabilitar esse contrato?
+        Deseja cortar esse contrato?
         não será possivel gerar cobranças enquanto esse contrato estiver desabilitado
       </ng-container>
 
       <ng-container *ngIf="!contrato.habilitado">
-        Deseja habilitar esse contrato?
+        Deseja religar esse contrato?
         Será possivel gerar cobranças esse contrato
       </ng-container>
 
@@ -32,8 +32,8 @@
         </div>
 
         <div class="offset-md-6 col-md-3 col-6">
-          <button *ngIf="contrato.habilitado" nbButton outline fullWidth status="basic" (click)="changeContrato(); ref.close();">Desabilitar</button>
-          <button *ngIf="!contrato.habilitado" nbButton outline fullWidth status="basic" (click)="changeContrato(); ref.close();">Habilitar</button>
+          <button *ngIf="contrato.habilitado" nbButton outline fullWidth status="basic" (click)="changeContrato(false); ref.close();">Cortar</button>
+          <button *ngIf="!contrato.habilitado" nbButton outline fullWidth status="basic" (click)="changeContrato(true); ref.close();">Religar</button>
         </div>
 
       </div>
@@ -120,15 +120,15 @@
             <td class="align-middle" >
               <button nbButton outline fullWidth
                 [status]="c.habilitado? 'info':'basic'"
-                (click)="this.contrato = c; open(dialog);"  nbTooltip="Mudar visibilidade do contrato" nbTooltipStatus="primary" >
-                <nb-icon *ngIf="!c.habilitado" icon="eye-off-2-outline"></nb-icon>
-                <nb-icon *ngIf="c.habilitado" icon="eye-outline"></nb-icon>
+                (click)="this.contrato = c; open(dialog);" nbTooltip="Cortar/Religar" nbTooltipStatus="primary" >
+                <nb-icon *ngIf="!c.habilitado" icon="droplet-off-outline"></nb-icon>
+                <nb-icon *ngIf="c.habilitado" icon="droplet-outline"></nb-icon>
               </button>
             </td>
 
             <td class="align-middle" >
-              <button nbButton outline fullWidth status="warning" (click)=editar(c) [disabled]=true>
-                <nb-icon icon="edit-outline"></nb-icon>
+              <button nbButton outline fullWidth status="primary" (click)=editar(c)>
+                <nb-icon icon="book-outline"></nb-icon>
               </button>
             </td>
 

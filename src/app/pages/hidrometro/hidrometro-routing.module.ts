@@ -5,6 +5,7 @@ import { HidrometroAdicionarComponent } from './adicionar/hidrometro.adicionar.c
 import { HidrometroDeletarComponent } from './deletar/hidrometro.deletar.component';
 import { HidrometroEditarComponent } from './editar/hidrometro.editar.component';
 import { HidrometroListarComponent } from './listar/hidrometro.listar.component';
+import { HidrometroSelecionarComponent } from './selecionar/hidrometro.selecionar.component';
 
 const routes: Routes = [{
   path: '',
@@ -25,6 +26,10 @@ const routes: Routes = [{
     {
       path: 'editar',
       component: HidrometroEditarComponent,
+    },
+    {
+      path: 'selecionar',
+      component: HidrometroSelecionarComponent,
     },
   ],
 }];

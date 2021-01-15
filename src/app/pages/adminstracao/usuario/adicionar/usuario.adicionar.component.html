@@ -1,0 +1,133 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate [nbSpinner]="loading">
+
+  <nb-card status="success">
+
+    <nb-card-header>
+      Usuário
+    </nb-card-header>
+
+    <nb-card-body>
+
+      <div class="row">
+
+        <div class="col-md-3 col-12">
+          <div class="form-group">
+
+            <label class="label">* Login:</label>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              placeholder="Login"
+              [formControl]="email"
+              [status]="getStatus('email')"
+              [ngClass]="{'is-valid': (email.valid && submited) , 'is-invalid' : (email.invalid && submited)}"
+            >
+
+          </div>
+        </div>
+
+        <div class="col-md-5 col-12">
+          <div class="form-group">
+
+            <label class="label">* Nome:</label>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              placeholder="Nome"
+              [formControl]="name"
+              [status]="getStatus('name')"
+              [ngClass]="{'is-valid': (name.valid && submited) , 'is-invalid' : (name.invalid && submited)  }"
+            >
+
+          </div>
+        </div>
+
+        <div class="col-md-2 col-12">
+          <div class="form-group">
+            <label class="label">* Cargo:</label>
+
+            <nb-select
+              fullWidth
+              placeholder="Selecionar"
+              [status]="getStatus('title')"
+              [formControl]="title">
+
+              <nb-option *ngFor="let c of cargos" [value]=c.nome>
+                {{c.nome}}
+              </nb-option>
+
+            </nb-select>
+
+          </div>
+        </div>
+
+        <!--
+
+          <div class="col-md-2 col-12">
+            <div class="form-group">
+            <label class="label">* Senha:</label>
+            <input
+            nbInput
+              fullWidth
+              type="text"
+              placeholder="Senha"
+              [formControl]="password"
+              [status]="getStatus('password')"
+              [ngClass]="{'is-valid': (password.valid && submited) , 'is-invalid' : (password.invalid && submited)  }"
+            >
+
+          </div>
+        </div>
+      -->
+
+        <div class="col-md-2 col-12">
+          <div class="form-group">
+            <label class="label">* Senha:</label>
+
+            <nb-form-field>
+
+              <button button nbSuffix nbButton ghost (click)="showPassword =!showPassword" type="button">
+                <nb-icon [icon]="showPassword ? 'lock-outline' : 'unlock-outline'" pack="eva">
+                </nb-icon>
+              </button>
+
+              <input
+                nbInput
+                fullWidth
+                [type]="showPassword ? 'text':'password'"
+                class="form-control"
+                placeholder='Senha'
+                [formControl]="password"
+                [status]="getStatus('password')"
+                [ngClass]="{'is-valid': (password.valid && submited) , 'is-invalid' : (password.invalid && submited)  }"
+              >
+
+            </nb-form-field>
+
+          </div>
+        </div>
+
+
+      </div>
+    </nb-card-body>
+
+    <nb-card-footer>
+      <div class="row">
+
+        <div class="col-md-2 col-6">
+          <button nbButton outline fullWidth status="basic" type="reset" (click)="voltar()">voltar</button>
+        </div>
+
+        <div class="col-md-2 offset-md-8 col-6">
+          <button nbButton outline fullWidth status="success" type="submit">Salvar</button>
+        </div>
+
+      </div>
+    </nb-card-footer>
+
+  </nb-card>
+
+</form>
+

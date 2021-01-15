@@ -1,85 +1,9 @@
-<form [formGroup]="form" (ngSubmit)="OnSubmit()" class="needs-validation" novalidate *ngIf="showSelectReferencia">
-  <nb-card accent="success" [nbSpinner]="loading" >
 
-    <nb-card-header>
-      Gerar Boletos Mensais
-    </nb-card-header>
+<nb-card status="success">
 
-    <nb-card-body>
-
-      <div class="row">
-
-        <div class="col-md-3 col-12">
-          <div class="form-group">
-
-            <label class="label">* Referência:</label>
-            <input
-              nbInput
-              fullWidth
-              type="text"
-              class="form-control"
-              [mask]="'00/0000'"
-              [status]="getStatus('referencia')"
-              [ngClass]="{'is-valid': (referencia.valid && submited) , 'is-invalid' : (referencia.invalid && submited)  }"
-              [formControl]="referencia"
-              placeholder="Referência"
-            >
-
-            <div class="valid-feedback" >
-              Válido
-            </div>
-
-            <div class="invalid-feedback" >
-              Inválido
-            </div>
-
-          </div>
-        </div>
-
-        <div class=" col-md-3 col-12">
-          <div class="form-group">
-
-            <label class="label">* Vencimento:</label>
-            <input
-              nbInput
-              fullWidth
-              type="text"
-              class="form-control"
-              [mask]="'00/00/0000'"
-              [status]="getStatus('vencimento')"
-              [ngClass]="{'is-valid': (vencimento.valid && submited) , 'is-invalid' : (vencimento.invalid && submited)  }"
-              [formControl]="vencimento"
-              placeholder="vencimento"
-            >
-
-            <div class="valid-feedback" >
-              Válido
-            </div>
-
-            <div class="invalid-feedback" >
-              Inválido
-            </div>
-
-          </div>
-        </div>
-
-        <div class="col-md-3 offset-md-3 col-12">
-          <div class="form-group">
-            <label class="label">Ações</label>
-            <button nbButton outline fullWidth status="success" type="submit">Pré-Visualizar</button>
-          </div>
-        </div>
-
-      </div>
-
-
-    </nb-card-body>
-
-  </nb-card>
-</form>
-
-
-<nb-card accent="success" *ngIf="!showSelectReferencia" [nbSpinner]="loading" >
+  <nb-card-header>
+    Gerar Boletos
+  </nb-card-header>
 
   <nb-card-body>
     <label class="label">Refêrencia </label>
@@ -91,9 +15,14 @@
           <thead>
             <tr>
               <th scope="col" class="align-middle font-weight-bold"> Nome: </th>
-              <th scope="col" class="align-middle font-weight-bold"> Matrícula: </th>
+              <th scope="col" class="align-middle font-weight-bold"> Documento: </th>
+              <th scope="col" class="align-middle font-weight-bold"> Logradouro: </th>
+              <th scope="col" class="align-middle font-weight-bold"> Número: </th>
+              <th scope="col" class="align-middle font-weight-bold"> Letra: </th>
               <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
               <th scope="col" class="align-middle font-weight-bold">
+                <nb-checkbox [(ngModel)]=selectAll (click)=selecionarTodos() class="align-center">
+                </nb-checkbox>
               </th>
             </tr>
           </thead>
@@ -102,24 +31,33 @@
 
             <tr *ngFor="let c of contratos">
               <td class="align-middle">
-                {{c.cliente.nome}}
+                {{c.contrato.cliente.nome}}
               </td>
 
               <td class="align-middle">
-                {{c.matricula.logradouro.tipoLogradouro.nome}}
-                {{c.matricula.logradouro.nome}}
-                {{c.matricula.numero}}
-                {{c.matricula.letra}}
+                {{c.contrato.cliente.documento | documento}}
               </td>
 
               <td class="align-middle">
-                {{c.valor  |  currency:'BRL':'symbol'}}
+                {{c.contrato.matricula | logradouro}}
               </td>
 
               <td class="align-middle">
-                <nb-checkbox [(ngModel)]=c.check class="align-center">
-                </nb-checkbox>
+                {{c.contrato.matricula.numero}}
               </td>
+
+              <td class="align-middle">
+                {{c.contrato.matricula.letra}}
+              </td>
+
+              <td class="align-middle">
+                {{c.contrato.valor  |  currency:'BRL':'symbol'}}
+              </td>
+
+              <td class="align-middle">
+                  <nb-checkbox [(ngModel)]=c.check class="align-center">
+                  </nb-checkbox>
+                </td>
 
             </tr>
 
@@ -141,10 +79,20 @@
     <div class="row">
 
       <div class="offset-md-9 col-md-3 col-12">
-        <button nbButton outline fullWidth status="basic" (click)=gerar()>Gerar</button>
+        <button nbButton outline fullWidth status="basic"  >Gerar</button>
       </div>
 
     </div>
   </nb-card-footer>
 
 </nb-card>
+
+<!--
+
+
+<nb-card status="success" [nbSpinner]="loading" >
+
+
+
+</nb-card>
+-->

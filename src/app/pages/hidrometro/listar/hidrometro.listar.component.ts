@@ -1,8 +1,9 @@
+import { Matricula } from 'app/pages/cadastro/matricula/matricula.model';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ReferenciaValidator } from 'app/@core/validator/referenciaValidator';
-import { HidrometroService } from '../hidrometro.service';
+import { ListarComponent } from 'app/@core/base/_index';
+import { MatriculaService } from 'app/pages/cadastro/matricula/matricula.service';
+import { Modulo } from 'app/@library/enum';
 
 @Component({
   selector: 'ngx-hidrometro-listar',
@@ -10,59 +11,26 @@ import { HidrometroService } from '../hidrometro.service';
   templateUrl: './hidrometro.listar.component.html',
 })
 
-export class HidrometroListarComponent  implements OnInit {
-
-  public storage: Storage = sessionStorage;
-  public submited: boolean = false;
-  public form: FormGroup;
+export class HidrometroListarComponent  extends ListarComponent<Matricula, MatriculaService> implements OnInit {
 
   constructor(
     public router: Router,
     public activeRouter: ActivatedRoute,
-    public service: HidrometroService) {
+    public service: MatriculaService) {
 
+    super(router, activeRouter, service);
   }
 
   ngOnInit(): void {
-    this.loadForm();
+    super.init();
   }
 
-  public loadForm(): void {
-
-    this.form = new FormGroup({
-      referencia: new FormControl(
-        null, [
-          Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(6),
-          ReferenciaValidator.isReferencia()
-        ]
-      ),
-    });
+  public getModulo(): string {
+    return Modulo.MATRICULA;
   }
 
-  public OnSubmit(): void {
-    this.submited = true;
-
-    if (this.form.invalid) {
-      return;
-    }
-
-    this.storage.setItem('[hidrometro][adicionar]' , JSON.stringify(this.referencia.value) );
-    this.router.navigate([ './adicionar' ], { relativeTo: this.activeRouter.parent });
-  }
-
-
-  public getStatus(field: string) {
-    if (!this.submited) {
-      return 'basic';
-    }
-
-    return this.form.get(field).valid ? 'success' : 'danger';
-  }
-
-  public get referencia() {
-    return this.form.get('referencia');
+  public selecionar(): void {
+    this.router.navigate([ './selecionar' ], { relativeTo: this.activeRouter.parent });
   }
 
 }

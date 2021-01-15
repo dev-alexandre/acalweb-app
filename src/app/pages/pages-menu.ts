@@ -60,11 +60,21 @@ export const MENU_ITEMS: NbMenuItem[] = [
 
       {
         title: 'Gerar Boleto',
-        link: '/pages/financeiro/gerar-boleto/adicionar',
+        link: '/pages/financeiro/gerar-boleto/selecionar',
       },
 
       {
         title: 'Receber Boleto',
+        link: '/pages/financeiro/gerar-boleto/adicionar',
+      },
+
+      {
+        title: 'Negociação',
+        link: '/pages/financeiro/gerar-boleto/adicionar',
+      },
+
+      {
+        title: 'Outro valores',
         link: '/pages/financeiro/gerar-boleto/adicionar',
       },
 
@@ -97,6 +107,17 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'Eleição',
         link: '/pages/caixa/receber',
+      },
+    ],
+  },
+
+  {
+    title: 'ADMINSTRAÇÂO',
+    icon: 'clipboard-outline',
+    children: [
+      {
+        title: 'Usuários',
+        link: '/pages/adminstracao/usuario/listar',
       },
     ],
   },

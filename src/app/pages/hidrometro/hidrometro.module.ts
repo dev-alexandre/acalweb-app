@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbDateFnsDateModule } from '@nebular/date-fns';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbButtonModule, NbCardModule, NbDatepickerModule, NbIconModule, NbInputModule, NbSelectModule, NbTooltipModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbDatepickerModule, NbIconModule, NbInputModule, NbSelectModule, NbSpinnerModule, NbTooltipModule } from '@nebular/theme';
 import { PipeModule } from 'app/@core/pipe/pipe.module';
 import { ThemeModule } from 'app/@theme/theme.module';
 import { NgxMaskModule } from 'ngx-mask';
@@ -14,6 +14,7 @@ import { HidrometroRoutingModule } from './hidrometro-routing.module';
 import { HidrometroComponent } from './hidrometro.component';
 import { HidrometroService } from './hidrometro.service';
 import { HidrometroListarComponent } from './listar/hidrometro.listar.component';
+import { HidrometroSelecionarComponent } from './selecionar/hidrometro.selecionar.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { HidrometroListarComponent } from './listar/hidrometro.listar.component'
     NbDateFnsDateModule,
     PipeModule,
     NbTooltipModule,
+    NbSpinnerModule,
     NgxMaskModule.forChild(),
   ],
   declarations: [
@@ -40,6 +42,7 @@ import { HidrometroListarComponent } from './listar/hidrometro.listar.component'
     HidrometroDeletarComponent,
     HidrometroEditarComponent,
     HidrometroListarComponent,
+    HidrometroSelecionarComponent,
   ],
   providers: [
     MatriculaService,

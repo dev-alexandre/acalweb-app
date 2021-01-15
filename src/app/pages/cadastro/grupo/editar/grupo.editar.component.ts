@@ -50,6 +50,12 @@ export class GrupoEditarComponent extends EditarComponent<Grupo, GrupoService> i
         Validators.min(0)
       ]),
 
+      valorSocio: new FormControl(
+        this.data.valorSocio, [
+        Validators.required,
+        Validators.min(0)
+      ]),
+
       categoria: new FormControl(
         this.data.categoria, [
         Validators.required,
@@ -72,4 +78,7 @@ export class GrupoEditarComponent extends EditarComponent<Grupo, GrupoService> i
     return this.form.get('categoria');
   }
 
+  public get valorSocio() {
+    return this.form.get('valorSocio');
+  }
 }

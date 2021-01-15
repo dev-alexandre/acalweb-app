@@ -21,7 +21,8 @@
 
         <thead>
           <th colspan="4" class="text-center p-2 border-bottom" >
-            <b> Número de Associado: </b>  {{boleto.contrato.cliente.socio}}
+            <b> Número de Associado: </b>
+            {{boleto.contrato.cliente.socio}}
           </th>
         </thead>
 
@@ -29,16 +30,15 @@
 
           <tr>
             <td> <b> Sócio: </b> </td>
-            <td class="float-right"> {{boleto.contrato.cliente.nome}} </td>
+            <td class="float-right">
+              {{boleto.contrato.cliente.nome}}
+            </td>
           </tr>
 
           <tr>
             <td> <b> Endereço: </b> </td>
-            <td class="float-right"> {{boleto.contrato.matricula.logradouro.tipoLogradouro.nome}}
-              {{boleto.contrato.matricula.logradouro.nome}}
-              {{boleto.contrato.matricula.numero}}
-              {{boleto.contrato.matricula.letra}}
-
+            <td class="float-right">
+              {{boleto.contrato.matricula | matricula}}
             </td>
           </tr>
 

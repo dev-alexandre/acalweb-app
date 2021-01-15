@@ -1,0 +1,79 @@
+<form [formGroup]="form" (ngSubmit)="OnSubmit()" class="needs-validation" novalidate>
+  <nb-card status="success" [nbSpinner]="loading" >
+
+    <nb-card-header>
+      Gerar Boletos Mensais
+    </nb-card-header>
+
+    <nb-card-body>
+
+      <div class="row">
+
+        <div class="col-md-3 col-12">
+          <div class="form-group">
+
+            <label class="label">* Referência:</label>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              class="form-control"
+              [mask]="'00/0000'"
+              [status]="getStatus('referencia')"
+              [ngClass]="{'is-valid': (referencia.valid && submited) , 'is-invalid' : (referencia.invalid && submited)  }"
+              [formControl]="referencia"
+              placeholder="Referência"
+            >
+
+            <div class="valid-feedback" >
+              Válido
+            </div>
+
+            <div class="invalid-feedback" >
+              Inválido
+            </div>
+
+          </div>
+        </div>
+
+        <div class=" col-md-3 col-12">
+          <div class="form-group">
+
+            <label class="label">* Vencimento:</label>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              class="form-control"
+              [mask]="'00/00/0000'"
+              [status]="getStatus('vencimento')"
+              [ngClass]="{'is-valid': (vencimento.valid && submited) , 'is-invalid' : (vencimento.invalid && submited)  }"
+              [formControl]="vencimento"
+              placeholder="vencimento"
+            >
+
+            <div class="valid-feedback" >
+              Válido
+            </div>
+
+            <div class="invalid-feedback" >
+              Inválido
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-3 offset-md-3 col-12">
+          <div class="form-group">
+            <label class="label">Ações</label>
+            <button nbButton outline fullWidth status="success" type="submit">Pré-Visualizar</button>
+          </div>
+        </div>
+
+      </div>
+
+
+    </nb-card-body>
+
+  </nb-card>
+</form>

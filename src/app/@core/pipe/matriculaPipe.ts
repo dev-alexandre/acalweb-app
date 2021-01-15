@@ -12,19 +12,16 @@ export class MatriculaFormat implements PipeTransform {
       return '';
     }
 
-    if (matricula.letra) {
+    if (!matricula.letra) {
       return matricula.logradouro.tipoLogradouro.nome + ' ' +
-        matricula.logradouro.nome + ' ' +
-        matricula.letra + ' ' +
-        matricula.numero;
+      matricula.logradouro.nome + ' ' +
+      matricula.numero;
 
     } else {
       return matricula.logradouro.tipoLogradouro.nome + ' ' +
         matricula.logradouro.nome + ' ' +
-        matricula.numero;
-    }
-
+        matricula.numero + ' ' +
+        matricula.letra ;    }
 
   }
-
 }

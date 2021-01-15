@@ -25,62 +25,64 @@
   </nb-card-body>
 
   <nb-card-body>
-      <table class="table table-sm table-striped">
+    <table class="table table-sm table-striped">
 
-        <thead >
-          <tr>
-            <th scope="col" class="align-middle font-weight-bold"> Categoria: </th>
-            <th scope="col" class="align-middle font-weight-bold"> Nome: </th>
-            <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
-            <th scope="col" style="width: 8%;" colspan="2">
-              <button nbButton outline fullWidth status="success" (click)=adicionar()>
-                <nb-icon icon="plus-outline"></nb-icon>
-              </button>
-            </th>
-          </tr>
-        </thead>
+      <thead >
+        <tr>
+          <th scope="col" class="align-middle font-weight-bold"> Categoria: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Nome: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Valor Sócio: </th>
+          <th scope="col" style="width: 8%;" colspan="2">
+            <button nbButton outline fullWidth status="success" (click)=adicionar()>
+              <nb-icon icon="plus-outline"></nb-icon>
+            </button>
+          </th>
+        </tr>
+      </thead>
 
-        <tbody *ngIf="table && !table?.empty">
+      <tbody *ngIf="table && !table?.empty">
 
-          <tr *ngFor="let data of table.content; index as i;">
-            <td class="align-middle" >{{data?.categoria?.nome}}</td>
-            <td class="align-middle" >{{data?.nome}}</td>
-            <td class="align-middle" >{{data?.valor |  currency:'BRL':'symbol'}}</td>
+        <tr *ngFor="let data of table.content; index as i;">
+          <td class="align-middle" >{{data?.categoria?.nome}}</td>
+          <td class="align-middle" >{{data?.nome}}</td>
+          <td class="align-middle" >{{data?.valor |  currency:'BRL':'symbol'}}</td>
+          <td class="align-middle" >{{data?.valorSocio |  currency:'BRL':'symbol'}}</td>
 
-            <td class="align-middle" >
-              <button nbButton outline fullWidth status="warning" (click)=editar(data)>
-                <nb-icon icon="edit-outline"></nb-icon>
-              </button>
-            </td>
+          <td class="align-middle" >
+            <button nbButton outline fullWidth status="warning" (click)=editar(data)>
+              <nb-icon icon="edit-outline"></nb-icon>
+            </button>
+          </td>
 
-            <td class="align-middle" >
-              <button nbButton outline fullWidth status="danger" (click)=deletar(data)>
-                <nb-icon icon="trash-2-outline"></nb-icon>
-              </button>
-            </td>
+          <td class="align-middle" >
+            <button nbButton outline fullWidth status="danger" (click)=deletar(data)>
+              <nb-icon icon="trash-2-outline"></nb-icon>
+            </button>
+          </td>
 
-          </tr>
+        </tr>
 
-        </tbody>
+      </tbody>
 
-        <tbody *ngIf="table?.empty">
+      <tbody *ngIf="table?.empty">
 
-          <tr>
-            <td class="align-middle" colspan="4" >
-              Nenhum registro encontrado
-            </td>
-          </tr>
+        <tr>
+          <td class="align-middle" colspan="4" >
+            Nenhum registro encontrado
+          </td>
+        </tr>
 
-        </tbody>
+      </tbody>
 
 
-        <tfoot>
-          <tr>
-            <th scope="col" colspan="5"> </th>
-          </tr>
-        </tfoot>
+      <tfoot>
+        <tr>
+          <th scope="col" colspan="6"> </th>
+        </tr>
+      </tfoot>
 
-      </table>
+    </table>
   </nb-card-body>
 
   <nb-card-footer *ngIf="!table?.empty">

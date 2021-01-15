@@ -39,14 +39,17 @@ export class ContratoListarComponent extends ListarComponent<Contrato, ContratoS
     this.dialogService.open(dialog, { context: 'this is some additional data passed to dialog' });
   }
 
-  public changeContrato(): void {
+  public changeContrato(ligacao: boolean): void {
 
     this.contrato.habilitado = !this.contrato.habilitado;
-    this.service.editar(this.contrato).subscribe(
-      () => {
-      },
-    );
-  }
 
+    if (!this.contrato.corte) {
+      this.contrato.corte = [];
+    }
+
+    this.contrato.corte.push({ data: new Date(), usuario:  null, ligacao: ligacao});
+    this.service.editar(this.contrato).subscribe(() => {});
+
+  }
 
 }

@@ -9,7 +9,7 @@
     <nb-card-body>
       <div class="row">
 
-        <div class="col-md-6 col-12">
+        <div class="col-md-4 col-12">
           <div class="form-group">
             <label class="label">* Categoria:</label>
             <nb-select
@@ -32,7 +32,7 @@
           </div>
         </div>
 
-        <div class="col-md-3 col-12">
+        <div class="col-md-4 col-12">
           <div class="form-group">
             <label class="label">* Nome:</label>
             <input
@@ -58,7 +58,7 @@
           </div>
         </div>
 
-        <div class="col-md-3 col-6">
+        <div class="col-md-2 col-6">
           <div class="form-group">
             <label class="label">* Valor:</label>
             <input
@@ -72,6 +72,33 @@
               [formControl]="valor"
               [status]="getStatus('valor')"
               [ngClass]="{'is-valid': (valor.valid && submited) , 'is-invalid' : (valor.invalid && submited)  }"
+            >
+
+          <div class="valid-feedback" >
+            Válido
+          </div>
+
+          <div class="invalid-feedback" >
+            Inválido
+          </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-2 col-6">
+          <div class="form-group">
+            <label class="label">* Valor Sócio:</label>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              class="form-control"
+              placeholder="Valor"
+              mask="separator.2"
+              thousandSeparator="."
+              [formControl]="valorSocio"
+              [status]="getStatus('valorSocio')"
+              [ngClass]="{'is-valid': (valorSocio.valid && submited) , 'is-invalid' : (valorSocio.invalid && submited)  }"
             >
 
           <div class="valid-feedback" >

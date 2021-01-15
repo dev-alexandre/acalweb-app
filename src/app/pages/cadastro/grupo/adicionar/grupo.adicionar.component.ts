@@ -42,7 +42,13 @@ export class GrupoAdicionarComponent extends AdicionarComponent<Grupo, GrupoServ
       ]),
 
       valor: new FormControl(
-        null, [
+        0, [
+        Validators.required,
+        Validators.min(0)
+      ]),
+
+      valorSocio: new FormControl(
+        0, [
         Validators.required,
         Validators.min(0)
       ]),
@@ -66,6 +72,10 @@ export class GrupoAdicionarComponent extends AdicionarComponent<Grupo, GrupoServ
 
   public get categoria() {
     return this.form.get('categoria');
+  }
+
+  public get valorSocio() {
+    return this.form.get('valorSocio');
   }
 
 }
