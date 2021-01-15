@@ -45,11 +45,6 @@ const routes: Routes = [{
         .then(m => m.FinanceiroModule),
     },
     {
-      path: 'layout',
-      loadChildren: () => import('./layout/layout.module')
-        .then(m => m.LayoutModule),
-    },
-    {
       path: 'analise',
       loadChildren: () => import('./analise/analise.module')
         .then(m => m.AnaliseModule),
