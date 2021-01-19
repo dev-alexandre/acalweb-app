@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Analise } from 'app/pages/analise/analise.model';
 import { AnaliseService } from 'app/pages/analise/analise.service';
 import { Boleto } from 'app/pages/financeiro/boleto/boleto.model';
@@ -14,16 +15,26 @@ export class BoletoVisualizarComponent implements OnInit {
   public boleto: Boleto;
 
   public loaded: boolean = false;
-
   public analise: Analise;
+  public storage: Storage = sessionStorage;
 
-  constructor(public analiseService: AnaliseService) {
+  constructor(
+    public router: Router,
+    public activeRouter: ActivatedRoute,
+    public analiseService: AnaliseService) {
 
   }
 
   ngOnInit(): void {
 
-    if (this.boleto) {
+    this.boleto = JSON.parse(this.storage.getItem('boletovisualizar'));
+    this.storage.removeItem('boletovisualizar');
+
+    if (!this.boleto) {
+
+      this.router.navigate([ './listar' ], { relativeTo: this.activeRouter.parent });
+
+    } else if (this.boleto) {
       this.loaded = true;
 
       this.analiseService.buscarPorReferencia(this.boleto.referencia).subscribe(

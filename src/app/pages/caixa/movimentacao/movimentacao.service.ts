@@ -2,10 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Service } from 'app/@core/base/_index';
 import { Modulo } from 'app/@library/enum';
-import { Movimentacao } from 'app/pages/financeiro/boleto/boleto.model';
 
 @Injectable()
-export class MovimentacaoService extends Service<Movimentacao> {
+export class MovimentacaoService extends Service<Object> {
 
   public getModulo(): string {
     return Modulo.MOVIMENTACAO;

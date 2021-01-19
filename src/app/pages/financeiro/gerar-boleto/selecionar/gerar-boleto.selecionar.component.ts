@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DateValidator } from 'app/@core/validator/dataValidator';
 import { ReferenciaValidator } from 'app/@core/validator/referenciaValidator';
 import { ContratoService } from 'app/pages/cadastro/contrato/contrato.service';
+import * as moment from 'moment';
 import { BoletoService } from '../../boleto/boleto.service';
 
 @Component({
@@ -27,6 +28,11 @@ export class GerarBoletoSelecionarComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadForm();
+    const a = moment(new Date()).subtract(1, 'months').format('MMYYYY');
+    const b = moment(new Date()).set('day', 15).format('DDMMYYYY');
+    this.referencia.setValue(a);
+    this.vencimento.setValue(b);
+
   }
 
   public loadForm(): void {

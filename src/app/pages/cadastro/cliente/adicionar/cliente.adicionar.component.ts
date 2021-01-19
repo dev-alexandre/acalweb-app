@@ -59,6 +59,10 @@ export class ClienteAdicionarComponent extends AdicionarComponent<Cliente, Clien
         null, [
       ]),
 
+      letra: new FormControl(
+        null, [
+      ]),
+
       dataNascimento: new FormControl(
         null, [
         Validators.minLength(8),
@@ -80,12 +84,14 @@ export class ClienteAdicionarComponent extends AdicionarComponent<Cliente, Clien
     this.isPessoaFisica = !this.isPessoaFisica;
     this.form.get('documento').setValue(null);
 
-
     if (!this.isPessoaFisica) {
       this.form.get('socio').setValue(null);
+      this.form.get('numero').setValue(null);
       this.form.get('socio').disable();
+      this.form.get('numero').disable();
     } else {
       this.form.get('socio').enable();
+      this.form.get('numero').enable();
     }
 
   }
@@ -108,6 +114,10 @@ export class ClienteAdicionarComponent extends AdicionarComponent<Cliente, Clien
 
   public get telefone() {
     return this.form.get('telefone');
+  }
+
+  public get letra() {
+    return this.form.get('letra');
   }
 
 }

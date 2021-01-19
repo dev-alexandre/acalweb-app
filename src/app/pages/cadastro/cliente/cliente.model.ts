@@ -8,4 +8,5 @@ export interface Cliente extends Model {
   dataNascimento?: Date;
   socio?: number;
 
+  letra?: string;
 }

@@ -1,3 +1,4 @@
+import { BoletoCodigoComponent } from './component/codigo/boleto.codigo.component';
 import { BoletoDetalheComponent } from './component/detalhe/boleto.detalhe.component';
 import { BoletoCabecalhoComponent } from './component/cabecalho/boleto.cabecalho.component';
 import { BoletoVisualizarComponent } from './visualizar/boleto.visualizar.component';
@@ -17,6 +18,7 @@ import { BoletoDeletarComponent } from './deletar/boleto.deletar.component';
 import { BoletoEditarComponent } from './editar/boleto.editar.component';
 import { BoletoListarComponent } from './listar/boleto.listar.component';
 import { BoletoAnaliseComponent } from './component/analise/boleto.analise.component';
+import { NgxBarcodeModule } from 'ngx-barcode';
 
 @NgModule({
   imports: [
@@ -33,6 +35,7 @@ import { BoletoAnaliseComponent } from './component/analise/boleto.analise.compo
     PipeModule,
     BoletoRoutingModule,
     NgxMaskModule.forChild(),
+    NgxBarcodeModule,
   ],
   declarations: [
     BoletoComponent,
@@ -44,6 +47,7 @@ import { BoletoAnaliseComponent } from './component/analise/boleto.analise.compo
     BoletoCabecalhoComponent,
     BoletoAnaliseComponent,
     BoletoDetalheComponent,
+    BoletoCodigoComponent,
   ]
   ,
 

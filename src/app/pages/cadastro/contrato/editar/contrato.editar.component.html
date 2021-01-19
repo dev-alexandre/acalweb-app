@@ -1,7 +1,7 @@
 <nb-card status="primary">
 
   <nb-card-header>
-    Historico Contrato
+    Cortes/Religações
   </nb-card-header>
 
   <nb-card-body>
@@ -9,18 +9,19 @@
 
       <thead >
         <tr>
-          <th scope="col" class="align-middle font-weight-bold"> Categoria: </th>
-          <th scope="col" class="align-middle font-weight-bold"> Nome: </th>
-          <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
-          <th scope="col" class="align-middle font-weight-bold"> Valor Sócio: </th>
+          <th scope="col" class="align-middle font-weight-bold"> #: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Data: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Responsável: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Status </th>
         </tr>
       </thead>
 
       <tbody>
 
-        <tr *ngFor="let corte of data.corte">
+        <tr *ngFor="let corte of data.corte; index as i;">
+          <td class="align-middle"> {{i}} </td>
           <td class="align-middle"> {{corte?.data | dateTimePipe}} </td>
-          <td class="align-middle"> {{corte?.usuario}} </td>
+          <td class="align-middle"> {{corte?.usuario }} </td>
           <td class="align-middle"> {{corte?.ligacao ? 'Religação':'Ligação'}} </td>
         </tr>
 
@@ -32,7 +33,7 @@
   <nb-card-footer>
     <div class="row">
 
-      <div class="col-md-3 col-12">
+      <div class="col-md-3 offset-md-9 col-12">
         <button nbButton outline fullWidth status="basic" type="reset" (click)="voltar()">voltar</button>
       </div>
     </div>

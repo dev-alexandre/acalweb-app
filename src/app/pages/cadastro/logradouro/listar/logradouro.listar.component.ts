@@ -17,7 +17,8 @@ export class LogradouroListarComponent extends ListarComponent<Logradouro, Logra
   constructor(
     public router: Router,
     public activeRouter: ActivatedRoute,
-    public logradouroService: LogradouroService) {
+    public logradouroService: LogradouroService,
+    ) {
 
     super(router, activeRouter, logradouroService);
   }

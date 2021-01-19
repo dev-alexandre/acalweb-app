@@ -1,99 +1,77 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate *ngIf="load">
-  <nb-card>
+<nb-card>
 
-    <nb-card-header>
-      Perfil
-    </nb-card-header>
+  <nb-card-header>
+    Perfil
+  </nb-card-header>
 
-    <nb-card-body>
+  <nb-card-body>
+    <div class="row">
 
-      <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label class="label">Login:</label>
 
-        <div class="col-md-6 col-12">
-          <div class="form-group">
-            <label class="label">* Foto:</label>
+          <input
+            nbInput
+            fullWidth
+            disabled
+            type="text"
+            class="form-control"
+            placeholder="Login"
+            [(ngModel)]=data.name
+          >
 
-
-            <div>
-              <img [src]="imagemPath" class="img-fluid img-thumbnail" alt="Responsive image">
-            </div>
-
-          </div>
         </div>
-
-        <div class="col-md-6 col-12">
-          <div class="row">
-
-
-            <div class="col-12">
-              <div class="form-group">
-                <label class="label">* Login:</label>
-
-                <input
-                  nbInput
-                  fullWidth
-                  type="text"
-                  class="form-control"
-                  placeholder="Login"
-                  [formControl]="email"
-                  [status]="getStatus('email')"
-                  [ngClass]="{'is-valid': (email.valid && submited) , 'is-invalid' : (email.invalid && submited)  }"
-                >
-
-              </div>
-            </div>
-
-            <div class="col-12">
-              <div class="form-group">
-                <label class="label">* Nome:</label>
-
-                <input
-                  nbInput
-                  fullWidth
-                  type="text"
-                  class="form-control"
-                  placeholder="Nome"
-                  [formControl]="name"
-                  [status]="getStatus('name')"
-                  [ngClass]="{'is-valid': (name.valid && submited) , 'is-invalid' : (name.invalid && submited)  }"
-                >
-
-              </div>
-            </div>
-
-            <div class="col-12">
-              <div class="form-group">
-                <label class="label">* Cargo:</label>
-
-                <input
-                  nbInput
-                  fullWidth
-                  type="text"
-                  class="form-control"
-                  placeholder="Cargo"
-                  [formControl]="title"
-                  [status]="getStatus('title')"
-                  [ngClass]="{'is-valid': (title.valid && submited) , 'is-invalid' : (title.invalid && submited)  }"
-                >
-
-              </div>
-            </div>
-
-
-
-          </div>
-        </div>
-
-
-
-
       </div>
 
+      <div class="col-12">
+        <div class="form-group">
+          <label class="label">Nome:</label>
 
-    </nb-card-body>
+          <input
+            nbInput
+            fullWidth
+            disabled
+            type="text"
+            class="form-control"
+            placeholder="Login"
+            [(ngModel)]=data.name
+          >
 
-    <nb-card-footer>
-    </nb-card-footer>
+        </div>
+      </div>
 
-  </nb-card>
-</form>
+      <div class="col-12">
+        <div class="form-group">
+          <label class="label">Cargo:</label>
+
+          <input
+            nbInput
+            fullWidth
+            disabled
+            type="text"
+            class="form-control"
+            placeholder="Login"
+            [(ngModel)]=data.title
+          >
+
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="form-group">
+          <label class="label">Autorizações:</label>
+
+          <nb-list>
+            <nb-list-item *ngFor="let role of data.role">
+              {{ role.name.replace('ROLE_','') }}
+            </nb-list-item>
+          </nb-list>
+
+        </div>
+      </div>
+
+    </div>
+  </nb-card-body>
+
+</nb-card>

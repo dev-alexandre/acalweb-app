@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="analise">
   <div class="col-md-12">
 
     <p class="text-center font-weight-bold">
@@ -18,23 +18,36 @@
 
         <thead>
           <tr>
-            <th> Parâmetros </th>
-            <th> Exigido </th>
-            <th> Analisadas </th>
-            <th> Conforme </th>
+            <th>
+              Parâmetro
+            </th>
+            <th>
+              Exigido
+            </th>
+            <th>
+              Análisado
+            </th>
+            <th>
+              Exigido
+            </th>
           </tr>
         </thead>
 
-        <tbody *ngIf="analise">
-
+        <tbody >
           <tr *ngFor="let c of analise.coletas">
             <td> {{c.parametro}} </td>
             <td> {{c.exigido}} </td>
             <td> {{c.analisado}} </td>
             <td> {{c.conforme}} </td>
           </tr>
-
         </tbody>
+
+        <tfoot>
+          <tr>
+            <th colspan="4">
+            </th>
+          </tr>
+        </tfoot>
 
       </table>
     </div>

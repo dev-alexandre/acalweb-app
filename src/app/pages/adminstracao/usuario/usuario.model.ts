@@ -10,9 +10,9 @@ export interface Usuario extends Model {
 
   email: string;
   password: string;
-  isAccountNonExpired: boolean;
-  isAccountNonLocked: boolean;
-  isCredentialsNonExpired: boolean;
+  accountNonExpired: boolean;
+  accountNonLocked: boolean;
+  credentialsNonExpired: boolean;
   isEnabled: boolean;
   name: string;
   title: string;

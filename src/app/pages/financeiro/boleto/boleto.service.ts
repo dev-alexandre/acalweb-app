@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Service } from 'app/@core/base/_index';
 import { Modulo } from 'app/@library/enum';
+import { Analise } from 'app/pages/analise/analise.model';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
 import { Boleto } from './boleto.model';
@@ -25,5 +26,8 @@ export class BoletoService extends Service<Boleto> {
     return this.http.get<Boleto>(environment.apiUrl + '/boleto' + '/buscarPorNumero/' + numero );
   }
 
+  public getAnaliseExemplo(): Observable<Analise> {
+    return this.http.get<Analise>('assets/data/analise.json');
+  }
 
 }

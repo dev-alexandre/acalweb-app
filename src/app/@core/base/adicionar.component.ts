@@ -21,9 +21,10 @@ export abstract class AdicionarComponent<T extends Model, S extends Service<T>> 
   }
 
   public addDate(){
-    const currentDate = moment(new Date()).format('DD/MM/YYYY HH:mm:ss');
+    const currentDate = moment(new Date()).format('DDMMYYYYHHmmss');
     this.form.addControl('createdDate', new FormControl(currentDate));
     this.form.addControl('lastModifiedDate', new FormControl(currentDate));
+    this.form.addControl('ativo', new FormControl(true));
   }
 
   public changeDataBeforeSave(t: T): T {

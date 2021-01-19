@@ -26,7 +26,7 @@ export abstract class EditarComponent <T extends Model, S extends Service<T>> ex
   public onSubmit() {
     this.submited = true;
 
-    if (!this.form.valid) {
+    if (this.form.invalid) {
       return;
     }
 
@@ -53,6 +53,7 @@ export abstract class EditarComponent <T extends Model, S extends Service<T>> ex
   public hasModification(): boolean {
     this.addDate();
 
+    ;
     const dataForm = Object.entries(this.form.value).sort((a, b) => a[0].localeCompare(b[0]) );
     const dataValue = Object.entries(this.data).sort((a, b) => a[0].localeCompare(b[0])).filter(f => {
       dataForm.some(df => {f[0]});
@@ -72,10 +73,11 @@ export abstract class EditarComponent <T extends Model, S extends Service<T>> ex
     this.form.addControl('id', new FormControl(this.data.id));
     this.form.addControl('createdDate', new FormControl(this.data.createdDate));
     this.form.addControl('lastModifiedDate', new FormControl(this.data.lastModifiedDate));
+    this.form.addControl('ativo', new FormControl(this.data.ativo === null ? true : this.data.ativo));
   }
 
   public updateDate(): void {
-    const currentDate = moment(new Date()).format('DD/MM/YYYY HH:mm:ss');
+    const currentDate = moment(new Date()).format('DDMMYYYYHHmmss');
     this.form.addControl('lastModifiedDate', new FormControl(currentDate));
   }
 

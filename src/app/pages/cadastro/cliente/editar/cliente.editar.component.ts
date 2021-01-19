@@ -46,15 +46,18 @@ export class ClienteEditarComponent extends EditarComponent<Cliente, ClienteServ
         telefone: this.data.telefone,
         documento: this.data.documento,
         dataNascimento: this.data.dataNascimento,
-        socio: this.data.socio
+        socio: this.data.socio,
+        letra: this.data.letra,
       });
 
     this.isPessoaFisica = (this.data.documento.length === 11);
 
     if (!this.isPessoaFisica) {
       this.form.get('socio').disable();
+      this.form.get('letra').disable();
     } else {
       this.form.get('socio').enable();
+      this.form.get('letra').enable();
     }
 
   }
@@ -90,6 +93,10 @@ export class ClienteEditarComponent extends EditarComponent<Cliente, ClienteServ
         null, [
       ]),
 
+      letra: new FormControl(
+        null, [
+      ]),
+
       telefone: new FormControl(
         null, [
         Validators.minLength(11),
@@ -118,6 +125,10 @@ export class ClienteEditarComponent extends EditarComponent<Cliente, ClienteServ
 
   public get socio() {
     return this.form.get('socio');
+  }
+
+  public get letra() {
+    return this.form.get('letra');
   }
 
 }

@@ -70,7 +70,7 @@
           </div>
         </div>
 
-        <div [ngClass]="{'col-md-4 col-12': isPessoaFisica, 'col-md-6 col-12': !isPessoaFisica}">
+        <div [ngClass]="{'col-md-3 col-12': isPessoaFisica, 'col-md-6 col-12': !isPessoaFisica}">
           <div class="form-group">
             <label class="label">  {{isPessoaFisica? 'Data de Nascimento':'Abertura'}} : </label>
             <input
@@ -96,7 +96,7 @@
           </div>
         </div>
 
-        <div [ngClass]="{'col-md-4 col-12': isPessoaFisica, 'col-md-6 col-12': !isPessoaFisica}">
+        <div [ngClass]="{'col-md-3 col-12': isPessoaFisica, 'col-md-6 col-12': !isPessoaFisica}">
           <div class="form-group">
             <label class="label">Número de Telefone: </label>
             <input
@@ -122,16 +122,16 @@
           </div>
         </div>
 
-        <div class="col-md-4 col-12" *ngIf="isPessoaFisica">
+        <div class="col-md-3 col-12" *ngIf="isPessoaFisica">
           <div class="form-group">
-            <label class="label">Número de Associado: </label>
+            <label class="label">Sócio Número: </label>
             <input
               nbInput
               fullWidth
               type="text"
               [mask]="'0*'"
               class="form-control"
-              placeholder="Número de Associado:"
+              placeholder="Sócio Número:"
               [formControl]="socio"
               [status]="getStatus('socio')"
               [ngClass]="{'is-valid': (socio.valid && submited) , 'is-invalid' : (socio.invalid && submited)  }"
@@ -145,6 +145,23 @@
               Inválido
             </div>
 
+          </div>
+        </div>
+
+        <div class="col-md-3 col-12" *ngIf="isPessoaFisica">
+          <div class="form-group">
+            <label class="label">Sócio Letra: </label>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              [mask]="'S*'"
+              class="form-control"
+              placeholder="Sócio Letra:"
+              [formControl]="letra"
+              [status]="getStatus('letra')"
+              [ngClass]="{'is-valid': (letra.valid && submited) , 'is-invalid' : (letra.invalid && submited)  }"
+              >
           </div>
         </div>
 

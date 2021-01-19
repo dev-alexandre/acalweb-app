@@ -64,7 +64,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (token.isValid()) {
           this.user = token.getPayload();
         }}
-      );
+    );
   }
 
   ngOnInit() {

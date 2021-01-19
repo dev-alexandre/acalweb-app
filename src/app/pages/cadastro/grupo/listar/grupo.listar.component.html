@@ -46,8 +46,8 @@
         <tr *ngFor="let data of table.content; index as i;">
           <td class="align-middle" >{{data?.categoria?.nome}}</td>
           <td class="align-middle" >{{data?.nome}}</td>
-          <td class="align-middle" >{{data?.valor |  currency:'BRL':'symbol'}}</td>
-          <td class="align-middle" >{{data?.valorSocio |  currency:'BRL':'symbol'}}</td>
+          <td class="align-middle" >{{data?.valor | currency:'BRL':'symbol'}}</td>
+          <td class="align-middle" >{{data?.valorSocio | currency:'BRL':'symbol'}}</td>
 
           <td class="align-middle" >
             <button nbButton outline fullWidth status="warning" (click)=editar(data)>

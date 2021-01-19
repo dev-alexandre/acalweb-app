@@ -29,7 +29,7 @@
                 disabled
                 fullWidth
                 type="text"
-                [mask]="'000.000.000-00'"
+                [mask]="data.documento.length == 11  ?  '000.000.000-00': '00.000.000/0000-00' "
                 [(ngModel)]="data.documento"
                 >
             </div>
@@ -60,6 +60,33 @@
                 type="text"
                 [mask]="'(00) 0 0000-0000'"
                 [(ngModel)]="data.telefone"
+                >
+            </div>
+          </div>
+
+          <div class="col-md-6 col-12" *ngIf="data.documento.length == 11">
+            <div class="form-group">
+              <label class="label">Sócio Número </label>
+              <input
+                nbInput
+                disabled
+                fullWidth
+                type="text"
+                [placeholder]='data.documento.length == 11 ? "Data de Nascimento" : "Abertura"'
+                [(ngModel)]="data.socio"
+                >
+            </div>
+          </div>
+
+          <div class="col-md-6 col-12" *ngIf="data.documento.length == 11">
+            <div class="form-group">
+              <label class="label"> Sócio Letra </label>
+              <input
+                nbInput
+                disabled
+                fullWidth
+                type="text"
+                [(ngModel)]="data.letra"
                 >
             </div>
           </div>

@@ -35,7 +35,7 @@ export class ContratoDeletarComponent extends DeletarComponent<Contrato, Contrat
     this.data.ativo = false;
 
     this.service
-      .salvar(this.data)
+      .editar(this.data)
         .subscribe(
           () => {
             this.loading = false;

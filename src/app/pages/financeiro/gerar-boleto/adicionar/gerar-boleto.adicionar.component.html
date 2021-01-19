@@ -1,12 +1,18 @@
 
-<nb-card status="success">
+<nb-card status="success"  >
 
   <nb-card-header>
     Gerar Boletos
   </nb-card-header>
 
-  <nb-card-body>
-    <label class="label">Refêrencia </label>
+  <nb-card-body [nbSpinner]="loading">
+    <label class="label">
+      Refêrencia: {{data.referencia | referenciaPipe}}
+    </label>
+
+    <label class="label float-right" >
+      Vencimento: {{data.vencimento | datePipe}}
+    </label>
 
     <div class="col-12">
       <div class="row">
@@ -14,13 +20,16 @@
 
           <thead>
             <tr>
-              <th scope="col" class="align-middle font-weight-bold"> Nome: </th>
-              <th scope="col" class="align-middle font-weight-bold"> Documento: </th>
-              <th scope="col" class="align-middle font-weight-bold"> Logradouro: </th>
-              <th scope="col" class="align-middle font-weight-bold"> Número: </th>
-              <th scope="col" class="align-middle font-weight-bold"> Letra: </th>
-              <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
-              <th scope="col" class="align-middle font-weight-bold">
+              <th scope="col" class="align-middle"> Matrícula: </th>
+              <th scope="col" class="align-middle"> Número: </th>
+              <th scope="col" class="align-middle"> Letra: </th>
+              <th scope="col" class="align-middle"> Nome: </th>
+              <th scope="col" class="align-middle"> Documento: </th>
+              <th scope="col" class="align-middle"> Valor: </th>
+              <th scope="col" class="align-middle"> Sócio: </th>
+              <th scope="col" class="align-middle"> Outros: </th>
+              <th scope="col" class="align-middle"> Total: </th>
+              <th scope="col" class="align-middle">
                 <nb-checkbox [(ngModel)]=selectAll (click)=selecionarTodos() class="align-center">
                 </nb-checkbox>
               </th>
@@ -28,47 +37,40 @@
           </thead>
 
           <tbody>
+            <ng-container *ngFor="let logradouro of logradouroGrupo">
 
-            <tr *ngFor="let c of contratos">
-              <td class="align-middle">
-                {{c.contrato.cliente.nome}}
-              </td>
+              <tr>
 
-              <td class="align-middle">
-                {{c.contrato.cliente.documento | documento}}
-              </td>
+                <th scope="col" colspan="9" >
+                  {{logradouro.nome}}
+                </th>
 
-              <td class="align-middle">
-                {{c.contrato.matricula | logradouro}}
-              </td>
-
-              <td class="align-middle">
-                {{c.contrato.matricula.numero}}
-              </td>
-
-              <td class="align-middle">
-                {{c.contrato.matricula.letra}}
-              </td>
-
-              <td class="align-middle">
-                {{c.contrato.valor  |  currency:'BRL':'symbol'}}
-              </td>
-
-              <td class="align-middle">
-                  <nb-checkbox [(ngModel)]=c.check class="align-center">
+                <th scope="col" >
+                  <nb-checkbox [(ngModel)]=logradouro.check (click)="selecionarRua(logradouro)"  class="align-center">
                   </nb-checkbox>
-                </td>
+                </th>
 
-            </tr>
+              </tr>
 
-            <tr *ngIf="!contratos?.length">
-              <td class="align-middle" colspan="3" >
-                Nenhum registro encontrado
-              </td>
-            </tr>
+              <tr *ngFor="let linha of logradouro.linhas">
+                <th scope="col" class="font-weight-normal" (click)="selecionarLinha(linha, logradouro)"> {{linha.contrato.matricula | logradouro }} </th>
+                <th scope="col" class="font-weight-normal" (click)="selecionarLinha(linha, logradouro)"> {{linha.contrato.matricula.numero }} </th>
+                <th scope="col" class="font-weight-normal" (click)="selecionarLinha(linha, logradouro)"> {{linha.contrato.matricula.letra }} </th>
+                <th scope="col" class="font-weight-normal" (click)="selecionarLinha(linha, logradouro)"> {{linha.contrato.cliente.nome}} </th>
+                <th scope="col" class="font-weight-normal" (click)="selecionarLinha(linha, logradouro)"> {{linha.contrato.cliente.documento | documento}} </th>
+                <th scope="col" class="font-weight-normal" (click)="selecionarLinha(linha, logradouro)"> {{linha.contrato.grupo.valor | currency:'BRL':'symbol' }} </th>
+                <th scope="col" class="font-weight-normal" (click)="selecionarLinha(linha, logradouro)"> {{linha.contrato.grupo.valorSocio | currency:'BRL':'symbol' }} </th>
+                <th scope="col" class="font-weight-normal" (click)="selecionarLinha(linha, logradouro)"> Em Breve </th>
+                <th scope="col" class="font-weight-normal" (click)="selecionarLinha(linha, logradouro)"> {{(linha.contrato.valorExibido) | currency:'BRL':'symbol' }} </th>
+                <th scope="col" class="font-weight-normal">
+                  <nb-checkbox [(ngModel)]=linha.check  class="align-center">
+                  </nb-checkbox>
+                </th>
+              </tr>
+
+            </ng-container>
 
           </tbody>
-
         </table>
       </div>
     </div>
@@ -78,21 +80,15 @@
   <nb-card-footer>
     <div class="row">
 
-      <div class="offset-md-9 col-md-3 col-12">
-        <button nbButton outline fullWidth status="basic"  >Gerar</button>
+      <div class="col-md-3 col-6">
+        <button nbButton outline fullWidth status="basic" type="reset" (click)="voltar()">voltar</button>
+      </div>
+
+      <div class="offset-md-6 col-md-3 col-6">
+        <button nbButton outline fullWidth status="success" (click)="gerar()" [nbSpinner]="loading">Gerar</button>
       </div>
 
     </div>
   </nb-card-footer>
 
 </nb-card>
-
-<!--
-
-
-<nb-card status="success" [nbSpinner]="loading" >
-
-
-
-</nb-card>
--->

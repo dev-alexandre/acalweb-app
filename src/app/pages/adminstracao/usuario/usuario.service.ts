@@ -20,5 +20,8 @@ export class UsuarioService extends Service<Usuario> {
     return this.http.get<{nome: string}[]>('assets/data/cargos.json');
   }
 
+  public listarAutorizacoes(): Observable<{name: string}[]> {
+    return this.http.get<{name: string}[]>('assets/data/autorizacoes.json');
+  }
 
 }

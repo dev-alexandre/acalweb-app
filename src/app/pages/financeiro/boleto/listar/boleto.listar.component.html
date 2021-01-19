@@ -14,11 +14,7 @@
         [(selected)]="filtro.size"
         (selectedChange)="filtro.page = 0; filtro.size = $event; changeSize()"
         (ngModelChange)="filtro.page = 0; filtro.size = $event;">
-        <nb-option [value]=1>1</nb-option>
-        <nb-option [value]=3>3</nb-option>
-        <nb-option [value]=5>5</nb-option>
-        <nb-option [value]=10>10</nb-option>
-        <nb-option [value]=25>25</nb-option>
+        <nb-option *ngFor="let pagina of paginas" [value]=pagina.value>  {{pagina.value}}</nb-option>
       </nb-select>
 
     </div>
@@ -35,28 +31,35 @@
           <th scope="col" class="align-middle font-weight-bold"> Vencimento: </th>
           <th scope="col" class="align-middle font-weight-bold"> Status: </th>
 
-          <th scope="col" style="width: 8%;" colspan="2">
+          <th scope="col" style="width: 8%;" colspan="3">
+            Ações
           </th>
         </tr>
       </thead>
 
       <tbody *ngIf="table && !table?.empty">
 
-        <tr *ngFor="let d of table.content; index as i;" (click)=visualizar(d)>
-          <td class="align-middle"> {{d.numero | numDocPipe}} </td>
-          <td class="align-middle"> {{d.total | currency: "R$" }} </td>
-          <td class="align-middle"> {{d.referencia | referenciaPipe}}</td>
-          <td class="align-middle"> {{d.vencimento | datePipe}}</td>
-          <td class="align-middle"> {{d.status }} </td>
+        <tr *ngFor="let boleto of table.content; index as i;">
+          <td class="align-middle"> {{ boleto.numero }} </td>
+          <td class="align-middle"> {{ getTotal(boleto) | currency:'BRL':'symbol'}} </td>
+          <td class="align-middle"> {{ boleto.referencia | referenciaPipe }} </td>
+          <td class="align-middle"> {{ boleto.vencimento | datePipe }} </td>
+          <td class="align-middle"> {{ boleto.status }} </td>
 
           <td class="align-middle" >
-            <button nbButton outline fullWidth status="warning" (click)=editar(d)>
+            <button nbButton outline fullWidth status="warning" (click)=editar(boleto)>
               <nb-icon icon="edit-outline"></nb-icon>
             </button>
           </td>
 
           <td class="align-middle" >
-            <button nbButton outline fullWidth status="danger" (click)=deletar(d)>
+            <button nbButton outline fullWidth status="info" (click)=visualizar(boleto)>
+              <nb-icon icon="search-outline"></nb-icon>
+            </button>
+          </td>
+
+          <td class="align-middle" >
+            <button nbButton outline fullWidth status="danger" (click)=deletar(boleto)>
               <nb-icon icon="trash-2-outline"></nb-icon>
             </button>
           </td>

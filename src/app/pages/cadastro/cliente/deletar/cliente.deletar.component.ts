@@ -29,19 +29,4 @@ export class ClienteDeletarComponent extends DeletarComponent<Cliente, ClienteSe
     return Modulo.CLIENTE;
   }
 
-  public get nome() {
-    return this.form.get('nome');
-  }
-
-  public get documento() {
-    return this.form.get('documento');
-  }
-
-  public get nascimento() {
-    return this.form.get('nascimento');
-  }
-
-  public get telefone() {
-    return this.form.get('telefone');
-  }
 }

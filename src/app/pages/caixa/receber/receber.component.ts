@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
-import { Boleto, Movimentacao } from 'app/pages/financeiro/boleto/boleto.model';
+import { Boleto } from 'app/pages/financeiro/boleto/boleto.model';
 import { BoletoService } from 'app/pages/financeiro/boleto/boleto.service';
 import { MovimentacaoService } from '../movimentacao/movimentacao.service';
 

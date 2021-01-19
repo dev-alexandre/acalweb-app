@@ -112,7 +112,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
 
   {
-    title: 'ADMINSTRAÇÂO',
+    title: 'ADMINSTRAÇÃO',
     icon: 'clipboard-outline',
     children: [
       {

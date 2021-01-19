@@ -15,9 +15,11 @@ import { UsuarioService } from '../usuario.service';
 
 export class UsuarioEditarComponent extends EditarComponent<Usuario, UsuarioService> implements OnInit {
 
-  public isPessoaFisica: boolean = true;
   public currentDate: string;
   public cargos: {nome: string} [];
+  public autorizacoes: { name: string; } [];
+  public autorizacoesSelecionadas: { name: string; } [];
+  public autorizacao: {name: string};
 
   constructor(
     public router: Router,
@@ -33,28 +35,55 @@ export class UsuarioEditarComponent extends EditarComponent<Usuario, UsuarioServ
     this.load();
     this.createForm();
 
+    this.data.funcoes?.forEach(funcao => {
+        funcao.name = funcao.name.replace('ROLE_', '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase();
+      }
+    );
+
+
     this.form.patchValue({
-      email: this.data.email,
-      name: this.data.name,
-      title: this.data.title,
+      email: this.data?.email,
+      title: this.data?.title,
       password: this.data.password,
-      accountNonExpired: this.data.isAccountNonExpired,
-      accountNonLocked: this.data.isAccountNonLocked,
-      credentialsNonExpired: this.data.isCredentialsNonExpired,
-      enabled: this.data.isEnabled,
+      accountNonExpired: this.data.accountNonExpired,
+      accountNonLocked: this.data.accountNonLocked,
+      credentialsNonExpired: this.data.credentialsNonExpired,
       funcoes: this.data.funcoes,
+      name: this.data?.name,
     });
 
     this.service.listarCargos().subscribe(
       (cargos) => {
         this.cargos = cargos;
+
+        this.cargos.sort(function(a, b) {
+          if (a.nome < b.nome) { return -1; }
+          if (a.nome > b.nome) { return  1; }
+          return 0;
+        });
       }
     );
+
+    this.service.listarAutorizacoes().subscribe(
+      (autorizacoes) => {
+        this.autorizacoes = autorizacoes;
+
+        this.autorizacoes.sort(function(a, b) {
+          if (a.name < b.name) { return -1; }
+          if (a.name > b.name) { return  1; }
+          return 0;
+        });
+
+      }
+    );
+
+    this.autorizacoesSelecionadas = this.data.funcoes;
   }
 
   public getModulo(): string {
     return Modulo.USUARIO;
   }
+
 
   public createForm() {
 
@@ -66,14 +95,14 @@ export class UsuarioEditarComponent extends EditarComponent<Usuario, UsuarioServ
         Validators.maxLength(100),
       ]),
 
-      name: new FormControl(
+      title: new FormControl(
         null, [
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(100),
       ]),
 
-      title: new FormControl(
+      name: new FormControl(
         null, [
         Validators.required,
         Validators.minLength(6),
@@ -108,12 +137,40 @@ export class UsuarioEditarComponent extends EditarComponent<Usuario, UsuarioServ
       ]),
 
       funcoes: new FormControl(
-        [{nome: 'ROLE_ROOT'}, {nome: 'ROLE_DEV'}  ], [
+        [], [
         Validators.required,
       ]),
 
       }
     );
+  }
+
+  public removerAutorizacao(autorizacao:  { name: string; }) {
+
+    const index = this.autorizacoesSelecionadas.indexOf(autorizacao, 0);
+    if (index > -1) {
+      this.autorizacoesSelecionadas.splice(index, 1);
+      this.form.get('funcoes').setValue(this.autorizacoesSelecionadas);
+    }
+  }
+
+  public onSelectAutorizacao(): void {
+
+    if (!this.autorizacoesSelecionadas) {
+      this.autorizacoesSelecionadas = [];
+    }
+
+    if (!this.autorizacoesSelecionadas.some(a => a.name === this.autorizacao.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase())) {
+      this.autorizacoesSelecionadas.push(this.autorizacao);
+      this.form.get('funcoes').setValue(this.autorizacoesSelecionadas);
+    }
+
+    this.autorizacoesSelecionadas.sort(function(a, b) {
+      if (a.name < b.name) { return -1; }
+      if (a.name > b.name) { return  1; }
+      return 0;
+    });
+
   }
 
   public get email() {
@@ -132,5 +189,8 @@ export class UsuarioEditarComponent extends EditarComponent<Usuario, UsuarioServ
     return this.form.get('title');
   }
 
+  public get funcoes() {
+    return this.form.get('funcoes');
+  }
 
 }

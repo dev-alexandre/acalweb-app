@@ -1,15 +1,23 @@
 <nb-card>
 
   <nb-card-body>
+    <div class="row">
+      <div class="container">
 
-    <ngx-boleto-cabecalho> </ngx-boleto-cabecalho>
+        <ng-container *ngIf="boleto && analise">
 
-    <ngx-boleto-detalhe [boleto]=boleto *ngIf="boleto"></ngx-boleto-detalhe>
+          <ngx-boleto-cabecalho> </ngx-boleto-cabecalho>
 
-    <ngx-boleto-analise [analise]=analise *ngIf="analise"></ngx-boleto-analise>
+          <ngx-boleto-detalhe [boleto]=boleto></ngx-boleto-detalhe>
 
-    <ngx-boleto-detalhe [boleto]=boleto *ngIf="boleto"></ngx-boleto-detalhe>
+          <ngx-boleto-analise [analise]=analise></ngx-boleto-analise>
 
+          <ngx-boleto-detalhe [boleto]=boleto></ngx-boleto-detalhe>
+
+        </ng-container>
+
+      </div>
+    </div>
   </nb-card-body>
 
 </nb-card>

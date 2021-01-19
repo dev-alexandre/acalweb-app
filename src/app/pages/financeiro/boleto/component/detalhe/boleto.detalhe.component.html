@@ -1,116 +1,94 @@
-<div class="row">
-  <div class="col-md-4" >
-    <hr/>
-  </div>
+<hr/>
 
-  <div class="col-md-4" >
-    <hr/>
-  </div>
+<div class="row" *ngIf="boleto">
 
-  <div class="col-md-4" >
-    <hr/>
-  </div>
-
-</div>
-
-<div class="row">
-
-  <div class="col-md-4" >
-    <div class="table-responsive border-success">
+  <!-- Sócio -->
+  <div class="col-md-4 col-sm-6 col-12" >
+    <div class="table-responsive">
       <table class="table table-sm table-borderless">
 
-        <thead>
-          <th colspan="4" class="text-center p-2 border-bottom" >
-            <b> Número de Associado: </b>
-            {{boleto.contrato.cliente.socio}}
-          </th>
+        <thead class="text-center border">
+          <tr>
+            <th colspan="2">Sócio</th>
+          </tr>
         </thead>
 
-        <tbody>
+        <tbody class="text-rigth">
 
           <tr>
-            <td> <b> Sócio: </b> </td>
+            <td> <b> Número: </b> </td>
             <td class="float-right">
               {{boleto.contrato.cliente.nome}}
             </td>
           </tr>
 
           <tr>
-            <td> <b> Endereço: </b> </td>
+            <td> <b> Matrícula: </b> </td>
             <td class="float-right">
               {{boleto.contrato.matricula | matricula}}
             </td>
           </tr>
 
           <tr>
-            <td> <b>Complementar: </b>  </td>
-            <td class="float-right">  </td>
-          </tr>
-
-          <tr>
-            <td> <b>Complementar: </b>  </td>
-            <td>  </td>
-          </tr>
-
-          <tr>
-            <td> <b>Complementar: </b>  </td>
-            <td>  </td>
-          </tr>
-
-          <tr>
             <td> <b> Categoria: </b> </td>
-            <td class="float-right"> {{boleto.contrato.grupo.categoria.nome}}
-              {{boleto.contrato.grupo.nome}} </td>
+            <td class="float-right">
+              {{boleto.contrato.grupo.categoria.nome + ' ' + boleto.contrato.grupo.nome}}
+             </td>
           </tr>
 
         </tbody>
       </table>
     </div>
   </div>
+  <!-- Sócio -->
 
-  <div class="col-md-4" >
+  <!-- boleto -->
+  <div class="col-md-4 col-sm-6 col-12" >
     <div class="table-responsive">
       <table class="table table-sm table-borderless">
 
         <thead>
-          <th class="text-center p-2 border-bottom" >
-            Boleto Número
+          <th class="text-center border" >
+            {{boleto.numero }}
           </th>
         </thead>
-        <tbody>
 
-          escreva aqui
+        <tbody class="text-center border">
+
         </tbody>
+
       </table>
     </div>
   </div>
+  <!-- boleto -->
 
-  <div class="col-md-4" >
+  <!-- matricula -->
+  <div class="col-md-4 col-sm-6 col-12" >
 
     <div class="table-responsive">
       <table class="table table-sm table-borderless">
 
-        <thead>
-          <th colspan="4" class="text-center p-2 border-bottom" >
-            <b> Conta Referente : </b>  Outubro, 2020
+        <thead class="text-center border">
+          <th colspan="4">
+            <b> Conta Referente : </b> {{boleto.referencia | referenciaPipe }}
           </th>
         </thead>
 
-        <tbody>
+        <tbody class="text-left">
 
           <tr>
             <td> <b> Data de Emissão: </b> </td>
-            <td class="float-right"> 25 de Novembro de 2020 </td>
+            <td class="float-right">{{boleto.createdDate}} </td>
           </tr>
 
           <tr>
             <td> <b> Vencimento: </b> </td>
-            <td class="float-right"> 10 de Novembro de 2020 </td>
+            <td class="float-right"> {{boleto.vencimento | datePipe}} </td>
           </tr>
 
-          <tr>
-            <td> <b> Valor: </b> </td>
-            <td class="float-right"> R$ 25,85 </td>
+          <tr *ngFor="let debito of boleto.debitos; ">
+            <td> <b> {{debito.nome}}</b> </td>
+            <td class="float-right"> {{debito.valor | currency:'BRL':'symbol'}} </td>
           </tr>
 
           <tr>
@@ -122,54 +100,8 @@
       </table>
     </div>
   </div>
-
+  <!-- matricula -->
 </div>
 
-<div class="row">
-  <div class="col-md-4" >
-    <hr/>
-  </div>
+<hr/>
 
-  <div class="col-md-4" >
-    <hr/>
-  </div>
-
-  <div class="col-md-4" >
-    <hr/>
-  </div>
-
-</div>
-
-
-<!--
-
-
-<div class="row">
-
-  <div class="col-md-4" >
-
-
-
-  </div>
-
-  <div class="col-md-4 border border-danger">
-
-
-
-  </div>
-
-  <div class="col-md-4 border border-success">
-  </div>
-
-</div>
-
-
-
-    <div class="col-md-4">
-
-      <div class="text-center rounded" >
-        <b> Boleto nº: </b> {{boleto.numero | numDocPipe }}
-      </div>
-
-    </div>
-  -->

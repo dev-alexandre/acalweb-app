@@ -63,25 +63,6 @@
           </div>
         </div>
 
-        <!--
-
-          <div class="col-md-2 col-12">
-            <div class="form-group">
-            <label class="label">* Senha:</label>
-            <input
-            nbInput
-              fullWidth
-              type="text"
-              placeholder="Senha"
-              [formControl]="password"
-              [status]="getStatus('password')"
-              [ngClass]="{'is-valid': (password.valid && submited) , 'is-invalid' : (password.invalid && submited)  }"
-            >
-
-          </div>
-        </div>
-      -->
-
         <div class="col-md-2 col-12">
           <div class="form-group">
             <label class="label">* Senha:</label>
@@ -110,7 +91,59 @@
         </div>
 
 
+        <div class="offset-md-8 col-md-4 col-12">
+          <div class="form-group">
+            <label class="label">* Autorização:</label>
+
+            <nb-select
+              fullWidth
+              placeholder="Selecionar"
+              (selectedChange)="onSelectAutorizacao()"
+              [(ngModel)]="autorizacao"
+              [ngModelOptions]="{standalone: true}"
+              >
+
+              <nb-option *ngFor="let auto of autorizacoes" [value]=auto>
+                {{auto.name}}
+              </nb-option>
+
+            </nb-select>
+
+          </div>
+        </div>
       </div>
+      <div class="row">
+        <div class="col">
+          <table class="table table-sm table-striped">
+
+            <thead>
+              <tr>
+                <td class="align-middle font-weight-bold col-10">
+                  Autorização:
+                </td>
+                <td lass="align-middle font-weight-bold col-2">
+                  Remover:
+                </td>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr *ngFor="let item of autorizacoesSelecionadas">
+                <td>
+                  {{item.name}}
+                </td>
+
+                <td>
+                  <button nbButton size="small"  outline fullWidth status="success" type="button" (click)="removerAutorizacao(item)">Remover</button>
+                </td>
+              </tr>
+
+            </tbody>
+
+        </table>
+      </div>
+    </div>
     </nb-card-body>
 
     <nb-card-footer>

@@ -14,10 +14,13 @@ import { UsuarioService } from '../usuario.service';
 
 export class UsuarioAdicionarComponent extends AdicionarComponent<Usuario, UsuarioService> implements OnInit {
 
-  public isPessoaFisica: boolean = true;
   public currentDate: string;
   public cargos: {nome: string} [];
   public showPassword: boolean;
+
+  public autorizacoes: { name: string; } [];
+  public autorizacoesSelecionadas: { name: string; } [];
+  public autorizacao: {name: string};
 
   constructor(
     public router: Router,
@@ -27,6 +30,31 @@ export class UsuarioAdicionarComponent extends AdicionarComponent<Usuario, Usuar
 
     super(router, activeRouter, service, toast);
     this.showPassword = true;
+
+    this.service.listarCargos().subscribe(
+      (cargos) => {
+        this.cargos = cargos;
+
+        this.cargos.sort(function(a, b) {
+          if (a.nome < b.nome) { return -1; }
+          if (a.nome > b.nome) { return  1; }
+          return 0;
+        });
+      }
+    );
+
+    this.service.listarAutorizacoes().subscribe(
+      (autorizacoes) => {
+        this.autorizacoes = autorizacoes;
+
+        this.autorizacoes.sort(function(a, b) {
+          if (a.name < b.name) { return -1; }
+          if (a.name > b.name) { return  1; }
+          return 0;
+        });
+
+      }
+    );
   }
 
   ngOnInit(): void {
@@ -46,7 +74,6 @@ export class UsuarioAdicionarComponent extends AdicionarComponent<Usuario, Usuar
   public createForm() {
 
     this.form = new FormGroup({
-
       email: new FormControl(
         null, [
         Validators.required,
@@ -54,14 +81,14 @@ export class UsuarioAdicionarComponent extends AdicionarComponent<Usuario, Usuar
         Validators.maxLength(100),
       ]),
 
-      name: new FormControl(
+      title: new FormControl(
         null, [
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(100),
       ]),
 
-      title: new FormControl(
+      name: new FormControl(
         null, [
         Validators.required,
         Validators.minLength(6),
@@ -96,12 +123,41 @@ export class UsuarioAdicionarComponent extends AdicionarComponent<Usuario, Usuar
       ]),
 
       funcoes: new FormControl(
-        [{nome: 'ROLE_ROOT'},{nome: 'ROLE_DEV'}  ], [
+        [], [
         Validators.required,
       ]),
 
       }
     );
+  }
+
+  public removerAutorizacao(autorizacao:  { name: string; }) {
+
+    const index = this.autorizacoesSelecionadas.indexOf(autorizacao, 0);
+    if (index > -1) {
+      this.autorizacoesSelecionadas.splice(index, 1);
+      this.form.get('funcoes').setValue(this.autorizacoesSelecionadas);
+    }
+  }
+
+
+  public onSelectAutorizacao(): void {
+
+    if (!this.autorizacoesSelecionadas) {
+      this.autorizacoesSelecionadas = [];
+    }
+
+    if (!this.autorizacoesSelecionadas.some(a => a.name === this.autorizacao.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase())) {
+      this.autorizacoesSelecionadas.push(this.autorizacao);
+      this.form.get('funcoes').setValue(this.autorizacoesSelecionadas);
+    }
+
+    this.autorizacoesSelecionadas.sort(function(a, b) {
+      if (a.name < b.name) { return -1; }
+      if (a.name > b.name) { return  1; }
+      return 0;
+    });
+
   }
 
   public get email() {
@@ -118,6 +174,10 @@ export class UsuarioAdicionarComponent extends AdicionarComponent<Usuario, Usuar
 
   public get title() {
     return this.form.get('title');
+  }
+
+  public get funcoes() {
+    return this.form.get('funcoes');
   }
 
 }

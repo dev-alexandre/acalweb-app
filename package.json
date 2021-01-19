@@ -69,6 +69,7 @@
     "nebular-icons": "1.1.0",
     "ng2-ckeditor": "^1.2.9",
     "ng2-smart-table": "^1.6.0",
+    "ngx-barcode": "^0.3.0",
     "ngx-echarts": "^4.2.2",
     "ngx-mask": "^10.0.0",
     "ngx-mzd-timeline": "^1.0.1",

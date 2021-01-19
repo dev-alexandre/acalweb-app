@@ -13,18 +13,20 @@ export abstract class ListarComponent <T extends Model, S extends Service<T>> {
   public storage: Storage = sessionStorage;
   public data: T;
 
+  public paginas: {value: number}[];
   public abstract getModulo(): string;
 
   constructor(
     public router: Router,
     public activeRouter: ActivatedRoute,
-    public service: S) {
+    public service: S,
+    ) {
 
     this.init();
   }
 
   public init(): void {
-    this.filtro = {page: 0, size: 5, name: ''};
+    this.filtro = {page: 0, size: 5, name: '', ativo: true};
     this.load();
   }
 
@@ -39,6 +41,12 @@ export abstract class ListarComponent <T extends Model, S extends Service<T>> {
           this.loading = false;
         }
       );
+
+    this.service.getPaginacao().subscribe(
+      (paginas) => {
+        this.paginas = paginas;
+      }
+    );
   }
 
   public adicionar(): void {

@@ -11,10 +11,10 @@ export class DateTimeFormat implements PipeTransform {
 
     if (value) {
 
-      const date = moment(value, 'DD/MM/YYYY HH:m:s', true);
+      const date = moment(value, 'DDMMYYYYHHmmss', true);
 
       if (date.isValid()) {
-        return date.format('DD/MM/YYYY HH:m:s');
+        return date.format('DD/MM/YYYY HH:mm:ss');
       }
 
     }

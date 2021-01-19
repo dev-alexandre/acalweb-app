@@ -45,4 +45,8 @@ export abstract class Service<T extends Model> {
       return this.http.get<T>(this.rota + Acao.BUSCAR + '/' + id);
     }
 
+    public getPaginacao(): Observable<{value: number}[]> {
+      return this.http.get<{value: number}[]>('assets/data/paginacao.json');
+    }
+
 }

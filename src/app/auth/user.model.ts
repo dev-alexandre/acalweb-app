@@ -1,5 +1,5 @@
 export interface Role {
-  nome: string;
+  name: string;
   authority: string;
 }
 

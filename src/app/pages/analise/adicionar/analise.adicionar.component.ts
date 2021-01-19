@@ -1,14 +1,12 @@
-import { ReferenciaValidator } from './../../../@core/validator/referenciaValidator';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { AdicionarComponent } from 'app/@core/base/adicionar.component';
-import { DateValidator } from 'app/@core/validator/dataValidator';
 import { Modulo } from 'app/@library/enum';
-import { Mensagem } from 'app/@library/enum/mensagem.enum';
 import { Analise } from '../analise.model';
 import { AnaliseService } from '../analise.service';
+import { ReferenciaValidator } from './../../../@core/validator/referenciaValidator';
 
 @Component({
   selector: 'ngx-analise-adicionar',
