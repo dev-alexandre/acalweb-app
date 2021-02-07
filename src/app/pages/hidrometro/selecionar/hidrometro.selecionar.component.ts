@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReferenciaValidator } from 'app/@core/validator/referenciaValidator';
+import * as moment from 'moment';
 import { HidrometroService } from '../hidrometro.service';
 
 @Component({
@@ -29,7 +30,7 @@ export class HidrometroSelecionarComponent  implements OnInit {
 
     this.form = new FormGroup({
       referencia: new FormControl(
-        null, [
+        moment(new Date()).format('MMYYYY'), [
           Validators.required,
           Validators.minLength(6),
           Validators.maxLength(6),

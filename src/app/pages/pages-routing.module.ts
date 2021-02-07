@@ -1,3 +1,4 @@
+import { EmbreveComponent } from './miscellaneous/embreve/embreve.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -59,6 +60,13 @@ const routes: Routes = [{
       redirectTo: 'dashboard',
       pathMatch: 'full',
     },
+
+
+    {
+      path: 'embreve',
+      component: EmbreveComponent,
+    },
+
     {
       path: '**',
       component: NotFoundComponent,

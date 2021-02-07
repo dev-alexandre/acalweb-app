@@ -78,6 +78,30 @@ export class GerarBoletoSelecionarComponent implements OnInit {
     return this.form.get(field).valid ? 'success' : 'danger';
   }
 
+  public minusMonthReferencia() {
+    let refer = this.referencia.value;
+    refer = moment(refer, 'MMYYYY').subtract(1, 'months').format('MMYYYY');
+    this.referencia.setValue(refer);
+  }
+
+  public plusMonthReferencia() {
+    let refer = this.referencia.value;
+    refer = moment(refer, 'MMYYYY').add(1, 'months').format('MMYYYY');
+    this.referencia.setValue(refer);
+  }
+
+  public minusMonthValidade() {
+    let refer = this.vencimento.value;
+    refer = moment(refer, 'DDMMYYYY').subtract(1, 'months').format('DDMMYYYY');
+    this.vencimento.setValue(refer);
+  }
+
+  public plusMonthValidade() {
+    let refer = this.vencimento.value;
+    refer = moment(refer, 'DDMMYYYY').add(1, 'months').format('DDMMYYYY');
+    this.vencimento.setValue(refer);
+  }
+
   public get referencia() {
     return this.form.get('referencia');
   }

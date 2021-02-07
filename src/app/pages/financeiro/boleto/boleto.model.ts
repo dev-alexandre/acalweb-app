@@ -11,13 +11,22 @@ export interface Debito extends Model {
 
 }
 
+export interface Pagamento extends Model {
+
+  motivo: string;
+  valor: number;
+  responsavel: User;
+  dataCriacao: Date;
+
+}
+
 export interface Boleto extends Model {
 
   numero?: string;
   referencia?: string;
   vencimento?: string;
 
-  pagamento?: Date;
+  pagamentos?: Pagamento[];
   debitos?: Debito [];
 
   total?: number;

@@ -7,6 +7,7 @@ import { PipeModule } from 'app/@core/pipe/pipe.module';
 import { ThemeModule } from 'app/@theme/theme.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { MatriculaService } from '../cadastro/matricula/matricula.service';
+import { FinanceiroModule } from '../financeiro/financeiro.module';
 import { HidrometroAdicionarComponent } from './adicionar/hidrometro.adicionar.component';
 import { HidrometroDeletarComponent } from './deletar/hidrometro.deletar.component';
 import { HidrometroEditarComponent } from './editar/hidrometro.editar.component';
@@ -35,6 +36,7 @@ import { HidrometroSelecionarComponent } from './selecionar/hidrometro.seleciona
     NbTooltipModule,
     NbSpinnerModule,
     NgxMaskModule.forChild(),
+    FinanceiroModule,
   ],
   declarations: [
     HidrometroComponent,

@@ -1,4 +1,4 @@
-<nb-card accent="success">
+<nb-card status="success">
 
   <nb-card-header>
 
@@ -13,16 +13,20 @@
   </nb-card-header>
 
   <nb-card-body>
+    <ng-container *ngIf="valorAgua">
+      valor da água para mil litros {{valorAgua?.valor | number : '1.2-4' :'pt-BR' }}
+    </ng-container>
+
     <div class="table-responsive">
       <table class="table table-sm table-striped">
 
         <thead >
           <tr>
             <th scope="col" class="align-middle font-weight-bold"> Matrícula: </th>
-            <th scope="col" class="align-middle font-weight-bold"> Consumo: </th>
-            <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
             <th scope="col" class="align-middle font-weight-bold"> Anterior: </th>
             <th scope="col" class="align-middle font-weight-bold"> Atual: </th>
+            <th scope="col" class="align-middle font-weight-bold"> Consumo: </th>
+            <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
           </tr>
         </thead>
 
@@ -30,16 +34,10 @@
 
           <tr *ngFor="let hidrometro of hidrometros; index as i;">
 
+
+
             <td class="align-middle" >
               {{hidrometro.matricula | matricula}}
-            </td>
-
-            <td class="align-middle" >
-              {{hidrometro.hidrometro.atual - hidrometro.hidrometro.anterior}}
-            </td>
-
-            <td class="align-middle" >
-              {{(hidrometro.hidrometro.atual - hidrometro.hidrometro.anterior) * 0.00025  | currency: 'BRL':'symbol'}}
             </td>
 
             <td class="align-middle" >
@@ -68,13 +66,22 @@
               >
             </td>
 
+
+            <td class="align-middle" >
+              {{hidrometro.hidrometro.atual - hidrometro.hidrometro.anterior | number : '1.0' :'pt-BR'}}
+            </td>
+
+            <td class="align-middle" >
+              {{(hidrometro.hidrometro.atual - hidrometro.hidrometro.anterior) * valorAgua.valor/1000  | currency: 'BRL':'symbol'}}
+            </td>
+
           </tr>
 
         </tbody>
 
         <tfoot >
           <tr>
-            <th scope="col" colspan="3"> </th>
+            <th scope="col" colspan="5"> </th>
           </tr>
         </tfoot>
 

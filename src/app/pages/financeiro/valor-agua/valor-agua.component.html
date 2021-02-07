@@ -1,0 +1,93 @@
+<nb-card status="success">
+
+  <nb-card-header>
+    Valor Água
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="row">
+
+      <div class="offset-md-8 col-md-4 col-12">
+        <div class="form-group">
+
+          <label class="label">* Valor para mil litros de água: R$</label>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            prefix="R$ "
+            mask="separator.2"
+            decimalMarker=","
+            thousandSeparator="."
+            placeholder="mil/lt"
+            [(ngModel)]=valor
+          >
+        </div>
+      </div>
+
+    </div>
+
+    <hr/>
+
+    <div class="row">
+
+      <div class="col-md-4 col-12" *ngFor="let item of [1,10,100,1000,10000,100000]">
+        <div class="form-group">
+
+          <label class="label"> {{item | number }} Litro(s) </label>
+          <input
+            nbInput
+            fullWidth
+            disabled
+            type="text"
+            prefix="R$ "
+            value="{{ valor/1000 * item | number : '1.2-4' :'pt-BR' }}"
+          >
+
+        </div>
+      </div>
+
+
+    </div>
+  </nb-card-body>
+
+  <nb-card-body>
+    <div class="row">
+
+      <div class="offset-md-8 col-md-4 col-12">
+        <div class="form-group">
+
+          <label class="label">Quantidade de Litros de Água que são abonados mensalmente </label>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            mask="separator.2"
+            decimalMarker=","
+            thousandSeparator="."
+            placeholder="qtd lt"
+            [(ngModel)]=litrosGratuidade
+          >
+        </div>
+      </div>
+
+    </div>
+
+  </nb-card-body>
+
+  <nb-card-footer>
+    <div class="row">
+
+      <div class="col-md-2 col-6">
+        <button nbButton outline fullWidth status="basic" type="button" >voltar</button>
+      </div>
+
+      <div class="col-md-2 offset-md-8 col-6">
+        <button nbButton outline fullWidth status="success" type="button" (click)=salvar() >Salvar</button>
+      </div>
+
+    </div>
+  </nb-card-footer>
+
+
+</nb-card>

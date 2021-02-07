@@ -2,8 +2,10 @@ import { Model } from 'app/@core/base/model';
 
 export interface Hidrometro extends Model {
 
-  referencia: String;
+  matricula: string;
+  referencia: string;
   atual: number;
   anterior: number;
+  valorLitroAgua: number;
 
 }

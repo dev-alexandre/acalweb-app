@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EmbreveComponent } from './embreve/embreve.component';
 
 import { MiscellaneousComponent } from './miscellaneous.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -12,6 +13,10 @@ const routes: Routes = [
       {
         path: '404',
         component: NotFoundComponent,
+      },
+      {
+        path: 'embreve',
+        component: EmbreveComponent,
       },
     ],
   },

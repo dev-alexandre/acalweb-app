@@ -39,22 +39,23 @@
 
       <tbody *ngIf="table && !table?.empty">
 
-        <tr *ngFor="let boleto of table.content; index as i;">
+        <tr *ngFor="let boleto of table.content; index as i;" [class]=getStatusBoleto(boleto) >
+
           <td class="align-middle"> {{ boleto.numero }} </td>
           <td class="align-middle"> {{ getTotal(boleto) | currency:'BRL':'symbol'}} </td>
-          <td class="align-middle"> {{ boleto.referencia | referenciaPipe }} </td>
+          <td class="align-middle"> {{ boleto.referencia | referencia }} </td>
           <td class="align-middle"> {{ boleto.vencimento | datePipe }} </td>
           <td class="align-middle"> {{ boleto.status }} </td>
 
           <td class="align-middle" >
-            <button nbButton outline fullWidth status="warning" (click)=editar(boleto)>
-              <nb-icon icon="edit-outline"></nb-icon>
+            <button nbButton outline fullWidth status="info" (click)=visualizar(boleto)>
+              <nb-icon icon="search-outline"></nb-icon>
             </button>
           </td>
 
           <td class="align-middle" >
-            <button nbButton outline fullWidth status="info" (click)=visualizar(boleto)>
-              <nb-icon icon="search-outline"></nb-icon>
+            <button nbButton outline fullWidth status="primary" (click)=negociar(boleto)>
+              <nb-icon icon="clipboard-outline"></nb-icon>
             </button>
           </td>
 
@@ -81,7 +82,7 @@
 
       <tfoot>
         <tr>
-          <th scope="col" colspan="7"> </th>
+          <th scope="col" colspan="8"> </th>
         </tr>
       </tfoot>
 

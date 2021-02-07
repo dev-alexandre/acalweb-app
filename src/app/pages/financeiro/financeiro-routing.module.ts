@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ValorAguaComponent } from './valor-agua/valor-agua.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,11 @@ const routes: Routes = [
     path: 'boleto',
     loadChildren: () => import('./boleto/boleto.module')
       .then(m => m.BoletoModule),
+  },
+
+  {
+    path: 'valor-agua',
+    component: ValorAguaComponent,
   },
 
 ];

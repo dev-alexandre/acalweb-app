@@ -20,7 +20,6 @@ import { ClienteListarComponent } from './listar/cliente.listar.component';
     CommonModule,
     ThemeModule,
     NbCardModule,
-    Ng2SmartTableModule,
     NbButtonModule,
     NbInputModule,
     NbSelectModule,

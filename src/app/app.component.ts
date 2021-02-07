@@ -16,7 +16,6 @@ export class AppComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) private _document,
     @Inject(NgZone) private zone: NgZone,
-    private renderer2: Renderer2,
     private router: Router,
     private analytics: AnalyticsService,
     private seoService: SeoService) {

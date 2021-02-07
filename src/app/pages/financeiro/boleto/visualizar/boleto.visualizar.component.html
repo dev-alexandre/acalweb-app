@@ -1,24 +1,86 @@
-<nb-card>
 
-  <nb-card-body>
-    <div class="row">
-      <div class="container">
+<ng-container *ngIf="boleto">
 
-        <ng-container *ngIf="boleto && analise">
+  <ng-template #dialog let-data let-ref="dialogRef">
 
-          <ngx-boleto-cabecalho> </ngx-boleto-cabecalho>
+    <nb-card>
 
-          <ngx-boleto-detalhe [boleto]=boleto></ngx-boleto-detalhe>
+      <nb-card-header>
+        Receber Boleto
+      </nb-card-header>
 
-          <ngx-boleto-analise [analise]=analise></ngx-boleto-analise>
+      <nb-card-body>
 
-          <ngx-boleto-detalhe [boleto]=boleto></ngx-boleto-detalhe>
-
+        <ng-container >
+          Eu, <b>{{user.name}}</b> , Estou recebendo o boleto
+          número <b>{{boleto.numero}}</b> no valor de R$ <b>{{getTotalBoleto() | currency:'BRL':'symbol'}}</b>
         </ng-container>
 
+      </nb-card-body>
+
+
+      <nb-card-footer>
+
+
+        <div class="row">
+
+          <div class="col-md-3 col-6 ">
+            <button nbButton outline fullWidth (click)="ref.close()">Voltar</button>
+          </div>
+
+          <div class="offset-md-6 col-md-3 col-6">
+            <button nbButton outline fullWidth status="success" (click)=confimarPagamento() [disabled]=disabledboleto() >Confirmar</button>
+          </div>
+
+        </div>
+
+      </nb-card-footer>
+
+    </nb-card>
+
+  </ng-template>
+
+  <nb-card [accent]="getStatusCard()" >
+
+    <nb-card-body>
+      <div class="row">
+        <div class="container">
+
+          <ng-container *ngIf="boleto && analise">
+
+            <ngx-boleto-cabecalho> </ngx-boleto-cabecalho>
+
+            <ngx-boleto-detalhe [boleto]=boleto></ngx-boleto-detalhe>
+
+            <ngx-boleto-analise [analise]=analise *ngIf="analise"></ngx-boleto-analise>
+
+            <ngx-boleto-detalhe [boleto]=boleto></ngx-boleto-detalhe>
+
+          </ng-container>
+
+        </div>
       </div>
-    </div>
-  </nb-card-body>
+    </nb-card-body>
 
-</nb-card>
+  </nb-card>
 
+  <nb-card >
+
+    <nb-card-body>
+      <div class="row">
+
+        <div class="col-md-2 col-6">
+          <button [routerLink]="[ '../listar' ]" routerLinkActive="active" nbButton outline fullWidth status="basic" type="button"> Voltar</button>
+        </div>
+
+        <div class="offset-md-8 col-md-2 col-6 ">
+          <button nbButton outline fullWidth status="success" (click)="open(dialog)" [disabled]=disabledboleto()>
+            <nb-icon icon="layers-outline"></nb-icon>
+          </button>
+        </div>
+
+      </div>
+    </nb-card-body>
+
+  </nb-card>
+</ng-container>

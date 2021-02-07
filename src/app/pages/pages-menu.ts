@@ -69,13 +69,13 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
 
       {
-        title: 'Negociação',
+        title: 'Outro valores',
         link: '/pages/financeiro/gerar-boleto/adicionar',
       },
 
       {
-        title: 'Outro valores',
-        link: '/pages/financeiro/gerar-boleto/adicionar',
+        title: 'Valor Água',
+        link: '/pages/financeiro/valor-agua',
       },
 
     ],

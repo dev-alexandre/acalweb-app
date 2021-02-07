@@ -1,3 +1,4 @@
+import { BoletoStatus } from 'app/@library/enum/boleto-status.enum';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ListarComponent } from 'app/@core/base/_index';
@@ -30,7 +31,31 @@ export class BoletoListarComponent extends ListarComponent<Boleto, BoletoService
     return Modulo.BOLETO;
   }
 
+  public getStatusBoleto(boleto: Boleto): string {
+
+    const vencimento = moment(boleto.vencimento, 'DDMMYYYYHHmmss').toDate();
+    const ultimaSemana = moment(new Date()).add(7, 'days').toDate();
+
+    if (boleto.status !== BoletoStatus.PAGO &&
+        boleto.status !== BoletoStatus.NEGOCIADO &&
+        vencimento < new Date()
+      ) {
+        return 'table-danger';
+    } else if (boleto.status === BoletoStatus.PAGO) {
+      return 'table-success';
+    } else if (vencimento < ultimaSemana) {
+      return 'table-info';
+    }
+
+    return 'table-light';
+  }
+
+  public negociar(boleto: Boleto): void {
+    this.storage.setItem(this.getModulo() + Acao.DELETAR, JSON.stringify(boleto));
+    this.router.navigate([ './receber' ], { relativeTo: this.activeRouter.parent });
+  }
+
   public getTotal(boleto: Boleto): number {
-   return boleto.debitos?.reduce((sum, current) => sum + current.valor, 0);
+    return boleto.debitos?.reduce((sum, current) => sum + current.valor, 0);
   }
 }

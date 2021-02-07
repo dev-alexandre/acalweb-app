@@ -69,7 +69,7 @@ export class GerarBoletoAdicionarComponent implements OnInit {
   }
 
   public gerarVisualizacao(): void {
-
+    this.logradouroGrupo = [];
     const logradourosUnicos: Logradouro [] = [];
 
     this.contratos.forEach(c => {
@@ -158,7 +158,7 @@ export class GerarBoletoAdicionarComponent implements OnInit {
 
     this.boletoService.salvarTodos(boletosParaSalvar).subscribe( () => {
       this.loading = false;
-      this.contratos = [];
+      this.listarContratosPorRefererencia();
     });
 
   }

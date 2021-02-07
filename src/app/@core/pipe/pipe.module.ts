@@ -6,6 +6,7 @@ import { DateFormat } from './datePipe';
 import { ReferenciaFormat } from './referenciaPipe';
 import { DateTimeFormat } from './dateTimePipe';
 import { LogradouroFormat } from './LogradouroPipe';
+import { ReferenciaEscritaFormat } from './referencia';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { LogradouroFormat } from './LogradouroPipe';
   declarations: [
     DateFormat,
     ReferenciaFormat,
+    ReferenciaEscritaFormat,
     NumDocFormat,
     DateTimeFormat,
     MatriculaFormat,
@@ -24,6 +26,7 @@ import { LogradouroFormat } from './LogradouroPipe';
   exports: [
     DateFormat,
     ReferenciaFormat,
+    ReferenciaEscritaFormat,
     NumDocFormat,
     DateTimeFormat,
     MatriculaFormat,

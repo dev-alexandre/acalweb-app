@@ -29,15 +29,6 @@
 
       <thead>
         <tr>
-          <th scope="col" class="align-middle font-weight-bold"> Matrícula: </th>
-          <th scope="col" class="align-middle font-weight-bold"> Referência: </th>
-          <th scope="col" class="align-middle font-weight-bold"> Consumo: </th>
-          <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
-          <th scope="col" class="align-middle font-weight-bold"> Atual: </th>
-          <th scope="col" class="align-middle font-weight-bold"> Anterior: </th>
-        </tr>
-
-        <tr>
           <th scope="col"  colspan="4">
           </th>
 
@@ -48,53 +39,50 @@
           </th>
         </tr>
 
+        <tr>
+          <th scope="col" class="align-middle font-weight-bold"> Matrícula: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Referência: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Atual: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Anterior: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Consumo: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
+        </tr>
+
       </thead>
 
       <tbody *ngIf="table && !table?.empty">
-        <ng-container *ngFor="let matricula of table.content;">
+        <tr *ngFor="let hidrometro of table.content; index as i">
 
-          <tr *ngFor="let hidrometro of matricula.hidrometroList; index as i">
+          <td class="align-middle" >
+            {{hidrometro.matricula}}
+          </td>
 
-            <ng-container *ngIf="i === 0">
+          <td class="align-middle" >
+            {{hidrometro.referencia | referenciaPipe}}
+          </td>
 
-              <td class="align-middle" [attr.rowspan]='matricula.hidrometroList.length'>
-                {{matricula | matricula}}
-              </td>
+          <td class="align-middle">
+            {{hidrometro.anterior | number}}
+          </td>
 
-            </ng-container>
+          <td class="align-middle">
+            {{hidrometro.atual | number}}
+          </td>
 
-            <ng-container *ngIf="i !== 0">
+          <td class="align-middle" >
+            {{(hidrometro.atual - hidrometro.anterior ) | number}}
+          </td>
 
-              <td class="align-middle" >
-                {{hidrometro.referencia | referenciaPipe}}
-              </td>
-
-              <td class="align-middle" >
-                {{(hidrometro.atual - hidrometro.anterior ) | number}}
-              </td>
-
-              <td class="align-middle">
-                {{ (hidrometro.atual - hidrometro.anterior) * 0.00025  | currency: 'BRL':'symbol'}}
-              </td>
-
-              <td class="align-middle">
-                {{hidrometro.anterior | number}}
-              </td>
-
-              <td class="align-middle">
-                {{hidrometro.atual | number}}
-              </td>
-
-            </ng-container>
-
-          </tr>
-        </ng-container>
+          <td class="align-middle">
+            {{ (hidrometro.atual - hidrometro.anterior) * hidrometro.valorLitroAgua  | currency: 'BRL':'symbol'}}
+          </td>
+        </tr>
       </tbody>
 
       <tbody *ngIf="table?.empty">
 
         <tr>
-          <td class="align-middle" colspan="4" >
+          <td class="align-middle" colspan="6" >
             Nenhum registro encontrado
           </td>
         </tr>

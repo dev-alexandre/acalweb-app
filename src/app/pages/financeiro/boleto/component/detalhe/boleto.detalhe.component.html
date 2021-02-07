@@ -9,7 +9,9 @@
 
         <thead class="text-center border">
           <tr>
-            <th colspan="2">Sócio</th>
+            <th colspan="2">
+              Sócio
+            </th>
           </tr>
         </thead>
 
@@ -44,22 +46,22 @@
 
   <!-- boleto -->
   <div class="col-md-4 col-sm-6 col-12" >
-    <div class="table-responsive">
-      <table class="table table-sm table-borderless">
 
+    <div class="table-responsive ">
+      <table class="table table-sm table-borderless border">
         <thead>
-          <th class="text-center border" >
+          <th class="text-center" >
             {{boleto.numero }}
           </th>
         </thead>
 
-        <tbody class="text-center border">
-
-        </tbody>
-
       </table>
+
+      {{boleto.status}}
     </div>
+
   </div>
+
   <!-- boleto -->
 
   <!-- matricula -->
@@ -93,7 +95,7 @@
 
           <tr>
             <td> <b> Total: </b> </td>
-            <td class="float-right"> R$ 25,85 </td>
+            <td class="float-right"> {{getTotalBoleto() | currency:'BRL':'symbol'}} </td>
           </tr>
 
         </tbody>

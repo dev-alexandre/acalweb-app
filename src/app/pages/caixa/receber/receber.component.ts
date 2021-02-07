@@ -43,9 +43,7 @@ export class ReceberComponent implements OnInit {
   }
 
   receber(): void {
-
-    this.boleto.pagamento = new Date();
-
+    
   }
 
 }

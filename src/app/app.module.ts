@@ -1,6 +1,5 @@
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import ptBr from '@angular/common/locales/pt';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { ErrorInterceptor } from './auth/interceptor/error.interceptor';
 import { JwtInterceptor } from './auth/interceptor/jwt.interceptor';
+import ptBr from '@angular/common/locales/pt';
 
 registerLocaleData(ptBr, 'pt-BR');
 

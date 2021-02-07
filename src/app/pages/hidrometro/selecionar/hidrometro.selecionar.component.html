@@ -1,6 +1,6 @@
 
 <form [formGroup]="form" (ngSubmit)="OnSubmit()" class="needs-validation" >
-  <nb-card accent="success">
+  <nb-card status="success">
 
     <nb-card-header>
       Hidromêtros
@@ -36,15 +36,34 @@
           </div>
         </div>
 
+
+
         <div class="col-md-3 offset-md-6 col-12">
+
           <div class="form-group">
             <label class="label">Ações</label>
             <button nbButton outline fullWidth status="success" type="submit">Pré-Visualizar</button>
           </div>
+
         </div>
 
       </div>
 
     </nb-card-body>
+
+    <nb-card-footer>
+      <div class="row">
+
+        <div class="col-md-3 col-12">
+
+          <div class="form-group">
+            <label class="label">Ações</label>
+          <button [routerLink]="[ '../listar' ]" routerLinkActive="active" nbButton outline fullWidth status="basic" type="button"> Voltar</button>
+        </div>
+
+      </div>
+    </div>
+  </nb-card-footer>
+
   </nb-card>
 </form>

@@ -27,6 +27,7 @@
               <th scope="col" class="align-middle"> Documento: </th>
               <th scope="col" class="align-middle"> Valor: </th>
               <th scope="col" class="align-middle"> Sócio: </th>
+              <th scope="col" class="align-middle"> Água: </th>
               <th scope="col" class="align-middle"> Outros: </th>
               <th scope="col" class="align-middle"> Total: </th>
               <th scope="col" class="align-middle">
@@ -41,7 +42,7 @@
 
               <tr>
 
-                <th scope="col" colspan="9" >
+                <th scope="col" colspan="10" >
                   {{logradouro.nome}}
                 </th>
 
@@ -60,6 +61,7 @@
                 <th scope="col" class="font-weight-normal" (click)="selecionarLinha(linha, logradouro)"> {{linha.contrato.cliente.documento | documento}} </th>
                 <th scope="col" class="font-weight-normal" (click)="selecionarLinha(linha, logradouro)"> {{linha.contrato.grupo.valor | currency:'BRL':'symbol' }} </th>
                 <th scope="col" class="font-weight-normal" (click)="selecionarLinha(linha, logradouro)"> {{linha.contrato.grupo.valorSocio | currency:'BRL':'symbol' }} </th>
+                <th scope="col" class="font-weight-normal" (click)="selecionarLinha(linha, logradouro)"> <!-- {{linha.contrato.matricula.hidrometro | currency:'BRL':'symbol' }} --> </th>
                 <th scope="col" class="font-weight-normal" (click)="selecionarLinha(linha, logradouro)"> Em Breve </th>
                 <th scope="col" class="font-weight-normal" (click)="selecionarLinha(linha, logradouro)"> {{(linha.contrato.valorExibido) | currency:'BRL':'symbol' }} </th>
                 <th scope="col" class="font-weight-normal">
@@ -68,6 +70,14 @@
                 </th>
               </tr>
 
+            </ng-container>
+            <ng-container *ngIf="!logradouroGrupo.length">
+
+              <tr>
+                <th scope="col" colspan="10" >
+                  Nenhum Contrato encontrado
+                </th>
+              </tr>
             </ng-container>
 
           </tbody>

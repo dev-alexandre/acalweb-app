@@ -13,17 +13,29 @@
           <div class="form-group">
 
             <label class="label">* Referência:</label>
-            <input
-              nbInput
-              fullWidth
-              type="text"
-              class="form-control"
-              [mask]="'00/0000'"
-              [status]="getStatus('referencia')"
-              [ngClass]="{'is-valid': (referencia.valid && submited) , 'is-invalid' : (referencia.invalid && submited)  }"
-              [formControl]="referencia"
-              placeholder="Referência"
-            >
+            <nb-form-field>
+
+
+              <nb-icon nbPrefix icon="minus-square-outline" (click)="minusMonthReferencia()" pack="eva"></nb-icon>
+
+              <button button nbSuffix nbButton ghost (click)="plusMonthReferencia()" type="button">
+                <nb-icon icon="plus-square-outline" pack="eva">
+                </nb-icon>
+              </button>
+
+              <input
+                nbInput
+                fullWidth
+                type="text"
+                class="form-control"
+                [mask]="'00/0000'"
+                [status]="getStatus('referencia')"
+                [ngClass]="{'is-valid': (referencia.valid && submited) , 'is-invalid' : (referencia.invalid && submited)  }"
+                [formControl]="referencia"
+                placeholder="Referência"
+              >
+
+            </nb-form-field>
 
             <div class="valid-feedback" >
               Válido
@@ -40,17 +52,28 @@
           <div class="form-group">
 
             <label class="label">* Vencimento:</label>
-            <input
-              nbInput
-              fullWidth
-              type="text"
-              class="form-control"
-              [mask]="'00/00/0000'"
-              [status]="getStatus('vencimento')"
-              [ngClass]="{'is-valid': (vencimento.valid && submited) , 'is-invalid' : (vencimento.invalid && submited)  }"
-              [formControl]="vencimento"
-              placeholder="vencimento"
-            >
+            <nb-form-field>
+
+              <nb-icon nbPrefix icon="minus-square-outline" (click)="minusMonthValidade()" pack="eva"></nb-icon>
+
+              <input
+                nbInput
+                fullWidth
+                type="text"
+                class="form-control"
+                [mask]="'00/00/0000'"
+                [status]="getStatus('vencimento')"
+                [ngClass]="{'is-valid': (vencimento.valid && submited) , 'is-invalid' : (vencimento.invalid && submited)  }"
+                [formControl]="vencimento"
+                placeholder="vencimento"
+              >
+
+              <button button nbSuffix nbButton ghost (click)="plusMonthValidade()" type="button">
+                <nb-icon icon="plus-square-outline" pack="eva">
+                </nb-icon>
+              </button>
+
+            </nb-form-field>
 
             <div class="valid-feedback" >
               Válido
