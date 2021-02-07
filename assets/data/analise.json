@@ -1,0 +1,9 @@
+{"referencia": "122020",
+  "coletas": [
+    {"parametro": "Cor Aparente – 15 UH", "exigido" : "10" , "analisado" : "10", "conforme" : "10" },
+    {"parametro": "Turbidez",             "exigido" : "10" , "analisado" : "10", "conforme" : "10" },
+    {"parametro": "Cloro – Min 0,2 mg/L", "exigido" : "10" , "analisado" : "10", "conforme" : "10" },
+    {"parametro": "Escherichia coli",     "exigido" : "10" , "analisado" : "10", "conforme" : "10" },
+    {"parametro": "Coliformes Totais",    "exigido" : "10", "analisado"  : "10", "conforme" : "10" }
+  ]
+}
