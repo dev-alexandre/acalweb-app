@@ -10,20 +10,23 @@
       <div class="row">
 
         <div class="col-md-6 col-12">
-          <div class="form-group">
+          <div class="form-group" *ngIf="opcoes">
             <label class="label">* Logradouro</label>
 
             <nb-select
               fullWidth
-              placeholder="Selecionar"
               [status]="getStatus('logradouro')"
-              [formControl]="logradouro">
+              placeholder="Selecione"
+              [formControl]="logradouro"
+              >
 
-            <nb-option *ngFor="let l of logradouros" [value]=l>
-              {{l.tipoLogradouro.nome +' '+ l.nome}}
-            </nb-option>
+              <nb-option-group *ngFor="let opcao of opcoes" [title]='opcao.title'>
+                <nb-option *ngFor="let value of opcao.values" [value]="opcao">
+                  {{value.tipoLogradouro.nome + ' ' + value.nome}}
+                </nb-option>
+              </nb-option-group>
 
-          </nb-select>
+            </nb-select>
 
           </div>
         </div>

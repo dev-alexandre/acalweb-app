@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { EditarComponent } from 'app/@core/base/_index';
 import { Modulo } from 'app/@library/enum';
+import { Select } from 'app/@shared';
 import { Logradouro } from '../../logradouro/logradouro.model';
 import { LogradouroService } from '../../logradouro/logradouro.service';
 import { MatriculaService } from '../matricula.service';
@@ -16,6 +17,7 @@ import { Matricula } from './../matricula.model';
 
 export class MatriculaEditarComponent extends EditarComponent<Matricula, MatriculaService> implements OnInit  {
 
+  public opcoes: Select<Logradouro>[] = [];
   public logradouros: Logradouro [];
   public hasHidrometro: boolean;
 

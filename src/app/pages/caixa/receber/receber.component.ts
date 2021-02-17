@@ -43,7 +43,7 @@ export class ReceberComponent implements OnInit {
   }
 
   receber(): void {
-    
+
   }
 
 }

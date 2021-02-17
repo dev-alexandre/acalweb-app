@@ -88,6 +88,7 @@ export class HidrometroAdicionarComponent implements OnInit {
                   referencia: this.referencia,
                   atual: 0, anterior: referenciaAnterior.atual,
                   valorLitroAgua: this.valorAgua.valor / 1000 ,
+                  litrosGratuidade: this.valorAgua.litrosGratuidade,
                   matricula: matriculaString,
                 };
               } else {
@@ -96,6 +97,7 @@ export class HidrometroAdicionarComponent implements OnInit {
                   atual: 0,
                   anterior: 0,
                   valorLitroAgua : this.valorAgua.valor / 1000 ,
+                  litrosGratuidade: this.valorAgua.litrosGratuidade,
                   matricula: matriculaString ,
                 };
               }
@@ -109,6 +111,8 @@ export class HidrometroAdicionarComponent implements OnInit {
       }
     );
   }
+
+  public valorFinal(){}
 
   public validar(): boolean {
 

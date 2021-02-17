@@ -25,29 +25,6 @@
         </nb-select>
       </div>
 
-      <div class="col-12 offset-sm-3 col-sm-6 offset-md-5 col-md-6">
-
-        <label class="label">Buscar: </label>
-        <nb-form-field>
-
-          <button button nbSuffix nbButton ghost (click)="loadByName()" type="button">
-            <nb-icon icon="search-outline" pack="eva">
-            </nb-icon>
-          </button>
-
-          <input
-            nbInput
-            fullWidth
-            type="text"
-            status="basic"
-            [(ngModel)]="filtro.name"
-            (keyup.enter)="loadByName()"
-            placeholder="Buscar"
-          >
-
-        </nb-form-field>
-      </div>
-
     </div>
 
   </nb-card-body>
@@ -61,8 +38,6 @@
       <ng-container *ngIf="table?.empty">
         Nenhum Registro Encontrado
       </ng-container>
-
-
 
       <ng-container *ngIf="table && table.totalElements > 0 ">
         <p class="text-secondary align-middle">

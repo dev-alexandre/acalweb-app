@@ -1,3 +1,4 @@
+import { ElementoFiltro } from 'app/@core/table/elemento-filtro.model';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Cliente } from 'app/pages/cadastro/cliente/cliente.model';
 import { ClienteService } from 'app/pages/cadastro/cliente/cliente.service';
@@ -34,9 +35,13 @@ export class SelecionarClienteComponent implements OnInit {
 
     if (this.textSeach.length >= 3) {
 
+      const filtro = {
+        nome: {valor: this.textSeach, asc: true},
+      };
+
       if (!this.seaching) {
         this.seaching = true;
-        this.service.listarPorNome(this.textSeach).subscribe(
+        this.service.listar(filtro).subscribe(
           (clientes: Cliente[]) => {
             this.clientes = clientes;
             this.seaching = false;

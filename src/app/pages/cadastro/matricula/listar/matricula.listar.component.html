@@ -8,19 +8,130 @@
 <ngx-table [loading]=loading [title]="'Matrículas'" [table]=table [filtro]=filtro (buscar)=load()>
   <table class="table table-sm table-striped">
 
-    <thead >
+
+    <thead>
       <tr>
-        <th scope="col" class="align-middle font-weight-bold"> Nome: </th>
-        <th scope="col" class="align-middle font-weight-bold"> Número: </th>
-        <th scope="col" class="align-middle font-weight-bold"> Letra: </th>
-        <th scope="col" class="align-middle font-weight-bold"> Hidrômetro: </th>
+        <th scope="col" class="align-middle font-weight-bold" (click)='order("tipoLogradouro")'>
+          Tipo:
+
+          <ng-container *ngIf="filtro.tipoLogradouro.asc !== null">
+            <nb-icon class="float-right" icon="arrow-downward-outline" *ngIf="filtro.tipoLogradouro.asc"></nb-icon>
+            <nb-icon class="float-right" icon="arrow-upward-outline"   *ngIf="!filtro.tipoLogradouro.asc"></nb-icon>
+          </ng-container>
+        </th>
+
+        <th scope="col" class="align-middle font-weight-bold" (click)='order("logradouro")'>
+          Nome:
+
+          <ng-container *ngIf="filtro.logradouro.asc !== null">
+            <nb-icon class="float-right" icon="arrow-downward-outline" *ngIf="filtro.logradouro.asc"></nb-icon>
+            <nb-icon class="float-right" icon="arrow-upward-outline"   *ngIf="!filtro.logradouro.asc"></nb-icon>
+          </ng-container>
+        </th>
+
+        <th scope="col" class="align-middle font-weight-bold" (click)='order("numero")'>
+          Número:
+
+          <ng-container *ngIf="filtro.numero.asc !== null">
+            <nb-icon class="float-right" icon="arrow-downward-outline" *ngIf="filtro.numero.asc"></nb-icon>
+            <nb-icon class="float-right" icon="arrow-upward-outline"   *ngIf="!filtro.numero.asc"></nb-icon>
+          </ng-container>
+        </th>
+
+        <th scope="col" class="align-middle font-weight-bold" (click)='order("letra")'>
+          Letra:
+
+          <ng-container *ngIf="filtro.letra.asc !== null">
+            <nb-icon class="float-right" icon="arrow-downward-outline" *ngIf="filtro.letra.asc"></nb-icon>
+            <nb-icon class="float-right" icon="arrow-upward-outline"   *ngIf="!filtro.letra.asc"></nb-icon>
+          </ng-container>
+        </th>
+
+        <th scope="col" class="align-middle font-weight-bold" (click)='order("hidrometro")'>
+          Hidrômetro:
+
+          <ng-container *ngIf="filtro.hidrometro.asc !== null">
+            <nb-icon class="float-right" icon="arrow-downward-outline" *ngIf="filtro.hidrometro.asc"></nb-icon>
+            <nb-icon class="float-right" icon="arrow-upward-outline"   *ngIf="!filtro.hidrometro.asc"></nb-icon>
+          </ng-container>
+        </th>
+
         <th scope="col" style="width: 8%;" colspan="2">
           <button nbButton outline fullWidth status="success" (click)=adicionar()>
             <nb-icon icon="plus-outline"></nb-icon>
           </button>
         </th>
+
       </tr>
     </thead>
+
+    <thead>
+      <tr>
+        <th>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            class="form-control"
+            (keydown.enter)="load()"
+            [(ngModel)]=filtro.tipoLogradouro.valor
+          >
+        </th>
+
+        <th>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            class="form-control"
+            (keydown.enter)="load()"
+            [(ngModel)]=filtro.logradouro.valor
+          >
+        </th>
+
+        <th>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            class="form-control"
+            (keydown.enter)="load()"
+            [(ngModel)]=filtro.numero.valor
+            >
+        </th>
+
+        <th>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            class="form-control"
+            (keydown.enter)="load()"
+            [(ngModel)]=filtro.letra.valor
+            >
+        </th>
+
+        <th>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            class="form-control"
+            (keydown.enter)="load()"
+            [(ngModel)]=filtro.hidrometro.valor
+            >
+        </th>
+
+        <th colspan="2">
+          <button nbButton outline fullWidth status="info" (click)="load()">
+            <nb-icon icon="search-outline"></nb-icon>
+          </button>
+        </th>
+
+      </tr>
+    </thead>
+
+
 
     <tbody
       *ngIf="table && !table?.empty"
@@ -30,7 +141,8 @@
         (click)=selecionar(data);
         [nbPopover]="logradouroDetalhes" nbPopoverPlacement="top"
         nbPopoverTrigger="click">
-        <td class="align-middle" >{{data?.logradouro?.tipoLogradouro?.nome +' '+ data?.logradouro?.nome}}</td>
+        <td class="align-middle" >{{data?.logradouro?.tipoLogradouro?.nome}}</td>
+        <td class="align-middle" >{{data?.logradouro?.nome}}</td>
         <td class="align-middle" >{{data?.numero}}</td>
         <td class="align-middle text-uppercase" >{{data?.letra}}</td>
         <td class="align-middle text-uppercase" >{{data?.hidrometro}}</td>

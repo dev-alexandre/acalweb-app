@@ -1,5 +1,5 @@
 
-<ng-container *ngIf="boleto">
+<ng-container>
 
   <ng-template #dialog let-data let-ref="dialogRef">
 
@@ -46,7 +46,7 @@
       <div class="row">
         <div class="container">
 
-          <ng-container *ngIf="boleto && analise">
+          <ng-container *ngIf="boleto">
 
             <ngx-boleto-cabecalho> </ngx-boleto-cabecalho>
 

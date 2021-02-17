@@ -1,6 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Service } from 'app/@core/base/service';
-import { Filtro } from '../filtro.model';
+import { Component, Input } from '@angular/core';
 import { Table } from '../table.model';
 
 @Component({

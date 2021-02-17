@@ -45,7 +45,7 @@
 </ng-template>
 
 
-<nb-card status="info">
+<nb-card status="info"  [nbSpinner]="loading">
 
   <nb-card-header>
     Contrato
@@ -76,10 +76,42 @@
 
         <thead >
           <tr>
-            <th scope="col" class="align-middle font-weight-bold"> Nome: </th>
-            <th scope="col" class="align-middle font-weight-bold"> Matrícula: </th>
-            <th scope="col" class="align-middle font-weight-bold"> Principal: </th>
-            <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
+
+            <th scope="col" class="align-middle font-weight-bold" (click)='order("nome")'>
+              Nome:
+
+              <ng-container *ngIf="filtro.nome.asc !== null">
+                <nb-icon icon="arrow-downward-outline" *ngIf="filtro.nome.asc"></nb-icon>
+                <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.nome.asc"></nb-icon>
+              </ng-container>
+            </th>
+
+            <th scope="col" class="align-middle font-weight-bold" (click)='order("matricula")'>
+              Matrícula:
+
+              <ng-container *ngIf="filtro.matricula.asc !== null">
+                <nb-icon icon="arrow-downward-outline" *ngIf="filtro.matricula.asc"></nb-icon>
+                <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.matricula.asc"></nb-icon>
+              </ng-container>
+            </th>
+
+            <th scope="col" class="align-middle font-weight-bold" (click)='order("principal")'>
+              Principal:
+
+              <ng-container *ngIf="filtro.principal.asc !== null">
+                <nb-icon icon="arrow-downward-outline" *ngIf="filtro.principal.asc"></nb-icon>
+                <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.principal.asc"></nb-icon>
+              </ng-container>
+            </th>
+
+            <th scope="col" class="align-middle font-weight-bold" (click)='order("grupo")'>
+              Grupo:
+
+              <ng-container *ngIf="filtro.grupo.asc !== null">
+                <nb-icon icon="arrow-downward-outline" *ngIf="filtro.grupo.asc"></nb-icon>
+                <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.grupo.asc"></nb-icon>
+              </ng-container>
+            </th>
 
             <th scope="col" style="width: 8%;" colspan="3">
               <button nbButton outline fullWidth status="success" (click)=adicionar()>
@@ -89,6 +121,60 @@
 
           </tr>
         </thead>
+
+        <thead >
+          <tr>
+            <th>
+              <input
+                nbInput
+                fullWidth
+                type="text"
+                class="form-control"
+                (keydown.enter)="load()"
+                [(ngModel)]=filtro.nome.valor
+                >
+            </th>
+
+            <th>
+              <input
+                nbInput
+                fullWidth
+                type="text"
+                class="form-control"
+                (keydown.enter)="load()"
+                [(ngModel)]=filtro.matricula.valor
+                >
+            </th>
+
+            <th>
+              <nb-select
+                [(selected)]="filtro.principal.valor" >
+                <nb-option (click)="load()" value="sim">Sim</nb-option>
+                <nb-option (click)="load()" value="nao">Não</nb-option>
+                <nb-option (click)="load()" value="indeterminado">Todos</nb-option>
+              </nb-select>
+            </th>
+
+            <th>
+              <input
+                nbInput
+                fullWidth
+                type="text"
+                class="form-control"
+                (keydown.enter)="load()"
+                [(ngModel)]=filtro.grupo.valor
+                >
+            </th>
+
+            <th colspan="3">
+              <button nbButton outline fullWidth status="info" (click)="load()">
+                <nb-icon icon="search-outline"></nb-icon>
+              </button>
+            </th>
+
+          </tr>
+        </thead>
+
 
         <tbody *ngIf="table && !table?.empty">
 
@@ -126,7 +212,7 @@
             </td>
 
             <td class="align-middle" >
-              <button nbButton outline fullWidth status="primary" (click)=editar(c)>
+              <button nbButton outline fullWidth status="primary" (click)=editar(c) nbTooltip="Detalhar" nbTooltipStatus="primary">
                 <nb-icon icon="book-outline"></nb-icon>
               </button>
             </td>

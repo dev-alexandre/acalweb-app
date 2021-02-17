@@ -7,5 +7,5 @@ export interface Hidrometro extends Model {
   atual: number;
   anterior: number;
   valorLitroAgua: number;
-
+  litrosGratuidade: number;
 }

@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Filtro } from 'app/@core/table/filtro.model';
 import { Table } from 'app/@core/table/table.model';
+import { Acao } from 'app/@library/enum';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
-import { Modulo, Acao } from 'app/@library/enum';
 import { Model } from './model';
 
 @Injectable()
 export abstract class Service<T extends Model> {
-    private rota: String;
+    private rota: string;
 
     public abstract getModulo(): string;
 
@@ -23,6 +23,10 @@ export abstract class Service<T extends Model> {
 
     public listarTodos(): Observable<T[]> {
         return this.http.get<T[]>(this.rota + Acao.LISTAR);
+    }
+
+    public listar(filtro: any): Observable<T[]> {
+        return this.http.post<T[]>(this.rota + Acao.LISTAR, filtro);
     }
 
     public deletar(t: T): Observable<T> {
@@ -41,7 +45,7 @@ export abstract class Service<T extends Model> {
       return this.http.put<T>(this.rota + Acao.EDITAR, t);
     }
 
-    public buscar(id: String): Observable<T> {
+    public buscar(id: string): Observable<T> {
       return this.http.get<T>(this.rota + Acao.BUSCAR + '/' + id);
     }
 

@@ -29,15 +29,111 @@
 
       <thead >
         <tr>
-          <th scope="col" class="align-middle font-weight-bold"> Categoria: </th>
-          <th scope="col" class="align-middle font-weight-bold"> Nome: </th>
-          <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
-          <th scope="col" class="align-middle font-weight-bold"> Valor Sócio: </th>
+
+
+          <th scope="col" class="align-middle font-weight-bold" (click)='order("categoria")'>
+            Categoria:
+
+            <ng-container *ngIf="filtro.categoria.asc !== null">
+              <nb-icon icon="arrow-downward-outline" *ngIf="filtro.categoria.asc"></nb-icon>
+              <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.categoria.asc"></nb-icon>
+            </ng-container>
+          </th>
+
+          <th scope="col" class="align-middle font-weight-bold" (click)='order("nome")'>
+            Nome:
+
+            <ng-container *ngIf="filtro.nome.asc !== null">
+              <nb-icon icon="arrow-downward-outline" *ngIf="filtro.nome.asc"></nb-icon>
+              <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.nome.asc"></nb-icon>
+            </ng-container>
+          </th>
+
+
+          <th scope="col" class="align-middle font-weight-bold" (click)='order("valor")'>
+            Valor:
+
+            <ng-container *ngIf="filtro.valor.asc !== null">
+              <nb-icon icon="arrow-downward-outline" *ngIf="filtro.valor.asc"></nb-icon>
+              <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.valor.asc"></nb-icon>
+            </ng-container>
+          </th>
+
+          <th scope="col" class="align-middle font-weight-bold" (click)='order("valorSocio")'>
+            Valor Categoria:
+
+            <ng-container *ngIf="filtro.valorSocio.asc !== null">
+              <nb-icon icon="arrow-downward-outline" *ngIf="filtro.valorSocio.asc"></nb-icon>
+              <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.valorSocio.asc"></nb-icon>
+            </ng-container>
+          </th>
+
           <th scope="col" style="width: 8%;" colspan="2">
             <button nbButton outline fullWidth status="success" (click)=adicionar()>
               <nb-icon icon="plus-outline"></nb-icon>
             </button>
           </th>
+
+        </tr>
+      </thead>
+
+
+      <thead >
+        <tr>
+          <th>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              class="form-control"
+              (keydown.enter)="load()"
+              [(ngModel)]=filtro.categoria.valor
+              >
+          </th>
+
+          <th>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              class="form-control"
+              (keydown.enter)="load()"
+              [(ngModel)]=filtro.nome.valor
+              >
+          </th>
+
+          <th>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              class="form-control"
+              (keydown.enter)="load()"
+              [(ngModel)]=filtro.valor.valor
+              mask="separator.2"
+              thousandSeparator="."
+              >
+          </th>
+
+          <th>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              class="form-control"
+              (keydown.enter)="load()"
+              [(ngModel)]=filtro.valorSocio.valor
+              mask="separator.2"
+              thousandSeparator="."
+              >
+          </th>
+
+          <th colspan="2">
+            <button nbButton outline fullWidth status="info" (click)="load()">
+              <nb-icon icon="search-outline"></nb-icon>
+            </button>
+          </th>
+
         </tr>
       </thead>
 

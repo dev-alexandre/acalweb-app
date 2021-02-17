@@ -9,38 +9,20 @@
 
       <thead >
         <tr>
-          <th scope="col" class="align-middle font-weight-bold"> # </th>
-          <th scope="col" class="align-middle font-weight-bold"> Descrição: </th>
-          <th scope="col" class="align-middle font-weight-bold"> A receber: </th>
-          <th scope="col" class="align-middle font-weight-bold"> Recebido: </th>
-          <th scope="col" class="align-middle font-weight-bold"> Saldo </th>
+          <th scope="col" class="align-middle font-weight-bold"> Motivo: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Responsável: </th>
+          <th scope="col" class="align-middle font-weight-bold"> Criação: </th>
         </tr>
       </thead>
 
       <tbody>
 
-        <tr>
-          <td class="align-middle"> (+) </td>
-          <td class="align-middle"> Boleto de Cobrança </td>
-          <td class="align-middle"> R$ 50,00 </td>
-          <td class="align-middle"> </td>
-          <td class="align-middle"> R$ 50,00 </td>
-        </tr>
-
-        <tr>
-          <td class="align-middle"> (+) </td>
-          <td class="align-middle"> Boleto de Cobrança </td>
-          <td class="align-middle"> </td>
-          <td class="align-middle"> R$ 50,00 </td>
-          <td class="align-middle"> R$ 50,00 </td>
-        </tr>
-
-        <tr>
-          <td class="align-middle"> (+) </td>
-          <td class="align-middle"> Boleto de Cobrança </td>
-          <td class="align-middle"> </td>
-          <td class="align-middle"> R$ 50,00 </td>
-          <td class="align-middle"> R$ 100,00 </td>
+        <tr *ngFor="let pagamento of pagamentos">
+          <td class="align-middle"> {{pagamento.motivo}} </td>
+          <td class="align-middle"> {{pagamento.valor}}</td>
+          <td class="align-middle"> {{pagamento.responsavel.name}}</td>
+          <td class="align-middle"> {{pagamento.criacao}}</td>
         </tr>
 
       </tbody>

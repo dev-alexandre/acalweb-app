@@ -53,10 +53,9 @@ export abstract class EditarComponent <T extends Model, S extends Service<T>> ex
   public hasModification(): boolean {
     this.addDate();
 
-    ;
     const dataForm = Object.entries(this.form.value).sort((a, b) => a[0].localeCompare(b[0]) );
     const dataValue = Object.entries(this.data).sort((a, b) => a[0].localeCompare(b[0])).filter(f => {
-      dataForm.some(df => {f[0]});
+      dataForm.some(df => {f[0]} );
     } );
 
     if ( JSON.stringify(dataForm) === JSON.stringify(dataValue)) {

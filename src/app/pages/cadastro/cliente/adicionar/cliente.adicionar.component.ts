@@ -1,14 +1,13 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { AdicionarComponent } from 'app/@core/base/adicionar.component';
+import { DateValidator } from 'app/@core/validator/dataValidator';
+import { DocumentoValidator } from 'app/@core/validator/documentoValidator';
 import { Modulo } from 'app/@library/enum';
 import { Cliente } from '../cliente.model';
 import { ClienteService } from '../cliente.service';
-import { DateValidator } from 'app/@core/validator/dataValidator';
-import { DocumentoValidator } from 'app/@core/validator/documentoValidator';
-import * as moment from 'moment';
 
 @Component({
   selector: 'ngx-adicionar-cliente',

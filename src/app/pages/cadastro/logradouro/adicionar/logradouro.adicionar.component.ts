@@ -1,14 +1,12 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { AdicionarComponent } from 'app/@core/base/adicionar.component';
 import { Modulo } from 'app/@library/enum';
-import * as moment from 'moment';
 import { Logradouro } from '../logradouro.model';
 import { LogradouroService } from '../logradouro.service';
 import { TipoLogradouro } from './../logradouro.model';
-
 @Component({
   selector: 'ngx-logradouro',
   templateUrl: './logradouro.adicionar.component.html',

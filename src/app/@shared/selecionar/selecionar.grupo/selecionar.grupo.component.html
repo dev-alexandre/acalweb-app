@@ -7,8 +7,8 @@
   placeholder="Selecione" >
 
   <nb-option-group *ngFor="let opcao of opcoes" [title]='opcao.title'>
-    <nb-option *ngFor="let value of opcao.values" (click)="selecionar(value)" [value]="opcao">
-      {{value.categoria.nome + ' ' + value.nome}}
+    <nb-option *ngFor="let value of opcao.values" (click)="selecionar(value)" [value]="opcao" >
+      {{value.valor + value.valorSocio  | currency:'BRL':'symbol'}} | {{value.categoria.nome + ' ' + value.nome}}
     </nb-option>
   </nb-option-group>
 

@@ -26,7 +26,7 @@ export abstract class ListarComponent <T extends Model, S extends Service<T>> {
   }
 
   public init(): void {
-    this.filtro = {page: 0, size: 5, name: '', ativo: true};
+    this.filtro = {page: 0, size: 5, ativo: true};
     this.load();
   }
 

@@ -1,3 +1,4 @@
+import { SelecionarModule } from 'app/@shared';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
@@ -35,6 +36,7 @@ import { MatriculaService } from './matricula.service';
     NbListModule,
     PipeModule,
     NbPopoverModule,
+    SelecionarModule,
   ],
   declarations: [
     MatriculaComponent,

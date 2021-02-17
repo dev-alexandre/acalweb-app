@@ -42,7 +42,7 @@
     [(ngModel)]=textSeach
     >
 
-  <nb-list *ngIf="(textSeach?.length >= 3)">
+  <nb-list *ngIf="(textSeach?.length >= 3)" style="z-index: 1000;">
 
     <nb-list-item *ngFor="let c of clientes" (click)="this.cliente = c; selecionar(c)">
       {{ c.nome }}

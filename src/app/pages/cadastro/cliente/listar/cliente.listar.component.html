@@ -25,17 +25,108 @@
   </nb-card-body>
 
   <nb-card-body>
-    <table class="table table-sm table-striped">
+    <table class="table table-sm table-striped" summary="Clientes">
 
       <thead >
         <tr>
-          <th scope="col" class="align-middle font-weight-bold"> Nome: </th>
-          <th scope="col" class="align-middle font-weight-bold"> Documento: </th>
+
+          <th scope="col" class="align-middle font-weight-bold" (click)='order("nome")'>
+            Nome:
+
+            <ng-container *ngIf="filtro.nome.asc !== null">
+              <nb-icon icon="arrow-downward-outline" *ngIf="filtro.nome.asc"></nb-icon>
+              <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.nome.asc"></nb-icon>
+            </ng-container>
+          </th>
+
+          <th scope="col" class="align-middle font-weight-bold" (click)='order("documento")'>
+            Documento:
+
+            <ng-container *ngIf="filtro.documento.asc !== null">
+              <nb-icon icon="arrow-downward-outline" *ngIf="filtro.documento.asc"></nb-icon>
+              <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.documento.asc"></nb-icon>
+            </ng-container>
+          </th>
+
+          <th scope="col" class="align-middle font-weight-bold" (click)='order("socio")'>
+            Sócio Número:
+
+            <ng-container *ngIf="filtro.socio.asc !== null">
+              <nb-icon icon="arrow-downward-outline" *ngIf="filtro.socio.asc"></nb-icon>
+              <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.socio.asc"></nb-icon>
+            </ng-container>
+          </th>
+
+          <th scope="col" class="align-middle font-weight-bold" (click)='order("letra")'>
+            Sócio Letra:
+
+            <ng-container *ngIf="filtro.letra.asc !== null">
+              <nb-icon icon="arrow-downward-outline" *ngIf="filtro.letra.asc"></nb-icon>
+              <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.letra.asc"></nb-icon>
+            </ng-container>
+          </th>
+
           <th scope="col" style="width: 8%;" colspan="2">
             <button nbButton outline fullWidth status="success" (click)=adicionar()>
               <nb-icon icon="plus-outline"></nb-icon>
             </button>
           </th>
+
+        </tr>
+      </thead>
+
+      <thead >
+        <tr>
+          <th>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              class="form-control"
+              (keydown.enter)="load()"
+              [(ngModel)]=filtro.nome.valor
+              >
+          </th>
+
+          <th>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              class="form-control"
+              (keydown.enter)="load()"
+              [(ngModel)]=filtro.documento.valor
+              >
+          </th>
+
+          <th>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              class="form-control"
+              (keydown.enter)="load()"
+              [(ngModel)]=filtro.socio.valor
+              >
+          </th>
+
+          <th>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              class="form-control"
+              (keydown.enter)="load()"
+              [(ngModel)]=filtro.letra.valor
+              >
+          </th>
+
+          <th colspan="2">
+            <button nbButton outline fullWidth status="info" (click)="load()">
+              <nb-icon icon="search-outline"></nb-icon>
+            </button>
+          </th>
+
         </tr>
       </thead>
 
@@ -53,6 +144,9 @@
               {{data.documento  | mask: '00.000.000/0000-00'}}
             </ng-container>
           </td>
+
+          <td class="align-middle" >{{data.socio}}</td>
+          <td class="align-middle" >{{data.letra}}</td>
 
           <td class="align-middle" >
             <button nbButton outline fullWidth status="warning" (click)=editar(data)>
@@ -79,7 +173,6 @@
         </tr>
 
       </tbody>
-
 
       <tfoot>
         <tr>

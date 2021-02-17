@@ -1,7 +1,6 @@
-import { ValorAgua } from 'app/pages/financeiro/valor-agua/valor-agua.model';
-import { ValorAguaService } from './valor-agua.service';
 import { Component, OnInit } from '@angular/core';
 import { NbToastrService } from '@nebular/theme';
+import { ValorAguaService } from './valor-agua.service';
 
 @Component({
   selector: 'ngx-valor-agua',

@@ -1,10 +1,10 @@
-import { PipeModule } from './../../../@core/pipe/pipe.module';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbListModule, NbPopoverModule, NbSelectModule, NbSpinnerModule, NbTooltipModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbListModule, NbPopoverModule, NbSelectModule, NbSpinnerModule } from '@nebular/theme';
 import { TableModule } from 'app/@core/table/table.module';
 import { ThemeModule } from 'app/@theme/theme.module';
+import { PipeModule } from './../../../@core/pipe/pipe.module';
 import { LogradouroAdicionarComponent } from './adicionar/logradouro.adicionar.component';
 import { LogradouroDeletarComponent } from './deletar/logradouro.deletar.component';
 import { LogradouroEditarComponent } from './editar/logradouro.editar.component';

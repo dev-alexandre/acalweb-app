@@ -8,6 +8,7 @@ import { Modulo } from 'app/@library/enum';
 import * as moment from 'moment';
 import { Contrato } from '../contrato.model';
 import { ContratoService } from '../contrato.service';
+import { ContratoFiltro } from '../contrato.filtro';
 
 @Component({
   selector: 'ngx-contrato',
@@ -16,8 +17,10 @@ import { ContratoService } from '../contrato.service';
 })
 
 export class ContratoListarComponent extends ListarComponent<Contrato, ContratoService> implements OnInit {
+
   public contrato: Contrato;
   public user: User;
+  public filtro: ContratoFiltro;
 
   constructor(
     public router: Router,
@@ -31,8 +34,77 @@ export class ContratoListarComponent extends ListarComponent<Contrato, ContratoS
   }
 
   ngOnInit(): void {
+    super.init();
+    this.initFiltro();
+    super.filtro = this.filtro;
     this.getUser();
   }
+
+  private initFiltro(): void {
+
+    this.filtro = {
+      page: 0,
+      size: 5,
+      ativo: true,
+      nome: {valor: null, asc: null},
+      matricula: {valor: null, asc: null},
+      grupo: {valor: null, asc: null},
+      principal: {valor: 'indeterminado', asc: null},
+    };
+
+
+  }
+
+  public order(nome: string): void {
+
+    if (nome === 'nome') {
+      if (!this.filtro.nome.asc) {
+        this.filtro.nome.asc = true;
+      } else {
+        this.filtro.nome.asc = !this.filtro.nome.asc;
+      }
+
+      this.filtro.matricula.asc = null;
+      this.filtro.grupo.asc = null;
+      this.filtro.principal.asc = null;
+
+    } else if (nome === 'matricula') {
+
+      if (!this.filtro.matricula.asc) {
+        this.filtro.matricula.asc = true;
+      } else {
+        this.filtro.matricula.asc = !this.filtro.matricula.asc;
+      }
+
+      this.filtro.nome.asc = null;
+      this.filtro.grupo.asc = null;
+      this.filtro.principal.asc = null;
+
+    } else if (nome === 'grupo') {
+
+      if (!this.filtro.grupo.asc) {
+        this.filtro.grupo.asc = true;
+      } else {
+        this.filtro.grupo.asc = !this.filtro.grupo.asc;
+      }
+
+      this.filtro.nome.asc = null;
+      this.filtro.matricula.asc = null;
+      this.filtro.principal.asc = null;
+
+    } else if (nome === 'principal') {
+
+      if (!this.filtro.principal.asc) {
+        this.filtro.principal.asc = true;
+      } else {
+        this.filtro.principal.asc = !this.filtro.principal.asc;
+      }
+    }
+
+    this.load();
+  }
+
+
 
   public getUser(): void  {
 
@@ -41,7 +113,7 @@ export class ContratoListarComponent extends ListarComponent<Contrato, ContratoS
       if (token.isValid()) {
         this.user = token.getPayload();
       }}
-      );
+    );
   }
 
   public getModulo(): string {

@@ -14,7 +14,15 @@
 
   <nb-card-body>
     <ng-container *ngIf="valorAgua">
-      valor da água para mil litros {{valorAgua?.valor | number : '1.2-4' :'pt-BR' }}
+      <nb-list>
+        <nb-list-item>
+          Valor da Água para mil litros {{valorAgua?.valor | number : '1.2-4' :'pt-BR' : 'R$' }} <br/>
+        </nb-list-item>
+
+        <nb-list-item>
+          Quantidade de Água considerada para Abono  {{valorAgua?.litrosGratuidade | number : '1.0': 'pt-BR' : 'Lts' }}
+        </nb-list-item>
+      </nb-list>
     </ng-container>
 
     <div class="table-responsive">
@@ -33,8 +41,6 @@
         <tbody *ngIf="hidrometros">
 
           <tr *ngFor="let hidrometro of hidrometros; index as i;">
-
-
 
             <td class="align-middle" >
               {{hidrometro.matricula | matricula}}
@@ -66,13 +72,20 @@
               >
             </td>
 
-
             <td class="align-middle" >
               {{hidrometro.hidrometro.atual - hidrometro.hidrometro.anterior | number : '1.0' :'pt-BR'}}
             </td>
 
             <td class="align-middle" >
-              {{(hidrometro.hidrometro.atual - hidrometro.hidrometro.anterior) * valorAgua.valor/1000  | currency: 'BRL':'symbol'}}
+              <ng-container *ngIf="(hidrometro.hidrometro.atual - hidrometro.hidrometro.anterior - valorAgua.litrosGratuidade)<0">
+                0
+              </ng-container>
+
+              <ng-container *ngIf="(hidrometro.hidrometro.atual - hidrometro.hidrometro.anterior - valorAgua.litrosGratuidade)>0">
+                {{(hidrometro.hidrometro.atual - hidrometro.hidrometro.anterior- valorAgua.litrosGratuidade) * valorAgua.valor/1000  | currency: 'BRL':'symbol'}}
+              </ng-container>
+
+
             </td>
 
           </tr>

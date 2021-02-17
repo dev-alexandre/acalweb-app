@@ -7,7 +7,7 @@ import { Modulo } from 'app/@library/enum';
 export class MovimentacaoService extends Service<Object> {
 
   public getModulo(): string {
-    return Modulo.MOVIMENTACAO;
+    return Modulo.PAGAMENTO;
   }
 
   constructor(public http: HttpClient) {
