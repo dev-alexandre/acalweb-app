@@ -21,7 +21,7 @@
               >
 
               <nb-option-group *ngFor="let opcao of opcoes" [title]='opcao.title'>
-                <nb-option *ngFor="let value of opcao.values" [value]="opcao">
+                <nb-option *ngFor="let value of opcao.values" [value]="value">
                   {{value.tipoLogradouro.nome + ' ' + value.nome}}
                 </nb-option>
               </nb-option-group>

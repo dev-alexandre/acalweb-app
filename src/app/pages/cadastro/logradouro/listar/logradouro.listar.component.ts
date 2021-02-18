@@ -37,7 +37,7 @@ export class LogradouroListarComponent extends ListarComponent<Logradouro, Logra
     this.filtro = {
       page: 0,
       size: 5,
-      ativo: true,
+      ativo: {valor: null, asc: null},
       nome: {valor: null, asc: null},
       tipoLogradouro: {valor: null, asc: null}
     };
@@ -47,22 +47,33 @@ export class LogradouroListarComponent extends ListarComponent<Logradouro, Logra
   public order(nome: string): void {
 
     if (nome === 'nome') {
+
       if (!this.filtro.nome.asc) {
         this.filtro.nome.asc = true;
+        this.filtro.nome.order = ['nome'];
       } else {
         this.filtro.nome.asc = !this.filtro.nome.asc;
+        this.filtro.nome.order = null;
       }
-      this.filtro.tipoLogradouro.asc = null;
 
-    } else if (nome === 'tipoLogradouro') {
+    } else {
+
+      this.filtro.nome.asc = null;
+
+    }
+
+    if (nome === 'tipoLogradouro') {
 
       if (!this.filtro.tipoLogradouro.asc) {
         this.filtro.tipoLogradouro.asc = true;
+        this.filtro.tipoLogradouro.order = ['tipoLogradouro.nome'];
       } else {
         this.filtro.tipoLogradouro.asc = !this.filtro.tipoLogradouro.asc;
       }
 
-      this.filtro.nome.asc = null;
+    } else {
+      this.filtro.tipoLogradouro.asc = null;
+      this.filtro.tipoLogradouro.order = null;
     }
 
     this.load();

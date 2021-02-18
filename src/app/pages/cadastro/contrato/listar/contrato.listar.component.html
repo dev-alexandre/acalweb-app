@@ -86,12 +86,57 @@
               </ng-container>
             </th>
 
-            <th scope="col" class="align-middle font-weight-bold" (click)='order("matricula")'>
-              Matrícula:
+            <th scope="col" class="align-middle font-weight-bold" (click)='order("tipoLogradouro")'>
+              Tipo:
 
-              <ng-container *ngIf="filtro.matricula.asc !== null">
-                <nb-icon icon="arrow-downward-outline" *ngIf="filtro.matricula.asc"></nb-icon>
-                <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.matricula.asc"></nb-icon>
+              <ng-container *ngIf="filtro.tipoLogradouro.asc !== null">
+                <nb-icon icon="arrow-downward-outline" *ngIf="filtro.tipoLogradouro.asc"></nb-icon>
+                <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.tipoLogradouro.asc"></nb-icon>
+              </ng-container>
+            </th>
+
+            <th scope="col" class="align-middle font-weight-bold" (click)='order("logradouro")'>
+              Logradouro:
+
+              <ng-container *ngIf="filtro.logradouro.asc !== null">
+                <nb-icon icon="arrow-downward-outline" *ngIf="filtro.logradouro.asc"></nb-icon>
+                <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.logradouro.asc"></nb-icon>
+              </ng-container>
+            </th>
+
+            <th scope="col" class="align-middle font-weight-bold" (click)='order("numero")'>
+              Número:
+
+              <ng-container *ngIf="filtro.numero.asc !== null">
+                <nb-icon icon="arrow-downward-outline" *ngIf="filtro.numero.asc"></nb-icon>
+                <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.numero.asc"></nb-icon>
+              </ng-container>
+            </th>
+
+            <th scope="col" class="align-middle font-weight-bold" (click)='order("letra")'>
+              Letra:
+
+              <ng-container *ngIf="filtro.letra.asc !== null">
+                <nb-icon icon="arrow-downward-outline" *ngIf="filtro.letra.asc"></nb-icon>
+                <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.letra.asc"></nb-icon>
+              </ng-container>
+            </th>
+
+            <th scope="col" class="align-middle font-weight-bold" (click)='order("categoria")'>
+              Categoria:
+
+              <ng-container *ngIf="filtro.categoria.asc !== null">
+                <nb-icon icon="arrow-downward-outline" *ngIf="filtro.categoria.asc"></nb-icon>
+                <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.categoria.asc"></nb-icon>
+              </ng-container>
+            </th>
+
+            <th scope="col" class="align-middle font-weight-bold" (click)='order("grupo")'>
+              Grupo:
+
+              <ng-container *ngIf="filtro.grupo.asc !== null">
+                <nb-icon icon="arrow-downward-outline" *ngIf="filtro.grupo.asc"></nb-icon>
+                <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.grupo.asc"></nb-icon>
               </ng-container>
             </th>
 
@@ -104,12 +149,12 @@
               </ng-container>
             </th>
 
-            <th scope="col" class="align-middle font-weight-bold" (click)='order("grupo")'>
-              Grupo:
+            <th scope="col" class="align-middle font-weight-bold" (click)='order("ativo")'>
+              Ativo:
 
-              <ng-container *ngIf="filtro.grupo.asc !== null">
-                <nb-icon icon="arrow-downward-outline" *ngIf="filtro.grupo.asc"></nb-icon>
-                <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.grupo.asc"></nb-icon>
+              <ng-container *ngIf="filtro.ativo.asc !== null">
+                <nb-icon icon="arrow-downward-outline" *ngIf="filtro.ativo.asc"></nb-icon>
+                <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.ativo.asc"></nb-icon>
               </ng-container>
             </th>
 
@@ -142,17 +187,53 @@
                 type="text"
                 class="form-control"
                 (keydown.enter)="load()"
-                [(ngModel)]=filtro.matricula.valor
+                [(ngModel)]=filtro.tipoLogradouro.valor
                 >
             </th>
 
             <th>
-              <nb-select
-                [(selected)]="filtro.principal.valor" >
-                <nb-option (click)="load()" value="sim">Sim</nb-option>
-                <nb-option (click)="load()" value="nao">Não</nb-option>
-                <nb-option (click)="load()" value="indeterminado">Todos</nb-option>
-              </nb-select>
+              <input
+                nbInput
+                fullWidth
+                type="text"
+                class="form-control"
+                (keydown.enter)="load()"
+                [(ngModel)]=filtro.logradouro.valor
+                >
+            </th>
+
+            <th>
+              <input
+                nbInput
+                fullWidth
+                type="text"
+                class="form-control"
+                (keydown.enter)="load()"
+                [mask]="'0*'"
+                [(ngModel)]=filtro.numero.valor
+                >
+            </th>
+
+            <th>
+              <input
+                nbInput
+                fullWidth
+                type="text"
+                class="form-control"
+                (keydown.enter)="load()"
+                [(ngModel)]=filtro.letra.valor
+                >
+            </th>
+
+            <th>
+              <input
+                nbInput
+                fullWidth
+                type="text"
+                class="form-control"
+                (keydown.enter)="load()"
+                [(ngModel)]=filtro.categoria.valor
+                >
             </th>
 
             <th>
@@ -164,6 +245,26 @@
                 (keydown.enter)="load()"
                 [(ngModel)]=filtro.grupo.valor
                 >
+            </th>
+
+            <th>
+              <nb-select
+                fullWidth
+                [(selected)]="filtro.principal.valor" >
+                <nb-option (click)="load()" value="sim">Sim</nb-option>
+                <nb-option (click)="load()" value="nao">Não</nb-option>
+                <nb-option (click)="load()" value="indeterminado">Todos</nb-option>
+              </nb-select>
+            </th>
+
+            <th>
+              <nb-select
+                fullWidth
+                [(selected)]="filtro.ativo.valor" >
+                <nb-option (click)="load()" value="sim">Sim</nb-option>
+                <nb-option (click)="load()" value="nao">Não</nb-option>
+                <nb-option (click)="load()" value="indeterminado">Todos</nb-option>
+              </nb-select>
             </th>
 
             <th colspan="3">
@@ -185,9 +286,26 @@
 
             <td class="align-middle">
               {{c?.matricula.logradouro.tipoLogradouro.nome}}
+            </td>
+
+            <td class="align-middle">
               {{c?.matricula.logradouro.nome}}
+            </td>
+
+            <td class="align-middle">
               {{c?.matricula.numero}}
+            </td>
+
+            <td class="align-middle">
               {{c?.matricula.letra}}
+            </td>
+
+            <td class="align-middle">
+              {{c.grupo.categoria.nome}}
+            </td>
+
+            <td class="align-middle">
+              {{c.grupo.nome}}
             </td>
 
             <td class="align-middle">
@@ -199,7 +317,11 @@
             </td>
 
             <td class="align-middle">
-              {{c.grupo.categoria.nome +' '+ c.grupo.nome}}
+              <nb-checkbox
+                class="align-center"
+                [disabled]=true
+                [(ngModel)]=c.ativo>
+              </nb-checkbox>
             </td>
 
             <td class="align-middle" >
@@ -230,7 +352,7 @@
         <tbody *ngIf="table?.empty">
 
           <tr>
-            <td class="align-middle" colspan="6" >
+            <td class="align-middle" colspan="11" >
               Nenhum registro encontrado
             </td>
           </tr>
@@ -240,7 +362,7 @@
 
         <tfoot>
           <tr>
-            <th scope="col" colspan="7"> </th>
+            <th scope="col" colspan="11"> </th>
           </tr>
         </tfoot>
 

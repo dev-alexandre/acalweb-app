@@ -70,6 +70,11 @@ export class ContratoAdicionarComponent extends AdicionarComponent<Contrato, Con
         Validators.required,
       ]),
 
+      valorSocio: new FormControl(
+        null, [
+        Validators.required,
+      ]),
+
       habilitado: new FormControl(
         true, [
         Validators.required,
@@ -90,6 +95,7 @@ export class ContratoAdicionarComponent extends AdicionarComponent<Contrato, Con
   public selecionarGrupo(grupo: Grupo): void {
     this.grupo.setValue(grupo);
     this.valor.setValue(grupo.valor);
+    this.valorSocio.setValue(grupo.valorSocio);
   }
 
   public selecionarMatricula(matricula: Matricula): void {
@@ -122,6 +128,10 @@ export class ContratoAdicionarComponent extends AdicionarComponent<Contrato, Con
 
   public get valor() {
     return this.form.get('valor');
+  }
+
+  public get valorSocio() {
+    return this.form.get('valorSocio');
   }
 
 }

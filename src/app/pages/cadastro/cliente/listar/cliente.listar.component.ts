@@ -35,7 +35,7 @@ export class ClienteListarComponent extends ListarComponent<Cliente, ClienteServ
     this.filtro = {
       page: 0,
       size: 5,
-      ativo: true,
+      ativo: {valor: null, asc: null},
       nome: {valor: null, asc: null},
       documento: {valor: null, asc: null},
       socio: {valor: null, asc: null},
@@ -47,56 +47,73 @@ export class ClienteListarComponent extends ListarComponent<Cliente, ClienteServ
   public order(nome: string): void {
 
     if (nome === 'nome') {
+
       if (!this.filtro.nome.asc) {
         this.filtro.nome.asc = true;
+        this.filtro.nome.order = ['nome'];
       } else {
         this.filtro.nome.asc = !this.filtro.nome.asc;
       }
 
-      this.filtro.documento.asc = null;
-      this.filtro.socio.asc = null;
-      this.filtro.letra.asc = null;
+    } else {
 
-    } else if (nome === 'documento') {
+      this.filtro.nome.asc = null;
+      this.filtro.nome.order = null;
+
+    }
+
+    if (nome === 'documento') {
 
       if (!this.filtro.documento.asc) {
         this.filtro.documento.asc = true;
+        this.filtro.documento.order = ['documento'];
       } else {
         this.filtro.documento.asc = !this.filtro.documento.asc;
       }
 
-      this.filtro.nome.asc = null;
-      this.filtro.socio.asc = null;
-      this.filtro.letra.asc = null;
+    } else {
 
-    } else if (nome === 'socio') {
+      this.filtro.documento.asc = null;
+      this.filtro.documento.order = null;
+
+    }
+
+    if (nome === 'socio') {
 
       if (!this.filtro.socio.asc) {
         this.filtro.socio.asc = true;
+        this.filtro.socio.order = ['socio'];
       } else {
         this.filtro.socio.asc = !this.filtro.socio.asc;
       }
 
-      this.filtro.nome.asc = null;
-      this.filtro.documento.asc = null;
-      this.filtro.letra.asc = null;
+    } else {
 
-    } else if (nome === 'letra') {
+      this.filtro.socio.asc = null;
+      this.filtro.socio.order = null;
+
+    }
+
+    if (nome === 'letra') {
 
       if (!this.filtro.letra.asc) {
         this.filtro.letra.asc = true;
+        this.filtro.letra.order = ['letra'];
       } else {
         this.filtro.letra.asc = !this.filtro.letra.asc;
       }
 
-      this.filtro.nome.asc = null;
-      this.filtro.documento.asc = null;
-      this.filtro.socio.asc = null;
+    } else {
+
+      this.filtro.letra.asc = null;
+      this.filtro.letra.order = null;
+
     }
 
 
     this.load();
   }
+
 
   public getModulo(): string {
     return Modulo.CLIENTE;

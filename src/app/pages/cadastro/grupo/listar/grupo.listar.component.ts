@@ -35,7 +35,7 @@ export class GrupoListarComponent extends ListarComponent<Grupo, GrupoService> i
     this.filtro = {
       page: 0,
       size: 5,
-      ativo: true,
+      ativo: {valor: null, asc: null},
       valor: {valor: null, asc: null},
       valorSocio: {valor: null, asc: null},
       nome: {valor: null, asc: null},
@@ -50,50 +50,63 @@ export class GrupoListarComponent extends ListarComponent<Grupo, GrupoService> i
     if (nome === 'nome') {
       if (!this.filtro.nome.asc) {
         this.filtro.nome.asc = true;
+        this.filtro.nome.order = ['nome'];
       } else {
         this.filtro.nome.asc = !this.filtro.nome.asc;
       }
 
-      this.filtro.valor.asc = null;
-      this.filtro.valorSocio.asc = null;
-      this.filtro.categoria.asc = null;
+    } else {
 
-    } else if (nome === 'valor') {
+      this.filtro.nome.asc = null;
+      this.filtro.nome.order = null;
+
+    }
+
+    if (nome === 'valor') {
 
       if (!this.filtro.valor.asc) {
         this.filtro.valor.asc = true;
+        this.filtro.valor.order = ['valor'];
       } else {
         this.filtro.valor.asc = !this.filtro.valor.asc;
       }
 
-      this.filtro.valorSocio.asc = null;
-      this.filtro.categoria.asc = null;
-      this.filtro.nome.asc = null;
+    } else {
 
+      this.filtro.valor.asc = null;
+      this.filtro.valor.order = null;
 
-    } else if (nome === 'valorSocio') {
+    }
+
+    if (nome === 'valorSocio') {
 
       if (!this.filtro.valorSocio.asc) {
         this.filtro.valorSocio.asc = true;
+        this.filtro.valorSocio.order = ['valorSocio'];
       } else {
         this.filtro.valorSocio.asc = !this.filtro.valorSocio.asc;
       }
 
-      this.filtro.valor.asc = null;
-      this.filtro.categoria.asc = null;
-      this.filtro.nome.asc = null;
+    } else {
 
-    } else if (nome === 'categoria') {
+      this.filtro.valorSocio.asc = null;
+      this.filtro.valorSocio.order = null;
+
+    }
+
+    if (nome === 'categoria') {
 
       if (!this.filtro.categoria.asc) {
         this.filtro.categoria.asc = true;
+        this.filtro.categoria.order = ['categoria.nome'];
       } else {
         this.filtro.categoria.asc = !this.filtro.categoria.asc;
       }
 
-      this.filtro.valor.asc = null;
-      this.filtro.valorSocio.asc = null;
-      this.filtro.nome.asc = null;
+    } else {
+
+      this.filtro.categoria.asc = null;
+      this.filtro.categoria.order = null;
 
     }
 

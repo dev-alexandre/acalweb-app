@@ -37,12 +37,12 @@ export class MatriculaListarComponent extends ListarComponent<Matricula, Matricu
     this.filtro = {
       page: 0,
       size: 5,
-      ativo: true,
+      ativo: {valor: null, asc: null},
       numero: {valor: null, asc: null},
       letra: {valor: null, asc: null},
       hidrometro: {valor: null, asc: null},
-      logradouro: {valor: null, asc: null, order: 'logradouro.nome' },
-      tipoLogradouro: {valor: null, asc: null, order: 'logradouro.tipoLogradouro.nome'},
+      logradouro: {valor: null, asc: null, order: ['logradouro.nome'] },
+      tipoLogradouro: {valor: null, asc: null, order: ['logradouro.tipoLogradouro.nome']},
     };
   }
 
@@ -50,67 +50,80 @@ export class MatriculaListarComponent extends ListarComponent<Matricula, Matricu
   public order(nome: string): void {
 
     if (nome === 'numero') {
+
       if (!this.filtro.numero.asc) {
         this.filtro.numero.asc = true;
+        this.filtro.numero.order = ['numero'];
       } else {
         this.filtro.numero.asc = !this.filtro.numero.asc;
       }
-      this.filtro.letra.asc = null;
-      this.filtro.hidrometro.asc = null;
-      this.filtro.logradouro.asc = null;
-      this.filtro.tipoLogradouro.asc = null;
 
-    } else if (nome === 'letra') {
+    } else {
+
+      this.filtro.numero.asc = null;
+      this.filtro.numero.order = null;
+    }
+
+    if (nome === 'letra') {
 
       if (!this.filtro.letra.asc) {
         this.filtro.letra.asc = true;
+        this.filtro.letra.order = ['letra'];
       } else {
         this.filtro.letra.asc = !this.filtro.letra.asc;
       }
 
-      this.filtro.numero.asc = null;
-      this.filtro.hidrometro.asc = null;
-      this.filtro.logradouro.asc = null;
-      this.filtro.tipoLogradouro.asc = null;
+    } else {
 
-    }  else if (nome === 'hidrometro') {
+      this.filtro.letra.asc = null;
+      this.filtro.letra.order = null;
+
+    }
+
+    if (nome === 'hidrometro') {
 
       if (!this.filtro.hidrometro.asc) {
         this.filtro.hidrometro.asc = true;
+        this.filtro.hidrometro.order = ['hidrometro'];
       } else {
         this.filtro.hidrometro.asc = !this.filtro.hidrometro.asc;
       }
 
-      this.filtro.numero.asc = null;
-      this.filtro.letra.asc = null;
-      this.filtro.logradouro.asc = null;
-      this.filtro.tipoLogradouro.asc = null;
+    } else {
 
-    } else if (nome === 'logradouro') {
+      this.filtro.hidrometro.asc = null;
+      this.filtro.hidrometro.order = null;
+
+    }
+
+    if (nome === 'logradouro') {
 
       if (!this.filtro.logradouro.asc) {
         this.filtro.logradouro.asc = true;
+        this.filtro.logradouro.order = ['logradouro.nome'];
       } else {
         this.filtro.logradouro.asc = !this.filtro.logradouro.asc;
       }
 
-      this.filtro.numero.asc = null;
-      this.filtro.letra.asc = null;
-      this.filtro.hidrometro.asc = null;
-      this.filtro.tipoLogradouro.asc = null;
+    } else {
 
-    } else if (nome === 'tipoLogradouro') {
+      this.filtro.logradouro.asc = null;
+      this.filtro.logradouro.order = null;
+
+    }
+
+    if (nome === 'tipoLogradouro') {
 
       if (!this.filtro.tipoLogradouro.asc) {
         this.filtro.tipoLogradouro.asc = true;
+        this.filtro.tipoLogradouro.order = ['logradouro.tipoLogradouro.nome'];
       } else {
         this.filtro.tipoLogradouro.asc = !this.filtro.tipoLogradouro.asc;
       }
 
-      this.filtro.numero.asc = null;
-      this.filtro.letra.asc = null;
-      this.filtro.hidrometro.asc = null;
-      this.filtro.logradouro.asc = null;
+    } else {
+      this.filtro.tipoLogradouro.asc = null;
+      this.filtro.tipoLogradouro.order = null;
     }
 
 

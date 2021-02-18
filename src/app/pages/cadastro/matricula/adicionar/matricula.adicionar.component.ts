@@ -44,8 +44,8 @@ export class MatriculaAdicionarComponent extends AdicionarComponent<Matricula, M
   public loadLograoduro(): void {
 
     const filtro: LogradouroFiltro = {
-      nome: {asc: true, order: 'nome', prioridade: 1 },
-      tipoLogradouro: {asc: true, order: 'tipoLogradouro.nome', prioridade: 0 }
+      nome: {asc: true, order: ['nome'], prioridade: 1 },
+      tipoLogradouro: {asc: true, order: ['tipoLogradouro.nome'], prioridade: 0 }
     };
 
     this.lograoduroService.listar(filtro).subscribe(

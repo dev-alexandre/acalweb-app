@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
 
-  <nb-card status="success">
+  <nb-card status="success" [nbSpinner]="loading">
 
     <nb-card-header>
       Contrato
@@ -18,7 +18,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-5">
           <div class="form-group">
             <ngx-selecionar-matricula
               [title]="'Matrícula'"
@@ -28,7 +28,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-5">
           <div class="form-group">
             <ngx-selecionar-matricula
               [title]="'Matrícula de correspondência'"
@@ -38,32 +38,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-4">
-          <div class="form-group">
-            <ngx-selecionar-grupo
-              [submited]="submited"
-              (setData)=(selecionarGrupo($event))>
-            </ngx-selecionar-grupo>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-12">
-          <label class="label">Valor</label>
-          <div class="form-group">
-            <input
-              nbInput
-              fullWidth
-              type="text"
-              mask="separator.2"
-              thousandSeparator="."
-              decimalMarker=","
-              [status]="getStatus('valor')"
-              [formControl]="valor"
-              >
-          </div>
-        </div>
-
-        <div class="col-md-6 col-12">
+        <div class="col-md-2 col-12">
           <label class="label">Contrato</label>
           <div class="form-group">
 
@@ -75,6 +50,49 @@
               </nb-checkbox>
 
             </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <ngx-selecionar-grupo
+              [submited]="submited"
+              (setData)=(selecionarGrupo($event))>
+            </ngx-selecionar-grupo>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-12">
+          <label class="label">Valor</label>
+          <div class="form-group">
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              prefix="R$ "
+              mask="separator.2"
+              thousandSeparator="."
+              decimalMarker=","
+              [status]="getStatus('valor')"
+              [formControl]="valor"
+              >
+          </div>
+        </div>
+
+        <div class="col-md-3 col-12">
+          <label class="label">Valor Sócio</label>
+          <div class="form-group">
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              prefix="R$ "
+              mask="separator.2"
+              thousandSeparator="."
+              decimalMarker=","
+              [status]="getStatus('valorSocio')"
+              [formControl]="valorSocio"
+              >
+          </div>
         </div>
 
       </div>
