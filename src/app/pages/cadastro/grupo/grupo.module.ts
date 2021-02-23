@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbButtonModule, NbCardModule, NbCheckboxModule, NbIconModule, NbInputModule, NbSelectModule, NbSpinnerModule } from '@nebular/theme';
 import { ThemeModule } from 'app/@theme/theme.module';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { GrupoAdicionarComponent } from './adicionar/grupo.adicionar.component';
 import { GrupoDeletarComponent } from './deletar/grupo.deletar.component';
 import { GrupoEditarComponent } from './editar/grupo.editar.component';
@@ -12,12 +11,12 @@ import { GrupoRoutingModule } from './grupo-routing.module';
 import { GrupoComponent } from './grupo.component';
 import { GrupoService } from './grupo.service';
 import { GrupoListarComponent } from './listar/grupo.listar.component';
+import { TableModule } from 'app/@core/table/table.module';
 
 @NgModule({
   imports: [
     ThemeModule,
     NbCardModule,
-    Ng2SmartTableModule,
     NbButtonModule,
     NbInputModule,
     NbSelectModule,
@@ -28,6 +27,7 @@ import { GrupoListarComponent } from './listar/grupo.listar.component';
     NbInputModule,
     GrupoRoutingModule,
     NbSpinnerModule,
+    TableModule,
     NgxMaskModule.forChild(),
   ],
   declarations: [

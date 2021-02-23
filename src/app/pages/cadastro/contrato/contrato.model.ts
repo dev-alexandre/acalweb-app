@@ -23,5 +23,6 @@ export interface Contrato extends Model {
   referencias?: string[];
   corte?: Corte[];
   valorExibido?: number;
+  encerrado?: string;
 
 }

@@ -4,6 +4,8 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbListModule, NbPopoverModule, NbSelectModule, NbSpinnerModule } from '@nebular/theme';
 import { TableModule } from 'app/@core/table/table.module';
 import { ThemeModule } from 'app/@theme/theme.module';
+import { ContratoService } from '../contrato/contrato.service';
+import { MatriculaService } from '../matricula/matricula.service';
 import { PipeModule } from './../../../@core/pipe/pipe.module';
 import { LogradouroAdicionarComponent } from './adicionar/logradouro.adicionar.component';
 import { LogradouroDeletarComponent } from './deletar/logradouro.deletar.component';
@@ -12,6 +14,7 @@ import { LogradouroListarComponent } from './listar/logradouro.listar.component'
 import { LogradouroRoutingModule } from './logradouro-routing.module';
 import { LogradouroComponent } from './logradouro.component';
 import { LogradouroService } from './logradouro.service';
+import { LogradouroVisualizarComponent } from './visualizar/logradouro.visualizar.component';
 
 @NgModule({
   imports: [
@@ -37,12 +40,14 @@ import { LogradouroService } from './logradouro.service';
     LogradouroDeletarComponent,
     LogradouroEditarComponent,
     LogradouroListarComponent,
+    LogradouroVisualizarComponent,
+  ],
+  providers: [
+    LogradouroService,
+    ContratoService,
   ],
   exports: [
   ],
-  providers: [
-    LogradouroService
-  ]
 })
 
 export class LogradouroModule {}

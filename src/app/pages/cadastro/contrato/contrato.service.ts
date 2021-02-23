@@ -25,4 +25,8 @@ export class ContratoService extends Service<Contrato> {
     return this.http.get<number>(environment.apiUrl + '/contrato' + '/countByCategoria/' + categoria.nome );
   }
 
+  public listarMatriculasPorContrato(referencia: string): Observable<Contrato[]> {
+    return this.http.get<Contrato[]>(environment.apiUrl + '/contrato' + '/listarMatriculasPorContrato/' + referencia );
+  }
+
 }

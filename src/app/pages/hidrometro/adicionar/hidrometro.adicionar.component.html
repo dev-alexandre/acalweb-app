@@ -20,7 +20,7 @@
         </nb-list-item>
 
         <nb-list-item>
-          Quantidade de Água considerada para Abono  {{valorAgua?.litrosGratuidade | number : '1.0': 'pt-BR' : 'Lts' }}
+          Quantidade de Água em litros considerada para Abono  {{valorAgua?.litrosGratuidade | number : '1.0': 'pt-BR' : 'Lts' }}
         </nb-list-item>
       </nb-list>
     </ng-container>
@@ -31,15 +31,28 @@
         <thead >
           <tr>
             <th scope="col" class="align-middle font-weight-bold"> Matrícula: </th>
-            <th scope="col" class="align-middle font-weight-bold"> Anterior: </th>
+            <th scope="col" class="align-middle font-weight-bold"> Hidrometro: </th>
             <th scope="col" class="align-middle font-weight-bold"> Atual: </th>
             <th scope="col" class="align-middle font-weight-bold"> Consumo: </th>
             <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
           </tr>
         </thead>
 
-        <tbody *ngIf="hidrometros">
+        <tbody *ngIf="contratos">
+          <tr *ngFor="let contrato of contratos; index as i;">
+            <td >
+                {{contrato.matricula | matricula}}
+            </td>
 
+            <td >
+                {{contrato.matricula.hidrometro}}
+            </td>
+
+
+          </tr>
+
+
+          <!--
           <tr *ngFor="let hidrometro of hidrometros; index as i;">
 
             <td class="align-middle" >
@@ -55,7 +68,6 @@
                 thousandSeparator="."
                 [status]='hidrometro.valido ? "basic" :"danger" '
                 [(ngModel)]=hidrometro.hidrometro.anterior
-                placeholder="Anterior"
               >
             </td>
 
@@ -68,7 +80,6 @@
                 thousandSeparator="."
                 [status]='hidrometro.valido ? "basic" :"danger" '
                 [(ngModel)]=hidrometro.hidrometro.atual
-                placeholder="Atual"
               >
             </td>
 
@@ -89,7 +100,7 @@
             </td>
 
           </tr>
-
+        -->
         </tbody>
 
         <tfoot >

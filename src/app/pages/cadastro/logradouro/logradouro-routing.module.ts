@@ -1,3 +1,4 @@
+import { LogradouroVisualizarComponent } from './visualizar/logradouro.visualizar.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'app/auth/auth-guard.service';
@@ -30,6 +31,11 @@ const routes: Routes = [{
       path: 'editar',
       canActivate: [AuthGuard],
       component: LogradouroEditarComponent,
+    },
+    {
+      path: 'visualizar',
+      canActivate: [AuthGuard],
+      component: LogradouroVisualizarComponent,
     },
   ],
 }];

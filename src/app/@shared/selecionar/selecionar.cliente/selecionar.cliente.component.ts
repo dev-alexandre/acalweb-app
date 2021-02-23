@@ -5,6 +5,7 @@ import { ClienteService } from 'app/pages/cadastro/cliente/cliente.service';
 
 @Component({
   selector: 'ngx-selecionar-cliente',
+  styleUrls: ['./selecionar.cliente.component.scss'],
   templateUrl: './selecionar.cliente.component.html',
 })
 

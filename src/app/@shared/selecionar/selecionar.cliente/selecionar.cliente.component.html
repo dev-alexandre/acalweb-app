@@ -1,12 +1,13 @@
-<div (mouseleave)='onFocus = false; textSeach="" '>
+<div (mouseleave)='onFocus = false; textSeach="" ' style="z-index:100; position: relative;">
 
-  <label class="label">Cliente {{submited}}</label>
+  <label class="label"> Cliente  </label>
 
   <div *ngIf="cliente">
 
     <nb-form-field>
 
       <input
+        disabled
         nbInput
         fullWidth
         type="text"
@@ -16,50 +17,50 @@
 
       <button nbSuffix nbButton ghost (click)="cliente = null; textSeach = ''; selecionar(null)" type="button">
         <nb-icon
-        pack="eva"
-        icon="trash-2-outline"
-        >
-      </nb-icon>
-    </button>
+          pack="eva"
+          icon="trash-2-outline" >
+        </nb-icon>
+      </button>
 
-  </nb-form-field>
+    </nb-form-field>
 
-</div>
-
-
-
-<div *ngIf="!cliente">
-
-  <input
-    nbInput
-    fullWidth
-    type="text"
-    (focus)='onFocus = true;'
-    (blur)='onFocus = false;'
-    (input)="atualizar()"
-    placeholder="Cliente"
-    [status]="getStatus()"
-    [(ngModel)]=textSeach
-    >
-
-  <nb-list *ngIf="(textSeach?.length >= 3)" style="z-index: 1000;">
-
-    <nb-list-item *ngFor="let c of clientes" (click)="this.cliente = c; selecionar(c)">
-      {{ c.nome }}
-    </nb-list-item>
-
-    <nb-list-item *ngIf="!clientes?.length">
-      Nenhum usúario atende aos critérios
-    </nb-list-item>
-
-  </nb-list>
-
-  <div *ngIf="onFocus && (textSeach?.length<3) ">
-    <span class="caption-2 text-hint">
-      Digite mais {{ 3 - textSeach?.length}} caracteres
-    </span>
   </div>
 
-</div>
+
+  <div *ngIf="!cliente">
+
+    <input
+      nbInput
+      fullWidth
+      type="text"
+      (focus)='onFocus = true;'
+      (blur)='onFocus = false;'
+      (input)="atualizar()"
+      placeholder="Cliente"
+      [status]="getStatus()"
+      [(ngModel)]=textSeach
+      >
+
+      <nb-list *ngIf="(textSeach?.length >= 3)" style="background-color: white;"  >
+
+        <nb-list-item *ngFor="let c of clientes"
+          (click)="this.cliente = c; selecionar(c)">
+          {{ c.nome }}
+        </nb-list-item>
+
+        <nb-list-item *ngIf="!clientes?.length">
+          Nenhum usúario atende aos critérios
+        </nb-list-item>
+
+      </nb-list>
+
+
+    <div *ngIf="onFocus && (textSeach?.length<3) ">
+      <span class="caption-2 text-hint">
+        Digite mais {{ 3 - textSeach?.length}} caracteres
+      </span>
+    </div>
+
+  </div>
 
 </div>

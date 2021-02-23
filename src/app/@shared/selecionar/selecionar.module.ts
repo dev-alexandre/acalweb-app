@@ -1,3 +1,4 @@
+import { PipeModule } from './../../@core/pipe/pipe.module';
 import { SelecionarMatriculaComponent } from './selecionar.matricula/selecionar.matricula.component';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,6 +27,7 @@ import { GrupoService } from 'app/pages/cadastro/grupo/grupo.service';
     NbCardModule,
     NbSelectModule,
     NbFormFieldModule,
+    PipeModule,
   ],
 
   declarations: [

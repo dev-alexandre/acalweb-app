@@ -1,77 +1,71 @@
-<label class="label">{{title}}</label>
+<div (mouseleave)='onFocus = false; textSeach=""' style="z-index:100; position: relative;">
 
-<div *ngIf="!matricula">
+  <label class="label">{{title}}</label>
 
-  <input
-    nbInput
-    fullWidth
-    type="text"
-    (focus)='onFocus = true;'
-    (blur)='onFocus = false;'
-    (input)="atualizar()"
-    [placeholder]='title'
-    [status]="getStatus()"
-    [(ngModel)]=textSeach
-    >
+  <div *ngIf="matricula">
 
-  <ng-container *ngIf="(textSeach?.length >= 3) && !matricula">
+    <nb-form-field>
 
-    <nb-list *ngFor="let m of matriculas">
+      <input
+        disabled
+        nbInput
+        fullWidth
+        type="text"
+        [status]="getStatus()"
+        [(ngModel)]=textOutput
+        >
 
-      <nb-list-item class="text-disabled bold">
-        {{m.title}}
-      </nb-list-item>
+      <button nbSuffix nbButton ghost (click)="matricula = null; textSeach = ''; selecionar(null)" type="button">
+        <nb-icon
+          pack="eva"
+          icon="trash-2-outline" >
+        </nb-icon>
+      </button>
 
-      <nb-list-item *ngFor="let value of m.values" (click)="selecionar(value);">
-        {{value.logradouro.tipoLogradouro.nome}}
-        {{value.logradouro.nome}}
-        {{value.numero}}
-        {{value.letra}}
-      </nb-list-item>
+    </nb-form-field>
 
-    </nb-list>
-
-    <nb-list *ngIf="!matriculas.length">
-      <nb-list-item>
-        Nenhum dado atende aos critérios
-      </nb-list-item>
-    </nb-list>
-
-  </ng-container>
-
-  <div *ngIf="onFocus && (textSeach?.length<3) ">
-    <span class="caption-2 text-hint">
-      Digite mais {{ 3 - textSeach?.length}} caracteres
-    </span>
   </div>
 
-</div>
-
-
-
-<div *ngIf="matricula">
-
-  <nb-form-field>
+  <div *ngIf="!matricula">
 
     <input
       nbInput
       fullWidth
       type="text"
+      (focus)='onFocus = true;'
+      (blur)='onFocus = false;'
+      (input)="atualizar()"
       [placeholder]='title'
       [status]="getStatus()"
-      [(ngModel)]=textOutput
+      [(ngModel)]=textSeach
       >
 
-      <button nbSuffix nbButton ghost (click)="cliente = null; textSeach = ''; selecionar(null)" type="button">
-        <nb-icon
-          pack="eva"
-          icon="trash-2-outline">
-        </nb-icon>
+      <ng-container *ngIf="(textSeach?.length >= 3)">
 
-    </button>
+        <ng-container *ngFor="let select of matriculas">
 
-  </nb-form-field>
+          <nb-list *ngIf="select">
 
+            <nb-list-item class="text-secondary">
+              {{select.title}}
+            </nb-list-item>
+
+            <nb-list-item *ngFor="let m of select.values"
+             (click)="this.matricula = m; selecionar(m)">
+              {{m | matricula}}
+            </nb-list-item>
+
+          </nb-list>
+
+        </ng-container>
+
+        <nb-list *ngIf="!matriculas?.length">
+          <nb-list-item
+            style="background-color: white; z-index: -1; position: absolute; width: 100%;">
+            Nenhuma matrícula atende aos critérios
+          </nb-list-item>
+        </nb-list>
+
+      </ng-container>
+  </div>
 </div>
-
-

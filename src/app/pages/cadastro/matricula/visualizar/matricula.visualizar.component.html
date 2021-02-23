@@ -1,0 +1,143 @@
+  <nb-card status="primary" [nbSpinner]="loading">
+
+    <nb-card-header>
+      <div class="float-left">
+        Matricula
+      </div>
+
+      <div class="float-right">
+        <button nbButton outline fullWidth [status]="ativos? 'success':'basic'" (click)=changeAtivos() [nbSpinner]=detalhes>
+          <ng-container *ngIf="!ativos">
+            Exibir Inativos
+          </ng-container>
+
+          <ng-container *ngIf="ativos">
+            Exibir Somente Ativos
+          </ng-container>
+
+        </button>
+      </div>
+    </nb-card-header>
+
+    <nb-card-body>
+      <div class="row" *ngIf="data">
+
+          <div class="col-md-2 col-12">
+            <div class="form-group">
+              <small class="form-text text-muted">* Tipo</small>
+
+              <input
+                nbInput
+                disabled
+                fullWidth
+                type="text"
+                status="basic"
+                [(ngModel)]="data.logradouro.tipoLogradouro.nome"
+                >
+
+            </div>
+          </div>
+
+          <div class="col-md-6 col-12">
+            <div class="form-group">
+              <small class="form-text text-muted">* Logradouro</small>
+
+              <input
+                nbInput
+                disabled
+                fullWidth
+                type="text"
+                status="basic"
+                [(ngModel)]="data.logradouro.nome"
+                >
+
+            </div>
+          </div>
+
+          <div class="col-md-2 col-6">
+            <div class="form-group">
+              <small class="form-text text-muted">* Número</small>
+              <input
+                nbInput
+                fullWidth
+                disabled
+                type="text"
+                status="basic"
+                [(ngModel)]="data.numero"
+                >
+
+            </div>
+          </div>
+
+          <div class="col-md-2 col-6">
+            <div class="form-group">
+              <small class="form-text text-muted">* Letra</small>
+              <input
+                nbInput
+                disabled
+                fullWidth
+                type="text"
+                status="basic"
+                [(ngModel)]="data.letra"
+                >
+            </div>
+          </div>
+
+        </div>
+
+    </nb-card-body>
+
+
+    <nb-card-body>
+
+      <nb-list  [nbSpinner]=detalhes>
+          <nb-list-item *ngFor="let contrato of contratos" >
+
+              <div class="col-6">
+                <div class="float-left">
+                  {{contrato.cliente.nome }} | <strong> {{contrato.cliente.documento | documento}}</strong>
+                </div>
+              </div>
+
+              <div class="col-4">
+                <div class="float-right">
+                  De: <strong>{{contrato.createdDate | dateTimePipe}}</strong>  Até:
+
+                  <strong>
+
+                    <ng-container *ngIf="contrato.encerrado === null">
+                      Aberto
+                    </ng-container>
+
+                    <ng-container *ngIf="contrato.encerrado !== null">
+                      {{contrato.encerrado | dateTimePipe}}
+                    </ng-container>
+
+                    </strong>
+                </div>
+              </div>
+
+              <div class="col-2">
+                <div class="float-right">
+                  {{contrato.ativo ? 'Ativo' : 'Inativo'}}
+                </div>
+              </div>
+
+          </nb-list-item>
+      </nb-list>
+
+    </nb-card-body>
+
+
+    <nb-card-footer>
+      <div class="row">
+
+        <div class="col-md-2 col-6">
+          <button nbButton outline fullWidth status="basic" (click)="voltar()">voltar</button>
+        </div>
+
+      </div>
+    </nb-card-footer>
+
+  </nb-card>
+

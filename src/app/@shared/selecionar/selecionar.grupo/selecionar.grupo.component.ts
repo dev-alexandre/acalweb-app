@@ -5,6 +5,7 @@ import { Select } from '../select.model';
 
 @Component({
   selector: 'ngx-selecionar-grupo',
+  styleUrls: ['./selecionar.grupo.component.scss'],
   templateUrl: './selecionar.grupo.component.html',
 })
 

@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbButtonModule, NbCardModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbSelectModule, NbSpinnerModule, NbToggleModule } from '@nebular/theme';
 import { ThemeModule } from 'app/@theme/theme.module';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgxMaskModule } from 'ngx-mask';
 import { UsuarioAdicionarComponent } from './adicionar/usuario.adicionar.component';
 import { UsuarioDeletarComponent } from './deletar/usuario.deletar.component';
@@ -19,7 +18,6 @@ import { UsuarioService } from './usuario.service';
     CommonModule,
     ThemeModule,
     NbCardModule,
-    Ng2SmartTableModule,
     NbButtonModule,
     NbInputModule,
     NbSelectModule,

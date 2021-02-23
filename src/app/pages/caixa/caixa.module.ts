@@ -3,7 +3,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbSelectModule } from '@nebular/theme';
 import { PipeModule } from 'app/@core/pipe/pipe.module';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgxMaskModule } from 'ngx-mask';
 import { ThemeModule } from '../../@theme/theme.module';
 import { BoletoModule } from './../financeiro/boleto/boleto.module';
@@ -20,7 +19,6 @@ import { ReceberComponent } from './receber/receber.component';
   imports: [
     ThemeModule,
     NbCardModule,
-    Ng2SmartTableModule,
     NbButtonModule,
     NbInputModule,
     NbSelectModule,

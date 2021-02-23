@@ -77,8 +77,6 @@ export class MatriculaAdicionarComponent extends AdicionarComponent<Matricula, M
   }
 
   public changeDataBeforeSave(matricula: Matricula): Matricula {
-    matricula.possuiHidrometro = matricula.hidrometro ? true : false;
-
     return matricula;
   }
 
@@ -108,9 +106,6 @@ export class MatriculaAdicionarComponent extends AdicionarComponent<Matricula, M
         null, [
       ]),
 
-      possuiHidrometro: new FormControl(
-        null, [
-      ]),
       }
     );
   }

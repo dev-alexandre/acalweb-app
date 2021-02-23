@@ -4,6 +4,7 @@ import { NbDateFnsDateModule } from '@nebular/date-fns';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbButtonModule, NbCardModule, NbDatepickerModule, NbIconModule, NbInputModule, NbSelectModule, NbSpinnerModule } from '@nebular/theme';
 import { PipeModule } from 'app/@core/pipe/pipe.module';
+import { TableModule } from 'app/@core/table/table.module';
 import { ThemeModule } from 'app/@theme/theme.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { AnaliseAdicionarComponent } from './adicionar/analise.adicionar.component';
@@ -31,6 +32,7 @@ import { AnaliseListarComponent } from './listar/analise.listar.component';
     NbDateFnsDateModule,
     PipeModule,
     NbSpinnerModule,
+    TableModule,
     NgxMaskModule.forChild(),
   ],
   declarations: [

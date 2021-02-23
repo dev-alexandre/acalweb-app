@@ -67,7 +67,7 @@
         </div>
 
 
-        <div class="offset-md-6 col-md-6 col-12" *ngIf="hasHidrometro">
+        <div class="offset-md-6 col-md-6 col-12" >
           <div class="form-group" >
             <label class="label">Hidrômetro</label>
             <input
@@ -79,20 +79,6 @@
               [status]="getStatus('hidrometro')"
               [formControl]="hidrometro"
               >
-          </div>
-        </div>
-
-        <div class="offset-md-6 col-md-6 col-12" *ngIf="!hasHidrometro">
-          <label class="label">Hidrômetro</label>
-          <div class="form-group" >
-
-            <nb-checkbox
-              class="align-center"
-              [status]="getStatus('possuiHidrometro')"
-              [formControl]="possuiHidrometro"
-              (checkedChange)="toggle($event)">
-              Possui Hidrometro
-            </nb-checkbox>
           </div>
         </div>
 

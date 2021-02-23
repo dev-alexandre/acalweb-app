@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbButtonModule, NbCardModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbSelectModule, NbSpinnerModule } from '@nebular/theme';
 import { ThemeModule } from 'app/@theme/theme.module';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgxMaskModule } from 'ngx-mask';
 import { ClienteAdicionarComponent } from './adicionar/cliente.adicionar.component';
 import { ClienteRoutingModule } from './cliente-routing.module';
@@ -14,6 +13,7 @@ import { ClienteService } from './cliente.service';
 import { ClienteDeletarComponent } from './deletar/cliente.deletar.component';
 import { ClienteEditarComponent } from './editar/cliente.editar.component';
 import { ClienteListarComponent } from './listar/cliente.listar.component';
+import { TableModule } from 'app/@core/table/table.module';
 
 @NgModule({
   imports: [
@@ -32,6 +32,7 @@ import { ClienteListarComponent } from './listar/cliente.listar.component';
     NbLayoutModule,
     NbSpinnerModule,
     NbFormFieldModule,
+    TableModule,
     NgxMaskModule.forChild(),
   ],
   declarations: [

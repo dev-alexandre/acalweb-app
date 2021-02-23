@@ -3,9 +3,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbAutocompleteModule, NbButtonModule, NbCardModule, NbCheckboxModule, NbDialogModule, NbIconModule, NbInputModule, NbListModule, NbSelectModule, NbToggleModule, NbTooltipModule, NbSpinnerModule } from '@nebular/theme';
 import { PipeModule } from 'app/@core/pipe/pipe.module';
+import { TableModule } from 'app/@core/table/table.module';
 import { SelecionarModule } from 'app/@shared';
 import { ThemeModule } from 'app/@theme/theme.module';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgxMaskModule } from 'ngx-mask';
 import { ContratoAdicionarComponent } from './adicionar/contrato.adicionar.component';
 import { ContratoRoutingModule } from './contrato-routing.module';
@@ -19,7 +19,6 @@ import { ContratoListarComponent } from './listar/contrato.listar.component';
   imports: [
     ThemeModule,
     NbCardModule,
-    Ng2SmartTableModule,
     NbButtonModule,
     NbInputModule,
     NbSelectModule,
@@ -37,6 +36,7 @@ import { ContratoListarComponent } from './listar/contrato.listar.component';
     NbTooltipModule,
     PipeModule,
     NbSpinnerModule,
+    TableModule,
     NgxMaskModule.forChild(),
     NbDialogModule.forChild(),
   ],

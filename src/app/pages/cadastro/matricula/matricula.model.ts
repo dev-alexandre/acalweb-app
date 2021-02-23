@@ -15,7 +15,6 @@ export interface Matricula extends Model {
   logradouro: Logradouro;
   letra?: string;
 
-  possuiHidrometro?: boolean;
   hidrometro?: string;
   hidrometroList?: Hidrometro[];
 

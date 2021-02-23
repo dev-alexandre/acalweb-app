@@ -1,212 +1,158 @@
-<nb-card status="info" [nbSpinner]="loading">
+<ngx-table [loading]=loading [title]="'Grupo'" [table]=table [filtro]=filtro (buscar)=load()>
+  <table class="table table-sm table-striped" summary="Clientes">
 
-  <nb-card-header>
-    Cliente
-  </nb-card-header>
+    <thead >
+      <tr>
 
-  <nb-card-body>
-    <div class="col-12 col-md-2 offset-md-10">
+        <th scope="col" class="align-middle font-weight-bold" (click)='order("nome")'>
+          Nome:
 
-      <nb-select
-        class="float-right"
-        placeholder="Número de registros"
-        [fullWidth]="true"
-        [(selected)]="filtro.size"
-        (selectedChange)="filtro.page = 0; filtro.size = $event; changeSize()"
-        (ngModelChange)="filtro.page = 0; filtro.size = $event;">
-        <nb-option [value]=1>1</nb-option>
-        <nb-option [value]=3>3</nb-option>
-        <nb-option [value]=5>5</nb-option>
-        <nb-option [value]=10>10</nb-option>
-        <nb-option [value]=25>25</nb-option>
-      </nb-select>
+          <ng-container *ngIf="filtro.nome.asc !== null">
+            <nb-icon icon="arrow-downward-outline" *ngIf="filtro.nome.asc"></nb-icon>
+            <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.nome.asc"></nb-icon>
+          </ng-container>
+        </th>
 
-    </div>
-  </nb-card-body>
+        <th scope="col" class="align-middle font-weight-bold" (click)='order("documento")'>
+          Documento:
 
-  <nb-card-body>
-    <table class="table table-sm table-striped" summary="Clientes">
+          <ng-container *ngIf="filtro.documento.asc !== null">
+            <nb-icon icon="arrow-downward-outline" *ngIf="filtro.documento.asc"></nb-icon>
+            <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.documento.asc"></nb-icon>
+          </ng-container>
+        </th>
 
-      <thead >
-        <tr>
+        <th scope="col" class="align-middle font-weight-bold" (click)='order("socio")'>
+          Sócio Número:
 
-          <th scope="col" class="align-middle font-weight-bold" (click)='order("nome")'>
-            Nome:
+          <ng-container *ngIf="filtro.socio.asc !== null">
+            <nb-icon icon="arrow-downward-outline" *ngIf="filtro.socio.asc"></nb-icon>
+            <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.socio.asc"></nb-icon>
+          </ng-container>
+        </th>
 
-            <ng-container *ngIf="filtro.nome.asc !== null">
-              <nb-icon icon="arrow-downward-outline" *ngIf="filtro.nome.asc"></nb-icon>
-              <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.nome.asc"></nb-icon>
-            </ng-container>
-          </th>
+        <th scope="col" class="align-middle font-weight-bold" (click)='order("letra")'>
+          Sócio Letra:
 
-          <th scope="col" class="align-middle font-weight-bold" (click)='order("documento")'>
-            Documento:
+          <ng-container *ngIf="filtro.letra.asc !== null">
+            <nb-icon icon="arrow-downward-outline" *ngIf="filtro.letra.asc"></nb-icon>
+            <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.letra.asc"></nb-icon>
+          </ng-container>
+        </th>
 
-            <ng-container *ngIf="filtro.documento.asc !== null">
-              <nb-icon icon="arrow-downward-outline" *ngIf="filtro.documento.asc"></nb-icon>
-              <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.documento.asc"></nb-icon>
-            </ng-container>
-          </th>
+        <th scope="col" style="width: 8%;" colspan="2">
+          <button nbButton outline fullWidth status="success" (click)=adicionar()>
+            <nb-icon icon="plus-outline"></nb-icon>
+          </button>
+        </th>
 
-          <th scope="col" class="align-middle font-weight-bold" (click)='order("socio")'>
-            Sócio Número:
+      </tr>
+    </thead>
 
-            <ng-container *ngIf="filtro.socio.asc !== null">
-              <nb-icon icon="arrow-downward-outline" *ngIf="filtro.socio.asc"></nb-icon>
-              <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.socio.asc"></nb-icon>
-            </ng-container>
-          </th>
+    <thead >
+      <tr>
+        <th>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            class="form-control"
+            (keydown.enter)="load()"
+            [(ngModel)]=filtro.nome.valor
+            >
+        </th>
 
-          <th scope="col" class="align-middle font-weight-bold" (click)='order("letra")'>
-            Sócio Letra:
+        <th>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            class="form-control"
+            (keydown.enter)="load()"
+            [(ngModel)]=filtro.documento.valor
+            >
+        </th>
 
-            <ng-container *ngIf="filtro.letra.asc !== null">
-              <nb-icon icon="arrow-downward-outline" *ngIf="filtro.letra.asc"></nb-icon>
-              <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.letra.asc"></nb-icon>
-            </ng-container>
-          </th>
+        <th>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            class="form-control"
+            (keydown.enter)="load()"
+            [(ngModel)]=filtro.socio.valor
+            >
+        </th>
 
-          <th scope="col" style="width: 8%;" colspan="2">
-            <button nbButton outline fullWidth status="success" (click)=adicionar()>
-              <nb-icon icon="plus-outline"></nb-icon>
-            </button>
-          </th>
+        <th>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            class="form-control"
+            (keydown.enter)="load()"
+            [(ngModel)]=filtro.letra.valor
+            >
+        </th>
 
-        </tr>
-      </thead>
+        <th colspan="2">
+          <button nbButton outline fullWidth status="info" (click)="load()">
+            <nb-icon icon="search-outline"></nb-icon>
+          </button>
+        </th>
 
-      <thead >
-        <tr>
-          <th>
-            <input
-              nbInput
-              fullWidth
-              type="text"
-              class="form-control"
-              (keydown.enter)="load()"
-              [(ngModel)]=filtro.nome.valor
-              >
-          </th>
+      </tr>
+    </thead>
 
-          <th>
-            <input
-              nbInput
-              fullWidth
-              type="text"
-              class="form-control"
-              (keydown.enter)="load()"
-              [(ngModel)]=filtro.documento.valor
-              >
-          </th>
+    <tbody *ngIf="table && !table?.empty">
 
-          <th>
-            <input
-              nbInput
-              fullWidth
-              type="text"
-              class="form-control"
-              (keydown.enter)="load()"
-              [(ngModel)]=filtro.socio.valor
-              >
-          </th>
+      <tr *ngFor="let data of table.content; index as i;">
+        <td class="align-middle" >{{data.nome}}</td>
+        <td class="align-middle" >
 
-          <th>
-            <input
-              nbInput
-              fullWidth
-              type="text"
-              class="form-control"
-              (keydown.enter)="load()"
-              [(ngModel)]=filtro.letra.valor
-              >
-          </th>
+          <ng-container *ngIf="data.documento.length === 11">
+            {{data.documento  | mask: '000.000.000-00'}}
+          </ng-container>
 
-          <th colspan="2">
-            <button nbButton outline fullWidth status="info" (click)="load()">
-              <nb-icon icon="search-outline"></nb-icon>
-            </button>
-          </th>
+          <ng-container *ngIf="data.documento.length === 14">
+            {{data.documento  | mask: '00.000.000/0000-00'}}
+          </ng-container>
+        </td>
 
-        </tr>
-      </thead>
+        <td class="align-middle" >{{data.socio}}</td>
+        <td class="align-middle" >{{data.letra}}</td>
 
-      <tbody *ngIf="table && !table?.empty">
+        <td class="align-middle" >
+          <button nbButton outline fullWidth status="warning" (click)=editar(data)>
+            <nb-icon icon="edit-outline"></nb-icon>
+          </button>
+        </td>
 
-        <tr *ngFor="let data of table.content; index as i;">
-          <td class="align-middle" >{{data.nome}}</td>
-          <td class="align-middle" >
+        <td class="align-middle" >
+          <button nbButton outline fullWidth status="danger" (click)=deletar(data)>
+            <nb-icon icon="trash-2-outline"></nb-icon>
+          </button>
+        </td>
 
-            <ng-container *ngIf="data.documento.length === 11">
-              {{data.documento  | mask: '000.000.000-00'}}
-            </ng-container>
+      </tr>
 
-            <ng-container *ngIf="data.documento.length === 14">
-              {{data.documento  | mask: '00.000.000/0000-00'}}
-            </ng-container>
-          </td>
+    </tbody>
 
-          <td class="align-middle" >{{data.socio}}</td>
-          <td class="align-middle" >{{data.letra}}</td>
+    <tbody *ngIf="table?.empty">
 
-          <td class="align-middle" >
-            <button nbButton outline fullWidth status="warning" (click)=editar(data)>
-              <nb-icon icon="edit-outline"></nb-icon>
-            </button>
-          </td>
+      <tr>
+        <td class="align-middle" colspan="4" >
+          Nenhum registro encontrado
+        </td>
+      </tr>
 
-          <td class="align-middle" >
-            <button nbButton outline fullWidth status="danger" (click)=deletar(data)>
-              <nb-icon icon="trash-2-outline"></nb-icon>
-            </button>
-          </td>
+    </tbody>
 
-        </tr>
+    <tfoot>
+      <tr>
+        <th scope="col" colspan="4"> </th>
+      </tr>
+    </tfoot>
 
-      </tbody>
-
-      <tbody *ngIf="table?.empty">
-
-        <tr>
-          <td class="align-middle" colspan="4" >
-            Nenhum registro encontrado
-          </td>
-        </tr>
-
-      </tbody>
-
-      <tfoot>
-        <tr>
-          <th scope="col" colspan="4"> </th>
-        </tr>
-      </tfoot>
-
-    </table>
-  </nb-card-body>
-
-  <nb-card-footer>
-    <div class="row" *ngIf="table">
-        <div class="col-12 col-md-6">
-        <p class="text-secondary align-middle">
-          Exibindo de {{ (table.pageable.pageNumber * table.pageable.pageSize)+1  }} A
-          {{(table.pageable.pageNumber * table.pageable.pageSize) + table.numberOfElements }}
-          de {{table.totalElements}} registro em {{table.totalPages}} paginas
-        </p>
-      </div>
-    </div>
-  </nb-card-footer>
-
-  <nb-card-footer>
-    <div class="row" *ngIf="table">
-
-      <div class="col-md-3 col-6 ">
-        <button nbButton outline fullWidth status="basic" (click)="anterior()" [disabled]=table.first>Anterior</button>
-      </div>
-
-      <div class="offset-md-6 col-md-3 col-6">
-        <button nbButton outline fullWidth status="basic" (click)="avancar()" [disabled]=table.last>Proxima</button>
-      </div>
-
-    </div>
-  </nb-card-footer>
-
-</nb-card>
+  </table>
+</ngx-table>

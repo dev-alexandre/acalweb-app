@@ -15,6 +15,7 @@ import { MatriculaListarComponent } from './listar/matricula.listar.component';
 import { MatriculaRoutingModule } from './matricula-routing.module';
 import { MatriculaComponent } from './matricula.component';
 import { MatriculaService } from './matricula.service';
+import { MatriculaVisualizarComponent } from './visualizar/matricula.visualizar.component';
 
 @NgModule({
   imports: [
@@ -44,6 +45,7 @@ import { MatriculaService } from './matricula.service';
     MatriculaDeletarComponent,
     MatriculaEditarComponent,
     MatriculaListarComponent,
+    MatriculaVisualizarComponent,
   ],
   providers: [
     MatriculaService

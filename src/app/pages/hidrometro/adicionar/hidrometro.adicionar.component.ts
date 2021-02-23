@@ -9,6 +9,8 @@ import { ValorAguaService } from 'app/pages/financeiro/valor-agua/valor-agua.ser
 import * as moment from 'moment';
 import { HidrometroMatricula } from './../../cadastro/matricula/matricula.model';
 import { Hidrometro } from './../hidrometro.model';
+import { ContratoService } from 'app/pages/cadastro/contrato/contrato.service';
+import { Contrato } from 'app/pages/cadastro/contrato/contrato.model';
 
 @Component({
   selector: 'ngx-hidrometro-adicionar',
@@ -21,13 +23,13 @@ export class HidrometroAdicionarComponent implements OnInit {
   public storage: Storage = sessionStorage;
   public referencia: string;
   public referenciaAnterior: string;
-  public matriculas: Matricula[];
+  public contratos: Contrato[];
   public hidrometros: HidrometroMatricula[];
   public valorAgua: ValorAgua;
 
   constructor(
     private toast: NbToastrService,
-    public matriculaService: MatriculaService,
+    public contratoService: ContratoService,
     public hidrometroService: HidrometroService,
     public activeRouter: ActivatedRoute,
     public router: Router,
@@ -37,13 +39,8 @@ export class HidrometroAdicionarComponent implements OnInit {
 
   ngOnInit(): void {
     this.load();
-
-    this.valorAguaService.buscarAtual().subscribe(
-      (valorAgua) => {
-        this.valorAgua = valorAgua;
-        this.loadData();
-      }
-    );
+    this.loadData();
+    //this.loadValorAgua();
   }
 
   private load(): void {
@@ -57,6 +54,15 @@ export class HidrometroAdicionarComponent implements OnInit {
     this.referenciaAnterior = this.getReferenciaAnterior(this.referencia);
   }
 
+  private loadValorAgua() {
+    this.valorAguaService.buscarAtual().subscribe(
+      (valorAgua) => {
+        this.valorAgua = valorAgua;
+        this.loadData();
+      }
+    );
+  }
+
   private getReferenciaAnterior(referencia: string): string {
     return moment(referencia, '', true).subtract(1, 'M').format('MMYYYY');
   }
@@ -65,6 +71,13 @@ export class HidrometroAdicionarComponent implements OnInit {
 
     this.hidrometros = [];
 
+    this.contratoService.listarMatriculasPorContrato(this.referencia).subscribe(
+      (contratos: Contrato[]) => {
+        this.contratos = contratos;
+      },
+    );
+
+    /*
     this.matriculaService.listarMatriculasHidrometro().subscribe(
       (matriculas: Matricula[]) => {
         this.matriculas = matriculas;
@@ -110,9 +123,10 @@ export class HidrometroAdicionarComponent implements OnInit {
 
       }
     );
+
+    */
   }
 
-  public valorFinal(){}
 
   public validar(): boolean {
 
@@ -134,7 +148,7 @@ export class HidrometroAdicionarComponent implements OnInit {
   }
 
   public salvar(): void {
-
+    /*
     if (this.validar()) {
       this.toast.danger('Erro', 'Dados invalidos');
       return;
@@ -153,8 +167,8 @@ export class HidrometroAdicionarComponent implements OnInit {
         this.toast.danger('Erro', error);
       }
     );
+    */
   }
-
 
   public voltar(): void {
     this.router.navigate([ './listar' ], { relativeTo: this.activeRouter.parent });

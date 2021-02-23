@@ -18,7 +18,7 @@ export class DocumentoFormat implements PipeTransform {
 
       return  documento.substring(0, 3) + this.dot +
               documento.substring(3, 6) + this.dot +
-              documento.substring(6, 9) + this.dot +
+              documento.substring(6, 9) + this.travessal +
               documento.substring(9, 11);
 
     } else if (documento.length === 14) {

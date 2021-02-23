@@ -5,6 +5,7 @@ import { MatriculaAdicionarComponent } from './adicionar/matricula.adicionar.com
 import { MatriculaDeletarComponent } from './deletar/matricula.deletar.component';
 import { MatriculaEditarComponent } from './editar/matricula.editar.component';
 import { MatriculaListarComponent } from './listar/matricula.listar.component';
+import { MatriculaVisualizarComponent } from './visualizar/matricula.visualizar.component';
 
 const routes: Routes = [{
   path: '',
@@ -25,6 +26,10 @@ const routes: Routes = [{
     {
       path: 'editar',
       component: MatriculaEditarComponent,
+    },
+    {
+      path: 'visualizar',
+      component: MatriculaVisualizarComponent,
     },
   ],
 }];

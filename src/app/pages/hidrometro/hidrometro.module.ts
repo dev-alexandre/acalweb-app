@@ -4,6 +4,7 @@ import { NbDateFnsDateModule } from '@nebular/date-fns';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbButtonModule, NbCardModule, NbDatepickerModule, NbIconModule, NbInputModule, NbListModule, NbSelectModule, NbSpinnerModule, NbTooltipModule } from '@nebular/theme';
 import { PipeModule } from 'app/@core/pipe/pipe.module';
+import { TableModule } from 'app/@core/table/table.module';
 import { ThemeModule } from 'app/@theme/theme.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { MatriculaService } from '../cadastro/matricula/matricula.service';
@@ -33,6 +34,7 @@ import { HidrometroSelecionarComponent } from './selecionar/hidrometro.seleciona
     NbDatepickerModule,
     NbDateFnsDateModule,
     PipeModule,
+    TableModule,
     NbTooltipModule,
     NbSpinnerModule,
     NgxMaskModule.forChild(),

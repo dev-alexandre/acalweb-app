@@ -5,6 +5,7 @@ import { Select } from '../select.model';
 
 @Component({
   selector: 'ngx-selecionar-matricula',
+  styleUrls: ['./selecionar.matricula.component.scss'],
   templateUrl: './selecionar.matricula.component.html',
 })
 

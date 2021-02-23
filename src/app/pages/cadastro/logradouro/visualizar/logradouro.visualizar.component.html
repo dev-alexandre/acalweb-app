@@ -1,0 +1,105 @@
+  <nb-card status="primary" [nbSpinner]="loading">
+
+    <nb-card-header>
+
+      <div class="float-left">
+        Logradouro
+      </div>
+
+      <div class="float-right">
+        <button nbButton outline fullWidth [status]="ativos? 'success':'basic'" (click)=changeAtivos() [nbSpinner]=loadClientes>
+          <ng-container *ngIf="!ativos">
+            Exibir Inativos
+          </ng-container>
+
+          <ng-container *ngIf="ativos">
+            Exibir Somente Ativos
+          </ng-container>
+
+        </button>
+      </div>
+
+    </nb-card-header>
+
+    <nb-card-body>
+      <div class="row">
+
+        <div class="col-md-3 col-12">
+          <div class="form-group">
+            <label class="label">Tipo Logradouro</label>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              status="basic"
+              placeholder="Tipo Logradouro"
+              disabled
+              [(ngModel)]="data.tipoLogradouro.nome"
+              >
+
+          </div>
+        </div>
+
+        <div class="col-md-9 col-12">
+          <div class="form-group">
+
+            <label class="label">Nome</label>
+            <input
+              nbInput
+              fullWidth
+              type="text"
+              status="basic"
+              placeholder="Nome"
+              disabled
+              [(ngModel)]="data.nome"
+            >
+
+          </div>
+        </div>
+
+      </div>
+
+    </nb-card-body>
+
+
+    <nb-card-body>
+
+        <nb-list  [nbSpinner]=loadClientes>
+            <nb-list-item *ngFor="let contrato of contratos" >
+
+                <div class="col-6">
+                  <div class="float-left">
+                    {{contrato.matricula | matricula}}
+                  </div>
+                </div>
+
+                <div class="col-4">
+                  <div class="float-right">
+                    {{contrato.cliente.nome }} | {{contrato.cliente.documento | documento}}
+                  </div>
+                </div>
+
+                <div class="col-2">
+                  <div class="float-right">
+                    {{contrato.ativo ? 'Ativo' : 'Inativo'}}
+                  </div>
+                </div>
+
+            </nb-list-item>
+        </nb-list>
+
+    </nb-card-body>
+
+
+    <nb-card-footer>
+      <div class="row">
+
+        <div class="col-md-2 col-6">
+          <button nbButton outline fullWidth status="basic" (click)="voltar()">voltar</button>
+        </div>
+
+      </div>
+    </nb-card-footer>
+
+  </nb-card>
+

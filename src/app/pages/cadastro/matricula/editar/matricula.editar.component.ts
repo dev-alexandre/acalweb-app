@@ -81,10 +81,6 @@ export class MatriculaEditarComponent extends EditarComponent<Matricula, Matricu
         Validators.required,
       ]),
 
-      possuiHidrometro: new FormControl(
-        this.data.possuiHidrometro, [
-      ]),
-
       hidrometro: new FormControl(
         this.data.hidrometro, [
       ]),
@@ -112,10 +108,6 @@ export class MatriculaEditarComponent extends EditarComponent<Matricula, Matricu
 
   public get hidrometro() {
     return this.form.get('hidrometro');
-  }
-
-  public get possuiHidrometro() {
-    return this.form.get('possuiHidrometro');
   }
 
 }

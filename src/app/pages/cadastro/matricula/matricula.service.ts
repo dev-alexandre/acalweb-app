@@ -19,7 +19,7 @@ export class MatriculaService extends Service<Matricula> {
   }
 
   public selecionar(logradouro: string ): Observable<Select<Matricula>[]> {
-    return this.http.get<Select<Matricula>[]>(environment.apiUrl + '/matricula/selecionar/' + logradouro );
+    return this.http.get<Select<Matricula>[]>(environment.apiUrl + '/' + this.getModulo() +  '/selecionar/' + logradouro );
   }
 
   public listarPorReferencia(referencia: string ): Observable<Matricula[]> {

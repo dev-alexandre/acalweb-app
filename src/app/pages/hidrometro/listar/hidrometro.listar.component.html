@@ -1,128 +1,195 @@
-<nb-card status="info" [nbSpinner]="loading">
+<ngx-table [loading]=loading [title]="'Grupo'" [table]=table [filtro]=filtro (buscar)=load()>
+  <table class="table table-sm table-striped">
 
-  <nb-card-header>
-    Hidrômetro
-  </nb-card-header>
+    <thead>
 
-  <nb-card-body>
-    <div class="col-12 col-md-2 offset-md-10">
+      <tr>
+        <th scope="col" class="align-middle font-weight-bold" (click)='order("matricula")'>
+          Matrícula:
 
-      <nb-select
-        class="float-right"
-        placeholder="Número de registros"
-        [fullWidth]="true"
-        [(selected)]="filtro.size"
-        (selectedChange)="filtro.page = 0; filtro.size = $event; changeSize()"
-        (ngModelChange)="filtro.page = 0; filtro.size = $event;">
-        <nb-option [value]=1>1</nb-option>
-        <nb-option [value]=3>3</nb-option>
-        <nb-option [value]=5>5</nb-option>
-        <nb-option [value]=10>10</nb-option>
-        <nb-option [value]=25>25</nb-option>
-      </nb-select>
+          <ng-container *ngIf="filtro.matricula.asc !== null">
+            <nb-icon icon="arrow-downward-outline" *ngIf="filtro.matricula.asc"></nb-icon>
+            <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.matricula.asc"></nb-icon>
+          </ng-container>
+        </th>
 
-    </div>
-  </nb-card-body>
+        <th scope="col" class="align-middle font-weight-bold" (click)='order("referencia")'>
+          Referência:
 
-  <nb-card-body>
-    <table class="table table-sm table-striped">
+          <ng-container *ngIf="filtro.referencia.asc !== null">
+            <nb-icon icon="arrow-downward-outline" *ngIf="filtro.referencia.asc"></nb-icon>
+            <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.referencia.asc"></nb-icon>
+          </ng-container>
+        </th>
 
-      <thead>
-        <tr>
-          <th scope="col"  colspan="4">
-          </th>
+        <th scope="col" class="align-middle font-weight-bold" (click)='order("atual")'>
+          Atual:
 
-          <th scope="col"  colspan="2">
-            <button nbButton outline fullWidth status="success" (click)=selecionar()>
-              <nb-icon icon="plus-outline"></nb-icon>
-            </button>
-          </th>
-        </tr>
+          <ng-container *ngIf="filtro.atual.asc !== null">
+            <nb-icon icon="arrow-downward-outline" *ngIf="filtro.atual.asc"></nb-icon>
+            <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.atual.asc"></nb-icon>
+          </ng-container>
+        </th>
 
-        <tr>
-          <th scope="col" class="align-middle font-weight-bold"> Matrícula: </th>
-          <th scope="col" class="align-middle font-weight-bold"> Referência: </th>
-          <th scope="col" class="align-middle font-weight-bold"> Atual: </th>
-          <th scope="col" class="align-middle font-weight-bold"> Anterior: </th>
-          <th scope="col" class="align-middle font-weight-bold"> Consumo: </th>
-          <th scope="col" class="align-middle font-weight-bold"> Valor: </th>
-        </tr>
+        <th scope="col" class="align-middle font-weight-bold" (click)='order("anterior")'>
+          Anterior:
 
-      </thead>
+          <ng-container *ngIf="filtro.anterior.asc !== null">
+            <nb-icon icon="arrow-downward-outline" *ngIf="filtro.anterior.asc"></nb-icon>
+            <nb-icon icon="arrow-upward-outline"   *ngIf="!filtro.anterior.asc"></nb-icon>
+          </ng-container>
+        </th>
 
-      <tbody *ngIf="table && !table?.empty">
-        <tr *ngFor="let hidrometro of table.content; index as i">
+        <th scope="col" class="align-middle font-weight-bold">
+          Consumo:
 
-          <td class="align-middle" >
-            {{hidrometro.matricula}}
-          </td>
+        </th>
 
-          <td class="align-middle" >
-            {{hidrometro.referencia | referenciaPipe}}
-          </td>
+        <th scope="col" class="align-middle font-weight-bold">
+          Valor:
 
-          <td class="align-middle">
-            {{hidrometro.anterior | number}}
-          </td>
+        </th>
 
-          <td class="align-middle">
-            {{hidrometro.atual | number}}
-          </td>
+        <th scope="col"  colspan="2">
+          <button nbButton outline fullWidth status="success" (click)=selecionar()>
+            <nb-icon icon="plus-outline"></nb-icon>
+          </button>
+        </th>
 
-          <td class="align-middle" >
-            {{(hidrometro.atual - hidrometro.anterior ) | number}}
-          </td>
+      </tr>
+    </thead>
 
-          <td class="align-middle">
-            {{ (hidrometro.atual - hidrometro.anterior) * hidrometro.valorLitroAgua  | currency: 'BRL':'symbol'}}
-          </td>
-        </tr>
-      </tbody>
+    <thead >
+      <tr>
 
-      <tbody *ngIf="table?.empty">
+        <th>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            class="form-control"
+            (keydown.enter)="load()"
+            [(ngModel)]=filtro.matricula.valor>
+        </th>
 
-        <tr>
-          <td class="align-middle" colspan="6" >
-            Nenhum registro encontrado
-          </td>
-        </tr>
+        <th>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            class="form-control"
+            (keydown.enter)="load()"
+            [(ngModel)]=filtro.referencia.valor>
+        </th>
 
-      </tbody>
+        <th>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            class="form-control"
+            (keydown.enter)="load()"
+            [(ngModel)]=filtro.atual.valor>
+        </th>
+
+        <th>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            class="form-control"
+            (keydown.enter)="load()"
+            [(ngModel)]=filtro.anterior.valor>
+        </th>
+
+        <th>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            class="form-control"
+            (keydown.enter)="load()"
+            [(ngModel)]=filtro.anterior.valor>
+        </th>
+
+        <th>
+          <input
+            nbInput
+            fullWidth
+            type="text"
+            class="form-control"
+            (keydown.enter)="load()"
+            [(ngModel)]=filtro.anterior.valor>
+        </th>
 
 
-      <tfoot>
-        <tr>
-          <th scope="col" colspan="6"> </th>
-        </tr>
-      </tfoot>
+        <th colspan="2">
+          <button nbButton outline fullWidth status="info" (click)="load()">
+            <nb-icon icon="search-outline"></nb-icon>
+          </button>
+        </th>
 
-    </table>
-  </nb-card-body>
+      </tr>
+    </thead>
 
-  <nb-card-footer>
-    <div class="row" *ngIf="table">
-        <div class="col-12 col-md-6">
-        <p class="text-secondary align-middle">
-          Exibindo de {{ (table.pageable.pageNumber * table.pageable.pageSize)+1  }} A
-          {{(table.pageable.pageNumber * table.pageable.pageSize) + table.numberOfElements }}
-          de {{table.totalElements}} registro em {{table.totalPages}} paginas
-        </p>
-      </div>
-    </div>
-  </nb-card-footer>
+    <tbody *ngIf="table && !table?.empty">
+      <tr *ngFor="let hidrometro of table.content; index as i">
 
-  <nb-card-footer>
-    <div class="row" *ngIf="table">
+        <td class="align-middle" >
+          {{hidrometro.matricula}}
+        </td>
 
-      <div class="col-md-3 col-6 ">
-        <button nbButton outline fullWidth status="basic" (click)="anterior()" [disabled]=table.first>Anterior</button>
-      </div>
+        <td class="align-middle" >
+          {{hidrometro.referencia | referenciaPipe}}
+        </td>
 
-      <div class="offset-md-6 col-md-3 col-6">
-        <button nbButton outline fullWidth status="basic" (click)="avancar()" [disabled]=table.last>Proxima</button>
-      </div>
+        <td class="align-middle">
+          {{hidrometro.anterior | number}}
+        </td>
 
-    </div>
-  </nb-card-footer>
+        <td class="align-middle">
+          {{hidrometro.atual | number}}
+        </td>
 
-</nb-card>
+        <td class="align-middle" >
+          {{(hidrometro.atual - hidrometro.anterior ) | number}}
+        </td>
+
+        <td class="align-middle">
+          {{ (hidrometro.atual - hidrometro.anterior) * hidrometro.valorLitroAgua  | currency: 'BRL':'symbol'}}
+        </td>
+
+        <td class="align-middle" >
+          <button nbButton outline fullWidth status="warning" (click)=editar(data)>
+            <nb-icon icon="edit-outline"></nb-icon>
+          </button>
+        </td>
+
+        <td class="align-middle" >
+          <button nbButton outline fullWidth status="danger" (click)=deletar(data)>
+            <nb-icon icon="trash-2-outline"></nb-icon>
+          </button>
+        </td>
+      </tr>
+
+    </tbody>
+
+    <tbody *ngIf="table?.empty">
+
+      <tr>
+        <td class="align-middle" colspan="8" >
+          Nenhum registro encontrado
+        </td>
+      </tr>
+
+    </tbody>
+
+
+    <tfoot>
+      <tr>
+        <th scope="col" colspan="6"> </th>
+      </tr>
+    </tfoot>
+
+  </table>
+</ngx-table>
